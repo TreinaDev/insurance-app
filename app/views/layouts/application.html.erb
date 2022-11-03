@@ -11,8 +11,16 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <header>
+      <%= render 'layouts/navbar' %>
+    </header>
+    <main>
+      <div class="container">
+        <div class="my-3" >
+          <%= render 'layouts/flash_messages' %>
+        </div>
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>
