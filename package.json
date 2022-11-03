@@ -1,12 +1,14 @@
 {
-  "name":"insurance_app",
+  "name": "insurance_app",
   "private": "true",
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "esbuild": "^0.15.12",
-    "sass": "^1.55.0"
+    "n": "^9.0.0",
+    "sass": "^1.55.0",
+    "stable": "^0.1.8"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
