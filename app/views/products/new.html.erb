@@ -1,0 +1,26 @@
+<h2>Adicionar novo produto</h2>
+
+<%= notice %>
+<% if @product.errors.any? %>
+  <ul>
+    <% @product.errors.each do |e| %>
+      <%= e.full_message %>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_with(model: Product.new) do |f| %>
+  <%= f.label :product_model,  'Modelo de Produto' %>
+  <%= f.text_field :product_model %>
+  <%= f.label :launch_year,  'Ano de Lançamento' %>
+  <%= f.text_field :launch_year %>
+  <%= f.label :brand,  'Marca' %>
+  <%= f.text_field :brand %>
+  <%= f.label :price,  'Preço' %>
+  <%= f.number_field :price, step: 0.01 %>
+  <%= f.label :status,  'Status' %>
+  <%= f.select :status, [["Ativo", :active], ["Inativo", :inactive]] %>
+  <%= f.label :product_category_id,  'Categoria' %>
+  <%= f.collection_select :product_category_id, ProductCategory.all, :id, :name %>
+  <%= f.submit "Enviar" %>
+<% end %>
+
