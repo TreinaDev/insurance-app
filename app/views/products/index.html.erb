@@ -1,0 +1,11 @@
+<h1>Lista de Produtos</h1>
+
+<% if @products.any? %>
+  <% @products.each do |product| %>
+    <ul>
+      <li><%= product.product_model %> - <%= product.brand %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>Não existem produtos cadastrados</p>
+<% end %>
