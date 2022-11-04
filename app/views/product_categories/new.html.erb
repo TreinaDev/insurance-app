@@ -1,1 +1,18 @@
 <h1>Cadastrar Nova Categoria de Produto</h1>
+<% if(@product_category.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @product_category.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_with(model: @product_category) do |f|%>
+  <div>
+    <%= f.label :name, 'Nome:' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>  
+    <%= f.submit 'Salvar'%>
+  </div>
+<%end%>

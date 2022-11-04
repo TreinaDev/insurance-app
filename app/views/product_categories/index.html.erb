@@ -1,0 +1,11 @@
+<h1>Categorias de Produtos</h1>
+
+<% if @product_categories.any? %>
+  <% @product_categories.each do |p| %>
+    <ul>
+      <li>Nome: <%= p.name %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>Não existem categorias de produtos cadastradas</p>
+<% end %>
