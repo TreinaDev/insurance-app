@@ -1,6 +1,11 @@
-<h1><%= @product.product_model %> </h1>
-
-<p>Ano de lançamento: <%= @product.launch_year %>
-<p>Marca: <%= @product.brand %>
-<p>Preço: <%= @product.price %>
-<p>Categoria: <%= @product.product_category.name %>
+<div class = "container-card" style="margin:30px;"> 
+<div class="card" style="width: 18rem;">  
+  <div class="card-body">
+    <p><h4><%= @product.product_model %> </h4></p>
+    <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
+    <p><strong>Marca:</strong> <%= @product.brand %>
+    <p><strong>Preço:</strong> <%= @product.price %>
+    <p><strong>Categoria:</strong> <%= @product.product_category.name %>
+  </div>
+</div>
+</div>
