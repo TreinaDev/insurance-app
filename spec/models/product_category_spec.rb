@@ -9,6 +9,7 @@ RSpec.describe ProductCategory, type: :model do
 
       expect(result).to eq false
     end
+
     it 'false when name is already in use' do
       ProductCategory.create!(name: 'TV')
       product_category = ProductCategory.new(name: 'TV')
@@ -17,6 +18,7 @@ RSpec.describe ProductCategory, type: :model do
 
       expect(result).to eq false
     end
+    
     it 'false when name is already in use for case sensitive' do
       ProductCategory.create!(name: 'tv')
       product_category = ProductCategory.new(name: 'TV')

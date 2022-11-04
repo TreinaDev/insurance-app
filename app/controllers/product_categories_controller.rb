@@ -11,7 +11,7 @@ class ProductCategoriesController < ApplicationController
     
     @product_category = ProductCategory.new(product_category_params)
     if @product_category.save
-     redirect_to product_categories_path, notice:'Categoria de produto cadastrada com sucesso!'
+     redirect_to product_categories_path, notice: 'Categoria de produto cadastrada com sucesso!'
     else
       flash.now[:notice] = 'Ocorreu um erro.'
       render 'new'
