@@ -2,12 +2,14 @@ require 'rails_helper'
 
 describe 'Administrador vê lista de produtos' do
   it 'com sucesso' do
+    user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
     product_category = ProductCategory.create!(name: 'TV')
     product = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'LG', price: 5000,
                               product_category:)
     other_product = Product.create!(product_model: 'TV 50', launch_year: '2021', brand: 'SAMSUNG', price: 8000,
                                     product_category:)
 
+    login_as(user)
     visit products_path
 
     expect(page).to have_content 'TV 32'
@@ -17,6 +19,9 @@ describe 'Administrador vê lista de produtos' do
   end
 
   it 'e não tem nenhum produto' do
+    user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
+    
+    login_as(user)
     visit products_path
 
     expect(page).to have_content 'Não existem produtos cadastrados'
