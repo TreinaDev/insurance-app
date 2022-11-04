@@ -36,3 +36,7 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
+# Resolver erro: An error occurred while Lint/RefinementImportMethods cop 
+# was inspecting insurance-app/spec/support/devise_methods.rb:1:0
+Lint/RefinementImportMethods:
+  Enabled: false
