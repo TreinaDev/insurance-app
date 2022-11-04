@@ -34,10 +34,15 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Yarn Install
-        run: bin/yarn
+        run: yarn install
         
       - name: Set up database schema
         run: bin/rails db:schema:load
+
+      - name: Set up asset pipeline
+        run: | 
+          yarn build
+          yarn build:css
 
       - name: Run tests
         run: bin/rake
