@@ -23,7 +23,8 @@ describe 'Usuário acessa página de um produto específico' do
 
   it 'e é redirecionado para tela de login se não tiver autenticado' do
     product_category = ProductCategory.create!(name: 'Celular')
-    product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0, product_category:)
+    product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', 
+                              price: 2000.0, product_category:)
 
     visit "products/#{product.id}"
 
