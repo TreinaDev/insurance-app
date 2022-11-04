@@ -5,9 +5,9 @@ describe 'Administrador vê lista de produtos' do
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
     product_category = ProductCategory.create!(name: 'TV')
     Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'LG', price: 5000,
-                              product_category:)
+                    product_category:)
     Product.create!(product_model: 'TV 50', launch_year: '2021', brand: 'SAMSUNG', price: 8000,
-                                    product_category:)
+                    product_category:)
 
     login_as(user)
     visit products_path
@@ -20,7 +20,7 @@ describe 'Administrador vê lista de produtos' do
 
   it 'e não tem nenhum produto' do
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
-    
+
     login_as(user)
     visit products_path
 
