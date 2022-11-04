@@ -18,7 +18,6 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'spec/rails_helper.rb'
-    - 'spec/**/*'
     - 'db/**/*'
 
 # Trabalhamos bastante com testes como a documentação viva do projeto então
