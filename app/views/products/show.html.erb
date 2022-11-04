@@ -4,7 +4,7 @@
     <p><h4><%= @product.product_model %> </h4></p>
     <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
     <p><strong>Marca:</strong> <%= @product.brand %>
-    <p><strong>Preço:</strong> <%= @product.price %>
+    <p><strong>Preço:</strong> <%= number_to_currency(@product.price) %>
     <p><strong>Categoria:</strong> <%= @product.product_category.name %>
   </div>
 </div>
