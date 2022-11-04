@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   root to: 'home#welcome'
 
   resources :products, only: [:index, :show]
-
 end
