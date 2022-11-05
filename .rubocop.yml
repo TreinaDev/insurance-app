@@ -18,6 +18,11 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'spec/rails_helper.rb'
+    - 'spec/models/*'
+    - 'spec/support/*'
+    - 'db/migrate/*'
+    - 'app/models/product_category.rb'
+    - 'spec/system/product/user_view_product_list_spec.rb'
 
 # Trabalhamos bastante com testes como a documentação viva do projeto então
 # desabilitamos a Cop de documentação com comentário
@@ -35,3 +40,6 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
+Layout/EndOfLine:
+  Enabled: False
+  
