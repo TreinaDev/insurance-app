@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário faz login' do
-
   context 'como administrador' do
     it 'com sucesso' do
       User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)

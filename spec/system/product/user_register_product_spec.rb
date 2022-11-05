@@ -60,4 +60,18 @@ describe 'Usuário cadastra um produto' do
     expect(page).to have_content('Marca não pode ficar em branco')
     expect(page).to have_content('Preço não pode ficar em branco')
   end
+
+  it 'e não é administrador' do
+    user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :employee)
+    ProductCategory.create!(name: 'Smartphones')
+    ProductCategory.create!(name: 'Laptops')
+
+    login_as(user)
+    visit root_path
+    click_on 'Produtos'
+    click_on 'Adicionar Produto'
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Apenas usuários administradores tem acesso a essa função')
+  end
 end

@@ -5,8 +5,8 @@ describe 'Administrador vê lista de produtos' do
     product_category = ProductCategory.create!(name: 'TV')
     product = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'LG', price: 5000,
                               product_category: product_category)
-    other_product = Product.create!(product_model: 'TV 50', launch_year: '2021', brand: 'SAMSUNG',
-                                    price: 8000, product_category: product_category)
+    Product.create!(product_model: 'TV 50', launch_year: '2021', brand: 'SAMSUNG',
+                    price: 8000, product_category: product_category)
 
     visit products_path
 
