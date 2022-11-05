@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Produto criado com sucesso!'
-      redirect_to new_product_path
+      redirect_to products_path
     else
       flash.now[:notice] = 'Produto não foi criado'
       render 'new'

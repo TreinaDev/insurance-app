@@ -36,10 +36,12 @@ describe 'Usuário cadastra um produto' do
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto criado com sucesso!')
-    expect(current_path).to eq(new_product_path)
+    expect(current_path).to eq(products_path)
+    expect(page).to have_content('ABCD')
+    expect(page).to have_content('Samsung')
   end
 
-  it 'com sucesso' do
+  it 'faltando informações' do
     user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :admin)
     ProductCategory.create!(name: 'Smartphones')
     ProductCategory.create!(name: 'Laptops')
