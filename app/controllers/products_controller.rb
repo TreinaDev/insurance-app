@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :check_if_admin, only: [:new, :create]
+  before_action :check_if_admin, only: %i[new create]
 
   def index
     @products = Product.all
@@ -12,10 +12,10 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice] = 'Produto criado com sucesso!'
+      flash[:notice] = t('.success')
       redirect_to products_path
     else
-      flash.now[:notice] = 'Produto não foi criado'
+      flash.now[:notice] = t('.failure')
       render 'new'
     end
   end
@@ -23,14 +23,11 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    product_params = params.require(:product).permit(:product_model, :launch_year, :brand, :price,
-                                                    :status, :product_category_id)
+    params.require(:product).permit(:product_model, :launch_year, :brand, :price,
+                                    :status, :product_category_id)
   end
 
   def check_if_admin
-    if current_user.employee?
-      flash[:notice] = 'Apenas usuários administradores tem acesso a essa função'
-      redirect_to root_path
-    end
+    redirect_to root_path, notice: t('.authorization_failure') if current_user.employee?
   end
 end
