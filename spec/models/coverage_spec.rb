@@ -1,4 +1,4 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe Coverage, type: :model do
-end
+# RSpec.describe Coverage, type: :model do
+# end
