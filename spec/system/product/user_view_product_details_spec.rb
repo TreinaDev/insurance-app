@@ -26,7 +26,7 @@ describe 'Usuário acessa página de um produto específico' do
     product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung',
                               price: 2000.0, product_category:)
 
-    visit "products/#{product.id}"
+    visit product_path product.id
 
     expect(page).to have_content('Para continuar, faça login ou registre-se.')
     expect(current_path).to eq user_session_path
