@@ -36,9 +36,12 @@ describe 'Usuário cadastra um produto' do
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto criado com sucesso!')
-    expect(current_path).to eq(products_path)
+    expect(current_path).to eq(product_path(Product.last.id))
     expect(page).to have_content('ABCD')
+    expect(page).to have_content('2021')
     expect(page).to have_content('Samsung')
+    expect(page).to have_content('R$ 1.200,00')
+    expect(page).to have_content('Smartphones')
   end
 
   it 'faltando informações' do
