@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário registra um produto' do
   it 'e não é administrador' do
-    user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :employee)
+    InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     category = ProductCategory.create!(name: 'Smartphones')
 
     login_as(user)

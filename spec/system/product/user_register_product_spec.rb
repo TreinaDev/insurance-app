@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um produto' do
   it 'a partir da página formulário' do
-    user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :admin)
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
 
     login_as(user)
     visit root_path
@@ -19,7 +20,8 @@ describe 'Usuário cadastra um produto' do
   end
 
   it 'com sucesso' do
-    user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :admin)
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     ProductCategory.create!(name: 'Smartphones')
     ProductCategory.create!(name: 'Laptops')
 
@@ -45,7 +47,8 @@ describe 'Usuário cadastra um produto' do
   end
 
   it 'faltando informações' do
-    user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :admin)
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     ProductCategory.create!(name: 'Smartphones')
     ProductCategory.create!(name: 'Laptops')
 
@@ -67,7 +70,8 @@ describe 'Usuário cadastra um produto' do
   end
 
   it 'e não é administrador' do
-    user = User.create!(email: 'email@admin.com', password: 'password', name: 'Maria', role: :employee)
+    InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     ProductCategory.create!(name: 'Smartphones')
     ProductCategory.create!(name: 'Laptops')
 
