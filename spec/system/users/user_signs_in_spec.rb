@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Usuário faz login' do
   context 'como administrador' do
     it 'com sucesso' do
+      InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
       User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 
       visit root_path
@@ -25,6 +26,7 @@ describe 'Usuário faz login' do
     end
 
     it 'e faz logout' do
+      InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
       admin = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 
       login_as admin
