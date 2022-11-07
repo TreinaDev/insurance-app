@@ -1,4 +1,4 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe ProductCategory, type: :model do
-end
+# RSpec.describe ProductCategory, type: :model do
+# end

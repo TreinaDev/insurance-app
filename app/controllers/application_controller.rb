@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
-  def check_user
-    redirect_to root_path if current_user.nil?
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 end
