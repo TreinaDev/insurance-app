@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Administrador vê lista de produtos' do
   it 'com sucesso' do
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
     product_category = ProductCategory.create!(name: 'TV')
     Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'LG', price: 5000,
@@ -19,6 +20,7 @@ describe 'Administrador vê lista de produtos' do
   end
 
   it 'e não tem nenhum produto' do
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
 
     login_as(user)

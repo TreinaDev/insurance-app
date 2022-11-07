@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_040359) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_04_231251) do
   create_table "coverages", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -82,10 +82,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_040359) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "insurance_company_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["insurance_company_id"], name: "index_users_on_insurance_company_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "packages", "insurance_companies"
   add_foreign_key "products", "product_categories"
+  add_foreign_key "users", "insurance_companies"
 end
