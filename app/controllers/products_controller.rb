@@ -1,8 +1,13 @@
 class ProductsController < ApplicationController
   before_action :check_if_admin, only: %i[new create]
+  before_action :authenticate_user!
 
   def index
     @products = Product.all
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   def new

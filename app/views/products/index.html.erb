@@ -5,7 +5,7 @@
 <% if @products.any? %>
   <% @products.each do |product| %>
     <ul>
-      <li><%= product.product_model %> - <%= product.brand %></li>
+      <li><%= link_to(product.product_model, product_path(product.id)) %> - <%= product.brand %></li>
     </ul>
   <% end %>
 <% else %>
