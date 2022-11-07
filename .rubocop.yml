@@ -19,7 +19,6 @@ AllCops:
     - 'script/**/*'
     - 'spec/rails_helper.rb'
     - 'spec/support/*'
-    - 'spec/models/*'
     - 'db/migrate/*'
 
 # Trabalhamos bastante com testes como a documentação viva do projeto então
@@ -39,4 +38,4 @@ Metrics/BlockLength:
   AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
 Layout/EndOfLine:
-   Enabled: False
+   Enabled: True
