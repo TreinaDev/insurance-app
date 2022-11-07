@@ -8,4 +8,11 @@
     <p><strong>Categoria:</strong> <%= @product.product_category.name %>
   </div>
 </div>
+<% if @product.image.attached? %>
+  <div class="card" style="width: 18rem;">  
+    <div class="card-body">
+      <%= image_tag @product.image %>
+    </div>
+  </div>
+<% end %>
 </div>

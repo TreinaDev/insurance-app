@@ -99,6 +99,21 @@
     <% end %>
   </div>
 
+  <div class="mb-3">
+    <%= f.label :image, 'Foto', class: "form-label fw-semibold" %>
+    <%= f.file_field :image, class: "form-control" %>
+
+    <% if(@product.errors.include? :image) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @product.errors.full_messages_for(:image).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
   <div class="d-grid mb-3">
     <%= f.submit class: "btn btn-dark" %>
   </div>
