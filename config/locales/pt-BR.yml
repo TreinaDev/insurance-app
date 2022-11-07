@@ -220,3 +220,7 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  characters_min: " caracteres no mínimo"
+  sign_in: "Entrar"
+  sign_out: "Sair"
+  sign_up: "Criar conta"
