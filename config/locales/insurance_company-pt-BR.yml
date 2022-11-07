@@ -1,0 +1,18 @@
+pt-BR:
+  active: Ativo
+  inactive: Inativo
+  activerecord:
+    models:
+      insurance_company: Seguradora
+    attributes:
+      insrance_company:
+        name: Nome da Seguradora
+        email_domain: Domínio de E-mail
+        token_status: Status do Token
+        company_status: Status da Seguradora
+        token: Token de Integração
+
+       
+
+
+     

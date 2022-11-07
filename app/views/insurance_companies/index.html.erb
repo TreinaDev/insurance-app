@@ -1,0 +1,11 @@
+<h1>Seguradoras</h1>
+
+<% if @insurance_companies.any? %>
+  <% @insurance_companies.each do |insurance| %>
+    <ul>
+      <li><%= insurance.name %> - <%= insurance.company_status%></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>Não existem seguradoras cadastrados</p>
+<% end %>
