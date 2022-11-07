@@ -3,8 +3,7 @@ require 'rails_helper'
 describe 'Usuário se cadastra' do
   it 'com sucesso' do
     InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
-    InsuranceCompany.create!(name: 'Seguradora B', email_domain: 'seguradorab.com.br')
-
+        
     visit root_path
     click_on 'Entrar'
     click_on 'Cadastre-se'
