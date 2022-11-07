@@ -3,7 +3,7 @@
 <% if @insurance_companies.any? %>
   <% @insurance_companies.each do |insurance| %>
     <ul>
-      <li><%= insurance.name %> - <%= insurance.company_status%></li>
+      <li><%= insurance.name %> - <%= I18n.translate(insurance.company_status)%></li>
     </ul>
   <% end %>
 <% else %>
