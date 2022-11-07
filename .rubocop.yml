@@ -18,7 +18,6 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'spec/rails_helper.rb'
-    - 'spec/models/*'
     - 'spec/support/*'
     - 'db/migrate/*'
     - 'app/models/product_category.rb'
@@ -41,5 +40,5 @@ Metrics/BlockLength:
   AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
 Layout/EndOfLine:
-  Enabled: False
+  Enabled: True
   
