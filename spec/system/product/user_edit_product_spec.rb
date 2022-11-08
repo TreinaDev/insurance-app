@@ -25,8 +25,10 @@ describe 'Usúario edita um produto' do
     InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
-    Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
+    product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                     product_category:)
+    image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
+    product.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
 
     login_as(user)
     visit root_path
@@ -42,6 +44,7 @@ describe 'Usúario edita um produto' do
     expect(page).to have_content('Ano de Lançamento: 2019')
     expect(page).to have_content('Samsung Galaxy S20')
     expect(page).to have_content('Categoria: Celular')
+    expect(page).to have_css('img[src*="galaxy-s20-produto.jpg"]')
   end
 
   it 'com informações faltando' do
