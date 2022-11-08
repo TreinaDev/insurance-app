@@ -20,7 +20,7 @@
           <td><%= product.brand %></td>
           <td><%= link_to product.product_model, product_path(product.id), class: "link-dark" %></td>
           <td><%= product.launch_year %></td>
-          <% if product.status == 'active' %>
+          <% if product.active? %>
             <td class="fw-semibold text-success"><%= Product.human_attribute_name("status.#{product.status}") %></td>
           <% else %>
             <td class="fw-semibold text-muted"><%= Product.human_attribute_name("status.#{product.status}") %></td>
