@@ -59,21 +59,6 @@
   </div>
 
   <div class="mb-3">
-    <%= f.label :status, class: "form-label fw-semibold" %>
-    <%= f.select :status, [["Ativo", :active], ["Inativo", :inactive]] , class: "form-control" %>
-
-    <% if(@product.errors.include? :status) %>
-      <div class=" my-3 alert alert-danger">
-        <ul>
-          <% @product.errors.full_messages_for(:status).each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
- 
-  <div class="mb-3">
     <%= f.label :product_category_id, class: "form-label fw-semibold" %>
     <%= f.collection_select :product_category_id, ProductCategory.all, :id, :name, class: "form-control" %>
 
