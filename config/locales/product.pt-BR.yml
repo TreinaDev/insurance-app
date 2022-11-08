@@ -10,6 +10,7 @@ pt-BR:
         price: Preço
         product_category_id: Categoria
         image: Foto
+        status: 'Status'
   products:
     create:
       success: 'Produto criado com sucesso!'

@@ -18,7 +18,7 @@ describe 'Usuário acessa página de um produto específico' do
     click_on('Samsung Galaxy S20')
 
     expect(page).to have_content('Samsung Galaxy S20')
-    expect(page).to have_content('Ano de lançamento: 2018')
+    expect(page).to have_content('Ano de Lançamento: 2018')
     expect(page).to have_content('Marca: Samsung')
     expect(page).to have_content('Preço: R$ 2.000,00')
     expect(page).to have_content('Categoria: Celular')
