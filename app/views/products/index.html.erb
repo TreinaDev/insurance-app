@@ -1,6 +1,8 @@
-<h1 class="my-3">Lista de Produtos</h1>
+<h1 class="my-3"><%= t '.title' %></h1>
 <div class="my-3">
-  <%= link_to "Adicionar Produto", new_product_path, class: "btn btn-dark " %>
+  <% if current_user.admin? %>
+    <%= link_to (t '.register'), new_product_path, class: "btn btn-dark " %>
+  <% end %>
 </div>
 <% if @products.any? %>
   <table class="table table-striped">
@@ -35,6 +37,6 @@
   </table>
 <% else %>
   <div class="alert alert-secondary text-center">
-    Não existem produtos cadastrados
+    <%= t '.message' %>
   </div>
 <% end %>

@@ -5,4 +5,4 @@ pt-BR:
       register_new_product: 'Cadastrar Novo Produto'
       message: 'Não existem produtos cadastrados'
       product_model: 'Modelo do Produto'
-      register: 'Cadastrar novo Produto'
+      register: 'Adicionar Produto'
