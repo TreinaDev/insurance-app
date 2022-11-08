@@ -1,13 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, except: [:welcome]
+  before_action :authenticate_user!
 
   private
-  
+
   def check_admin
-    if current_user.admin? == false
-      redirect_to root_url, notice: t('.authorization_failure')
-    end
+    redirect_to root_url, notice: t('.authorization_failure') if current_user.admin? == false
   end
 
   protected

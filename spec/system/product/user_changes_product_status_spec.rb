@@ -8,7 +8,7 @@ describe 'Usuário altera status do produto' do
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                       product_category:, status: :active)
-      
+
       login_as admin
       visit root_path
       click_on 'Produtos'
@@ -28,7 +28,7 @@ describe 'Usuário altera status do produto' do
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                       product_category:, status: :inactive)
-      
+
       login_as admin
       visit root_path
       click_on 'Produtos'
@@ -50,7 +50,7 @@ describe 'Usuário altera status do produto' do
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                       product_category:, status: :active)
-      
+
       login_as user
       visit root_path
       click_on 'Produtos'
@@ -65,7 +65,7 @@ describe 'Usuário altera status do produto' do
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                       product_category:, status: :inactive)
-      
+
       login_as user
       visit root_path
       click_on 'Produtos'

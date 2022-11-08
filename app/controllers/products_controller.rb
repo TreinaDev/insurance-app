@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :check_admin, only: [:activate, :deactivate, :new, :create]
-  before_action :set_product, only: [:show, :activate, :deactivate]
+  before_action :check_admin, only: %i[activate deactivate new create]
+  before_action :set_product, only: %i[show activate deactivate]
 
   def index
     @products = Product.all
@@ -10,12 +10,12 @@ class ProductsController < ApplicationController
 
   def activate
     @product.active!
-    redirect_to @product, notice: 'Produto ativado com sucesso'
+    redirect_to @product, notice: t('.success')
   end
 
   def deactivate
     @product.inactive!
-    redirect_to @product, notice: 'Produto desativado com sucesso'
+    redirect_to @product, notice: t('.success')
   end
 
   def new

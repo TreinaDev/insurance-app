@@ -10,9 +10,13 @@ pt-BR:
         price: Preço
         product_category_id: Categoria
   products:
+    activate:
+      success: 'Produto ativado com sucesso'
     create:
       success: 'Produto criado com sucesso!'
       failure: 'Produto não foi criado'
+    deactivate:
+      success: 'Produto desativado com sucesso'
     new:
       authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
       
