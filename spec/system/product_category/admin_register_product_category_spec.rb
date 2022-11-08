@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Administrador cadastra categoria de produto' do
   it 'com sucesso' do
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     admin = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 
     login_as(admin)
@@ -16,6 +17,7 @@ describe 'Administrador cadastra categoria de produto' do
   end
 
   it 'com erro' do
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     admin = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 
     login_as(admin)
