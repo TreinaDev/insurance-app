@@ -1,0 +1,5 @@
+pt-BR:
+  product_categories:
+    create:
+      success: Categoria de produto cadastrada com sucesso!
+      fail: Ocorreu um erro.
