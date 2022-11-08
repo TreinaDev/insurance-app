@@ -8,7 +8,12 @@ pt-BR:
         launch_year: Ano de Lançamento
         brand: Marca
         price: Preço
+        product_category: Categoria
         product_category_id: Categoria
+        status: "Status"
+      product/status:
+        active: "Ativo"
+        inactive: "Inativo"
   products:
     create:
       success: 'Produto criado com sucesso!'

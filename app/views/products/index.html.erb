@@ -1,13 +1,36 @@
-<h1>Lista de Produtos</h1>
-<br/>
-<%= link_to "Adicionar Produto", new_product_path %>
-<br/>
+<h1 class="my-3">Lista de Produtos</h1>
+<div class="my-3">
+  <%= link_to "Adicionar Produto", new_product_path, class: "btn btn-dark " %>
+</div>
 <% if @products.any? %>
-  <% @products.each do |product| %>
-    <ul>
-      <li><%= link_to(product.product_model, product_path(product.id)) %> - <%= product.brand %></li>
-    </ul>
-  <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Product.human_attribute_name(:product_category) %></th>
+        <th><%= Product.human_attribute_name(:brand) %></th>
+        <th><%= Product.human_attribute_name(:product_model) %></th>
+        <th><%= Product.human_attribute_name(:launch_year) %></th>
+        <th><%= Product.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.product_category.name %></td>
+          <td><%= product.brand %></td>
+          <td><%= link_to product.product_model, product_path(product.id), class: "link-dark" %></td>
+          <td><%= product.launch_year %></td>
+          <% if product.status == 'active' %>
+            <td class="fw-semibold text-success"><%= Product.human_attribute_name("status.#{product.status}") %></td>
+          <% else %>
+            <td class="fw-semibold text-muted"><%= Product.human_attribute_name("status.#{product.status}") %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
-  <p>Não existem produtos cadastrados</p>
+  <div class="alert alert-secondary text-center">
+    Não existem produtos cadastrados
+  </div>
 <% end %>

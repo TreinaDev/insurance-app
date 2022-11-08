@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @products = Product.all
+    @products = Product.all.order(:product_category)
   end
 
   def show
