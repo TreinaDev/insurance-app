@@ -9,9 +9,11 @@ pt-BR:
         brand: Marca
         price: Preço
         product_category_id: Categoria
+        status: 'Status'
   products:
     create:
       success: 'Produto criado com sucesso!'
       failure: 'Produto não foi criado'
-    new:
-      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'      
+    new:           
+      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+      

@@ -26,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_145931) do
     t.integer "token_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "cnpj"
-    t.index ["cnpj"], name: "index_insurance_companies_on_cnpj", unique: true
+    t.string "registration_number"
+    t.index ["registration_number"], name: "index_insurance_companies_on_registration_number", unique: true
   end
 
   create_table "packages", force: :cascade do |t|
