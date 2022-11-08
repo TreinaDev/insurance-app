@@ -11,7 +11,9 @@ pt-BR:
         token_status: Status do Token
         company_status: Status da Seguradora
         token: Token de Integração
-
+  insurance_companies:      
+    index:
+      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
        
 
 

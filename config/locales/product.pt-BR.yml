@@ -14,5 +14,4 @@ pt-BR:
       success: 'Produto criado com sucesso!'
       failure: 'Produto não foi criado'
     new:
-      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
-      
+      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'      
