@@ -16,6 +16,8 @@ class ProductsController < ApplicationController
   def deactivate
     @product.inactive!
     redirect_to @product, notice: 'Produto desativado com sucesso'
+  end
+
   def new
     @product = Product.new
   end
@@ -36,7 +38,7 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-  
+
   def product_params
     params.require(:product).permit(:product_model, :launch_year, :brand, :price,
                                     :status, :product_category_id)
