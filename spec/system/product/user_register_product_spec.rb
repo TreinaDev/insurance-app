@@ -10,7 +10,7 @@ describe 'Usuário cadastra um produto' do
     click_on 'Produtos'
     click_on 'Adicionar Produto'
 
-    expect(page).to have_field 'Modelo de Produto'
+    expect(page).to have_field 'Modelo do Produto'
     expect(page).to have_field 'Ano de Lançamento'
     expect(page).to have_field 'Marca'
     expect(page).to have_field 'Preço'
@@ -29,7 +29,7 @@ describe 'Usuário cadastra um produto' do
     visit root_path
     click_on 'Produtos'
     click_on 'Adicionar Produto'
-    fill_in 'Modelo de Produto', with: 'ABCD'
+    fill_in 'Modelo do Produto', with: 'ABCD'
     fill_in 'Ano de Lançamento', with: '2021'
     fill_in 'Marca', with: 'Samsung'
     fill_in 'Preço', with: '1200'
@@ -56,14 +56,14 @@ describe 'Usuário cadastra um produto' do
     visit root_path
     click_on 'Produtos'
     click_on 'Adicionar Produto'
-    fill_in 'Modelo de Produto', with: ''
+    fill_in 'Modelo do Produto', with: ''
     fill_in 'Ano de Lançamento', with: ''
     fill_in 'Marca', with: ''
     fill_in 'Preço', with: ''
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto não foi criado')
-    expect(page).to have_content('Modelo de Produto não pode ficar em branco')
+    expect(page).to have_content('Modelo do Produto não pode ficar em branco')
     expect(page).to have_content('Ano de Lançamento não pode ficar em branco')
     expect(page).to have_content('Marca não pode ficar em branco')
     expect(page).to have_content('Preço não pode ficar em branco')

@@ -1,11 +1,15 @@
 <div class = "container-card" > 
-<div class="card" style="width: 18rem;">  
-  <div class="card-body">
-    <p><h4><%= @product.product_model %> </h4></p>
-    <p><strong><%= Product.human_attribute_name(:launch_year)%>:</strong> <%= @product.launch_year %>
-    <p><strong><%= Product.human_attribute_name(:brand)%>:</strong> <%= @product.brand %>
-    <p><strong><%= Product.human_attribute_name(:price)%>:</strong> <%= number_to_currency(@product.price) %>
-    <p><strong><%= Product.human_attribute_name(:product_category_id)%>:</strong> <%= @product.product_category.name %>
+  <div class="card" style="width: 18rem;">  
+    <div class="card-body">
+      <p><h4><%= @product.product_model %> </h4></p>
+      <p><strong><%= Product.human_attribute_name(:launch_year)%>:</strong> <%= @product.launch_year %>
+      <p><strong><%= Product.human_attribute_name(:brand)%>:</strong> <%= @product.brand %>
+      <p><strong><%= Product.human_attribute_name(:price)%>:</strong> <%= number_to_currency(@product.price) %>
+      <p><strong><%= Product.human_attribute_name(:product_category_id)%>:</strong> <%= @product.product_category.name %>
+
+      <% if current_user.admin? %>
+        <p><%= link_to 'Editar', edit_product_path(@product.id), class: 'card_link' %></p>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
