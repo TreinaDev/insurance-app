@@ -1,11 +1,31 @@
-<h1>Seguradoras</h1>
 
-<% if @insurance_companies.any? %>
-  <% @insurance_companies.each do |insurance| %>
-    <ul>
-      <li><%= insurance.name %> - <%= I18n.translate(insurance.company_status)%></li>
-    </ul>
-  <% end %>
-<% else %>
+
+<h1 class="my-3">Seguradoras</h1>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= InsuranceCompany.human_attribute_name(:name) %></th>
+        <th><%= InsuranceCompany.human_attribute_name(:company_status) %></th>       
+      </tr>
+    </thead>
+    <tbody>
+    <% if @insurance_companies.any? %>
+      <% @insurance_companies.each do |insurance| %>
+        <tr>
+          <td><%= link_to insurance.name, '#', class: "link-dark" %></td>          
+          <% if insurance.company_status == 'active' %>
+            <td class="fw-semibold text-success"><%= InsuranceCompany.human_attribute_name("company_status.#{insurance.company_status}") %></td>
+          <% else %>
+            <td class="fw-semibold text-muted"><%= InsuranceCompany.human_attribute_name("company_status.#{insurance.company_status}") %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="alert alert-secondary text-center">
   <p>Não existem seguradoras cadastradas</p>
+  </div>
 <% end %>

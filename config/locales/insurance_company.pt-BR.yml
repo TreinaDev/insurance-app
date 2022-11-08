@@ -5,12 +5,15 @@ pt-BR:
     models:
       insurance_company: Seguradora
     attributes:
-      insrance_company:
+      insurance_company:
         name: Nome da Seguradora
         email_domain: Domínio de E-mail
         token_status: Status do Token
         company_status: Status da Seguradora
         token: Token de Integração
+      insurance_company/company_status:
+        active: "Ativo"
+        inactive: "Inativo"  
   insurance_companies:      
     index:
       authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
