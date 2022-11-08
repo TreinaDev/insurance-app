@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário vê lista de Categorias de Produto' do
   it 'com sucesso' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '19805576000154')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password')
     ProductCategory.create!(name: 'Celular')
     ProductCategory.create!(name: 'Desktop')
@@ -19,7 +19,7 @@ describe 'Usuário vê lista de Categorias de Produto' do
   end
 
   it 'e não vê botão para cadastrar nova Categoria' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '19805576000154')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password')
     ProductCategory.create!(name: 'Celular')
     ProductCategory.create!(name: 'Desktop')
@@ -37,7 +37,7 @@ describe 'Usuário vê lista de Categorias de Produto' do
   end
 
   it 'e não existem Categorias cadastradas' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '19805576000154')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password')
 
     login_as(user)
@@ -51,7 +51,7 @@ describe 'Usuário vê lista de Categorias de Produto' do
   end
 
   it 'e volta para a página inicial' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '19805576000154')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password')
 
     login_as(user)
