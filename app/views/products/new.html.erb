@@ -100,8 +100,8 @@
   </div>
 
   <div class="mb-3">
-    <%= f.label :image, 'Foto', class: "form-label fw-semibold" %>
-    <%= f.file_field :image, class: "form-control" %>
+    <%= f.label :image, class: "form-label fw-semibold" %>
+    <%= f.file_field :image, accept: 'image/png, image/jpeg, image/svg', class: "form-control" %>
 
     <% if(@product.errors.include? :image) %>
       <div class=" my-3 alert alert-danger">
