@@ -3,7 +3,6 @@ class InsuranceCompany < ApplicationRecord
   validates :registration_number, length: { is: 14 }
   before_validation :generate_token, on: :create
   validates :token, length: { is: 20 }
-  validates :token, uniqueness: true
 
   private
 
