@@ -1,7 +1,9 @@
 <h1><%= t '.title' %></h1>
 
 <br/>
-<%= link_to "Adicionar Produto", new_product_path %>
+<% if current_user.admin? %>
+  <%= link_to (t '.register'), new_product_path %>
+<% end %>
 <br/>
 <br/>
 <% if @products.any? %>
@@ -12,8 +14,4 @@
   </ul>
 <% else %>
   <p><%= t '.message' %></p>
-<% end %>
-
-<% if current_user.admin? %>
-  <%= link_to (t '.register'), new_product_path %>
 <% end %>

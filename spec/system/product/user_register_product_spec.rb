@@ -80,9 +80,7 @@ describe 'Usuário cadastra um produto' do
     login_as(user)
     visit root_path
     click_on 'Produtos'
-    click_on 'Adicionar Produto'
 
-    expect(current_path).to eq(root_path)
-    expect(page).to have_content('Apenas usuários administradores tem acesso a essa função')
+    expect(page).not_to have_link('Adicionar Produto')
   end
 end
