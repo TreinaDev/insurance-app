@@ -9,6 +9,7 @@ pt-BR:
         brand: Marca
         price: Preço
         product_category_id: Categoria
+        status: 'Status'
   products:
     create:
       success: 'Produto criado com sucesso!'

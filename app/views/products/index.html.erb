@@ -1,13 +1,18 @@
-<h1>Lista de Produtos</h1>
+<h1><%= t '.title' %></h1>
+
 <br/>
 <%= link_to "Adicionar Produto", new_product_path %>
 <br/>
 <% if @products.any? %>
-  <% @products.each do |product| %>
-    <ul>
-      <li><%= link_to(product.product_model, product_path(product.id)) %> - <%= product.brand %></li>
-    </ul>
-  <% end %>
+  <ul class="list-group">
+    <% @products.each do |product| %>
+      <li class="list-group-item list-group-item-action"><%= t '.product_model' %>: <%= link_to(product.product_model, product_path(product.id)) %> - <%= product.brand %></li>
+    <% end %>
+  </ul>
 <% else %>
-  <p>Não existem produtos cadastrados</p>
+  <p><%= t '.message' %></p>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= link_to (t '.register'), new_product_path %>
 <% end %>
