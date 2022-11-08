@@ -1,5 +1,9 @@
 <div class = "container-card" style="margin:30px;"> 
-<div class="card" style="width: 18rem;">  
+<div class="card" style="width: 20rem;">  
+  
+  <% if @product.image.attached? %>
+    <%= image_tag @product.image, class:"card-img-top" %>
+  <% end %>
   <div class="card-body">
     <p><h4><%= @product.product_model %> </h4></p>
     <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
@@ -8,11 +12,5 @@
     <p><strong>Categoria:</strong> <%= @product.product_category.name %>
   </div>
 </div>
-<% if @product.image.attached? %>
-  <div class="card" style="width: 18rem;">  
-    <div class="card-body">
-      <%= image_tag @product.image %>
-    </div>
-  </div>
-<% end %>
+
 </div>

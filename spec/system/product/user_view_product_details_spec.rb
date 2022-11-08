@@ -7,8 +7,10 @@ describe 'Usuário acessa página de um produto específico' do
 
     product_category = ProductCategory.create!(name: 'Celular')
 
-    Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category:)
+    product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
+                              product_category:)
+    image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
+    product.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
 
     login_as(user)
     visit root_path
@@ -20,6 +22,7 @@ describe 'Usuário acessa página de um produto específico' do
     expect(page).to have_content('Marca: Samsung')
     expect(page).to have_content('Preço: R$ 2.000,00')
     expect(page).to have_content('Categoria: Celular')
+    expect(page).to have_css('img[src*="galaxy-s20-produto.jpg"]')
   end
 
   it 'e é redirecionado para tela de login se não tiver autenticado' do

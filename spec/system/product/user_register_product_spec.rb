@@ -35,7 +35,7 @@ describe 'Usuário cadastra um produto' do
     fill_in 'Preço', with: '1200'
     select 'Ativo', from: 'Status'
     select 'Smartphones', from: 'Categoria'
-    attach_file 'Foto', Rails.root.join('spec', 'support', 'images', 'smartphone_samsung.jpg')
+    attach_file 'Foto', Rails.root.join('spec/support/images/smartphone_samsung.jpg')
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto criado com sucesso!')
