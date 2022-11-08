@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   def check_admin
     if current_user.admin? == false
-      redirect_to root_url
+      redirect_to root_url, notice: t('.authorization_failure')
     end
   end
 
