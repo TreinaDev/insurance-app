@@ -1,11 +1,11 @@
-<div class = "container-card" style="margin:30px;"> 
+<div class = "container-card" > 
 <div class="card" style="width: 18rem;">  
   <div class="card-body">
     <p><h4><%= @product.product_model %> </h4></p>
-    <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
-    <p><strong>Marca:</strong> <%= @product.brand %>
-    <p><strong>Preço:</strong> <%= number_to_currency(@product.price) %>
-    <p><strong>Categoria:</strong> <%= @product.product_category.name %>
+    <p><strong><%= Product.human_attribute_name(:launch_year)%>:</strong> <%= @product.launch_year %>
+    <p><strong><%= Product.human_attribute_name(:brand)%>:</strong> <%= @product.brand %>
+    <p><strong><%= Product.human_attribute_name(:price)%>:</strong> <%= number_to_currency(@product.price) %>
+    <p><strong><%= Product.human_attribute_name(:product_category_id)%>:</strong> <%= @product.product_category.name %>
   </div>
 </div>
 </div>

@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :product_category
 
+  validates :price, numericality: { greater_than: 0 }
   validates :product_model, :launch_year, :brand, :price, :status, presence: true
   validates :launch_year, numericality: true
   validates :launch_year, length: { is: 4 }
