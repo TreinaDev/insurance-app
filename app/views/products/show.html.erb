@@ -1,11 +1,19 @@
 <div class = "container-card" style="margin:30px;"> 
-<div class="card" style="width: 18rem;">  
-  <div class="card-body">
-    <p><h4><%= @product.product_model %> </h4></p>
-    <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
-    <p><strong>Marca:</strong> <%= @product.brand %>
-    <p><strong>Preço:</strong> <%= number_to_currency(@product.price) %>
-    <p><strong>Categoria:</strong> <%= @product.product_category.name %>
+  <div class="card" style="width: 18rem;">  
+    <div class="card-body">
+      <p><h4><%= @product.product_model %> </h4></p>
+      <p><strong><%= Product.human_attribute_name(:status) %>:</strong> <%= Product.human_attribute_name("status.#{@product.status}") %>
+      <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
+      <p><strong>Marca:</strong> <%= @product.brand %>
+      <p><strong>Preço:</strong> <%= number_to_currency(@product.price) %>
+      <p><strong>Categoria:</strong> <%= @product.product_category.name %>
+      <% if current_user.admin? %>
+        <% if @product.status == 'active' %>
+          <%= button_to 'Desativar', deactivate_product_path(@product.id), class: "btn btn-danger"  %>
+        <% else %>
+          <%= button_to 'Ativar', activate_product_path(@product.id), class: "btn btn-success"  %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
