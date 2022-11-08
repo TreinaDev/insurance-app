@@ -19,6 +19,7 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'spec/rails_helper.rb'
+    - 'spec/support/*'
     - 'db/migrate/*'
 
 # Trabalhamos bastante com testes como a documentação viva do projeto então
@@ -37,8 +38,12 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
+Layout/EndOfLine:
+   Enabled: True
+
 # Resolver erro: Lint/EmptyBlock: Empty block detected
 Lint/EmptyBlock:
   Exclude:
     - 'spec/factories/**/*'
     - 'spec/models/**/*'
+
