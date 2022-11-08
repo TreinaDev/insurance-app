@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -23,10 +27,6 @@ class ProductsController < ApplicationController
       flash.now[:notice] = t('.failure')
       render 'new'
     end
-  end
-
-  def edit
-    @product = Product.find(params[:id])
   end
 
   def update

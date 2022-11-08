@@ -6,14 +6,14 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category: product_category)
-    
+                    product_category:)
+
     login_as(user)
     visit root_path
     click_on 'Produtos'
     click_on 'Samsung Galaxy S20'
     click_on 'Editar'
-    
+
     expect(page).to have_field('Modelo do Produto', with: 'Samsung Galaxy S20')
     expect(page).to have_field('Ano de Lançamento', with: '2018')
     expect(page).to have_field('Marca', with: 'Samsung')
@@ -26,8 +26,8 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category: product_category)
-    
+                    product_category:)
+
     login_as(user)
     visit root_path
     click_on 'Produtos'
@@ -49,8 +49,8 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category: product_category)
-    
+                    product_category:)
+
     login_as(user)
     visit root_path
     click_on 'Produtos'
@@ -72,8 +72,8 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :employee)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category: product_category)
-    
+                    product_category:)
+
     login_as(user)
     visit root_path
     click_on 'Produtos'

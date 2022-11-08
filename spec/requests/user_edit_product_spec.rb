@@ -10,7 +10,8 @@ describe 'Usuário atualiza um produto' do
 
     login_as(user)
     patch(product_path(product.id), params: { product: { product_model: 'Samsung', lanch_year: '2016', brand: 'Samsung',
-                                             price: 2000.00, status: :active, product_category: category } })
+                                                         price: 2000.00, status: :active,
+                                                         product_category: category } })
 
     expect(response).to redirect_to(root_path)
   end
