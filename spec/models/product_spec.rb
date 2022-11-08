@@ -2,67 +2,67 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe '#valid?' do
-    context 'presence' do
-      it 'false when product_model is empty' do
-        product_category = ProductCategory.create!(name: 'TV')
-        product = Product.create(product_model: '', launch_year: '2022', brand: 'LG',
-                                 price: 5000, product_category_id: product_category.id)
+    it 'falso quando o modelo de produto fica em branco' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: '', launch_year: '2016', brand: 'Samsung',
+                            price: 1200.00, status: :active, product_category: category)
 
-        result = product.valid?
-
-        expect(result).to eq false
-      end
-
-      it 'false when launch_year is empty' do
-        product_category = ProductCategory.create!(name: 'TV')
-        product = Product.create(product_model: 'TV 32', launch_year: '', brand: 'LG',
-                                 price: 5000, product_category_id: product_category.id)
-
-        result = product.valid?
-
-        expect(result).to eq false
-      end
-
-      it 'false when brand is empty' do
-        product_category = ProductCategory.create!(name: 'TV')
-        product = Product.create(product_model: 'TV 32', launch_year: '2022', brand: '',
-                                 price: 5000, product_category_id: product_category.id)
-
-        result = product.valid?
-
-        expect(result).to eq false
-      end
-
-      it 'false when price is empty' do
-        product_category = ProductCategory.create!(name: 'TV')
-        product = Product.create(product_model: 'TV 32', launch_year: '2022', brand: 'LG',
-                                 price: '', product_category_id: product_category.id)
-
-        result = product.valid?
-
-        expect(result).to eq false
-      end
-
-      it 'false when product_category_id is nil' do
-        product = Product.create(product_model: 'TV 32', launch_year: '2022', brand: 'LG',
-                                 price: '', product_category_id: nil)
-
-        result = product.valid?
-
-        expect(result).to eq false
-      end
+      expect(product.valid?).to eq false
     end
 
-    context 'numericality' do
-      it 'price must be greater than 0' do
-        product_category = ProductCategory.create!(name: 'TV')
-        product = Product.create(product_model: 'TV 32', launch_year: '2022', brand: 'LG',
-                                 price: 0, product_category_id: product_category.id)
+    it 'falso quando o ano de lançamento fica em branco' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: 'ABCD', launch_year: '', brand: 'Samsung',
+                            price: 1200.00, status: :active, product_category: category)
 
-        result = product.valid?
+      expect(product.valid?).to eq false
+    end
 
-        expect(result).to eq false
-      end
+    it 'falso quando a marca fica em branco' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: 'ABCD', launch_year: '2016', brand: '',
+                            price: 1200.00, status: :active, product_category: category)
+
+      expect(product.valid?).to eq false
+    end
+
+    it 'falso quando o preço fica em branco' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: 'ABCD', launch_year: '2016', brand: 'Samsung',
+                            price: '', status: :active, product_category: category)
+
+      expect(product.valid?).to eq false
+    end
+
+    it 'falso quando o status fica em branco' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: 'ABCD', launch_year: '2016', brand: 'Samsung',
+                            price: 1200.00, status: nil, product_category: category)
+
+      expect(product.valid?).to eq false
+    end
+
+    it 'falso quando a categoria fica em branco' do
+      product = Product.new(product_model: 'ABCD', launch_year: '2016', brand: 'Samsung',
+                            price: 1200.00, status: :active, product_category: nil)
+
+      expect(product.valid?).to eq false
+    end
+
+    it 'falso se ano não é número' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: 'ABCD', launch_year: 'a123', brand: 'Samsung',
+                            price: 1200.00, status: :active, product_category: category)
+
+      expect(product.valid?).to eq false
+    end
+
+    it 'falso se ano for diferente de quatro caracteres' do
+      category = ProductCategory.create!(name: 'Smartphones')
+      product = Product.new(product_model: 'ABCD', launch_year: '20165', brand: 'Samsung',
+                            price: 1200.00, status: :active, product_category: category)
+
+      expect(product.valid?).to eq false
     end
   end
 end

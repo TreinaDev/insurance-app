@@ -1,5 +1,8 @@
 <h1><%= t '.title' %></h1>
 
+<br/>
+<%= link_to "Adicionar Produto", new_product_path %>
+<br/>
 <% if @products.any? %>
   <ul class="list-group">
     <% @products.each do |product| %>
