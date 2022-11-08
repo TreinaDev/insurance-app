@@ -7,6 +7,7 @@
     <thead>
       <tr>
         <th><%= InsuranceCompany.human_attribute_name(:name) %></th>
+        <th><%= InsuranceCompany.human_attribute_name(:cnpj) %></th>       
         <th><%= InsuranceCompany.human_attribute_name(:company_status) %></th>       
       </tr>
     </thead>
@@ -15,6 +16,7 @@
       <% @insurance_companies.each do |insurance| %>
         <tr>
           <td><%= link_to insurance.name, '#', class: "link-dark" %></td>          
+          <td><%= insurance.cnpj %></td>          
           <% if insurance.company_status == 'active' %>
             <td class="fw-semibold text-success"><%= InsuranceCompany.human_attribute_name("company_status.#{insurance.company_status}") %></td>
           <% else %>

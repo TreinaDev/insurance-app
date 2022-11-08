@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_231251) do
   create_table "insurance_companies", force: :cascade do |t|
     t.string "name"
     t.string "email_domain"
+    t.string "cnpj"
     t.integer "company_status", default: 0
     t.string "token"
     t.integer "token_status", default: 0

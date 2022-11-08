@@ -11,6 +11,7 @@ pt-BR:
         token_status: Status do Token
         company_status: Status da Seguradora
         token: Token de Integração
+        cnpj: CNPJ
       insurance_company/company_status:
         active: "Ativo"
         inactive: "Inativo"  

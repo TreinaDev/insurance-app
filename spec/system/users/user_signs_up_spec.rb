@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário se cadastra' do
   it 'com sucesso' do
-    InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+    InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br', cnpj: '73328094000104')
 
     visit root_path
     click_on 'Entrar'
@@ -19,7 +19,7 @@ describe 'Usuário se cadastra' do
   end
 
   it 'e não preenche todos os campos' do
-    InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+    InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br', cnpj: '73328094000104')
 
     visit root_path
     click_on 'Entrar'

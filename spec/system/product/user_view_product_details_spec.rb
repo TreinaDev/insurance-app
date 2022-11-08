@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário acessa página de um produto específico' do
   it 'e vê detalhes se for adm' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', cnpj: '80958759000110')
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
 
     product_category = ProductCategory.create!(name: 'Celular')
