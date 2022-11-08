@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def check_if_admin
+    redirect_to root_path, notice: t('.authorization_failure') if current_user.employee?
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
