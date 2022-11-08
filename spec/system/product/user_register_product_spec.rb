@@ -35,6 +35,7 @@ describe 'Usuário cadastra um produto' do
     fill_in 'Preço', with: '1200'
     select 'Ativo', from: 'Status'
     select 'Smartphones', from: 'Categoria'
+    attach_file 'Foto', Rails.root.join('spec/support/images/smartphone_samsung.jpg')
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto criado com sucesso!')
@@ -44,6 +45,7 @@ describe 'Usuário cadastra um produto' do
     expect(page).to have_content('Samsung')
     expect(page).to have_content('R$ 1.200,00')
     expect(page).to have_content('Smartphones')
+    expect(page).to have_css('img[src*="smartphone_samsung.jpg"]')
   end
 
   it 'faltando informações' do
@@ -78,9 +80,7 @@ describe 'Usuário cadastra um produto' do
     login_as(user)
     visit root_path
     click_on 'Produtos'
-    click_on 'Adicionar Produto'
 
-    expect(current_path).to eq(root_path)
-    expect(page).to have_content('Apenas usuários administradores tem acesso a essa função')
+    expect(page).not_to have_link('Adicionar Produto')
   end
 end

@@ -1,5 +1,9 @@
-<div class = "container-card" > 
-  <div class="card" style="width: 18rem;">  
+<div class = "container-card" style="margin:30px;"> 
+  <div class="card" style="width: 20rem;">  
+    
+    <% if @product.image.attached? %>
+      <%= image_tag @product.image, class:"card-img-top" %>
+    <% end %>
     <div class="card-body">
       <p><h4><%= @product.product_model %> </h4></p>
       <p><strong><%= Product.human_attribute_name(:launch_year)%>:</strong> <%= @product.launch_year %>
