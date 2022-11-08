@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrador vê lista de produtos' do
+describe 'Usuãrio vê lista de produtos' do
   it 'com sucesso e é admin' do
     InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
