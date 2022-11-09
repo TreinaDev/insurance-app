@@ -43,6 +43,16 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 ]
 ```
 
+### Status Codes
+
+Retorna os status:
+
+| Status Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+| 404 | `NOT FOUND` |
+| 500 | `INTERNAL SERVER ERROR` |
+
 ## Como rodar a aplicação
 
 <p align = "justify"> No terminal, clone o projeto: </p>
