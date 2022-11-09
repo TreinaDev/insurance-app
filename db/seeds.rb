@@ -7,7 +7,7 @@ User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password
 User.create!(name: 'Funcionário', email: 'funcionario@portoseguro.com.br', password: 'password', role: :employee)
 
 product_category_a = ProductCategory.create!(name: 'Celular')
-product_category_b = ProductCategory.create!(name: 'TV')
+product_category_b = ProductCategory.create!(name: 'Televisão')
 
 product_a = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                             product_category: product_category_a)

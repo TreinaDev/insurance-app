@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      product: Produto
+    attributes:
+      product:
+        product_model: Modelo do Produto
+        launch_year: Ano de Lançamento
+        brand: Marca
+        price: Preço
+        product_category: Categoria
+        product_category_id: Categoria
+        status: "Status"
+      product/status:
+        active: "Ativo"
+        inactive: "Inativo"
+  products:
+    create:
+      success: 'Produto criado com sucesso!'
+      failure: 'Produto não foi criado'
+    new:
+      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+      

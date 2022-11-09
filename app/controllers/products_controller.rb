@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
-  before_action :check_if_admin, only: %i[new create edit update]
   before_action :authenticate_user!
+  before_action :check_if_admin, only: %i[new create edit update]
 
   def index
+    @categories = ProductCategory.all.order(:name)
     @products = Product.all
   end
 

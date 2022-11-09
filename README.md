@@ -17,26 +17,28 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 <p align = "justify">200 (Sucesso)</p>
 
 ```json
-0	
-id	1
-product_model	"TV 32"
-launch_year	"2022"
-brand	"LG"
-price	"5000.0"
-status	"active"
-product_category_id	1
-created_at	"2022-11-08T19:42:47.921Z"
-updated_at	"2022-11-08T19:42:47.921Z"
-1	
-id	2
-product_model	"TV 50"
-launch_year	"2021"
-brand	"SAMSUNG"
-price	"8000.0"
-status	"active"
-product_category_id	1
-created_at	"2022-11-08T19:43:08.381Z"
-updated_at	"2022-11-08T19:43:08.381Z"
+[
+  {
+    "id":1,
+    "product_model":"TV 32",
+    "launch_year":"2022",
+    "brand":"LG","price":"5000.0",
+    "status":"active",
+    "product_category_id":1,
+    "created_at":"2022-11-08T19:42:47.921Z",
+    "updated_at":"2022-11-08T19:42:47.921Z"
+  },
+  {
+    "id":2,
+    "product_model":"TV 50",
+    "launch_year":"2021",
+    "brand":"SAMSUNG",
+    "price":"8000.0",
+    "status":"active","product_category_id":1,
+    "created_at":"2022-11-08T19:43:08.381Z",
+    "updated_at":"2022-11-08T19:43:08.381Z"
+  }
+]
 ```
 
 ## Como rodar a aplicação
