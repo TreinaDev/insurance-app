@@ -6,6 +6,9 @@ InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', regist
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 User.create!(name: 'Funcionário', email: 'funcionario@portoseguro.com.br', password: 'password', role: :employee)
 
+InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
+
 product_category_a = ProductCategory.create!(name: 'Celular')
 product_category_b = ProductCategory.create!(name: 'Televisão')
 
