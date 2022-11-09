@@ -22,7 +22,8 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "id":1,
     "product_model":"TV 32",
     "launch_year":"2022",
-    "brand":"LG","price":"5000.0",
+    "brand":"LG",
+    "price":"5000.0",
     "status":"active",
     "product_category_id":1,
     "created_at":"2022-11-08T19:42:47.921Z",
@@ -34,7 +35,8 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "launch_year":"2021",
     "brand":"SAMSUNG",
     "price":"8000.0",
-    "status":"active","product_category_id":1,
+    "status":"active",
+    "product_category_id":1,
     "created_at":"2022-11-08T19:43:08.381Z",
     "updated_at":"2022-11-08T19:43:08.381Z"
   }
