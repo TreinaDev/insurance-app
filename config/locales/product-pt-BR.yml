@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      product: Produto
+    attributes:
+      product:
+        product_model: Modelo de Produto
+        launch_year: Ano de Lançamento
+        brand: Marca
+        price: Preço
+        product_category_id: Categoria
+        status: "Status"
+      product/status:
+        active: "Ativo"
+        inactive: "Inativo"

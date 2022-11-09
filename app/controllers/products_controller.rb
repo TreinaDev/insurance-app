@@ -1,23 +1,29 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :check_if_admin, only: %i[new create edit update]
+  before_action :check_admin, only: %i[activate deactivate new create edit update]
+  before_action :set_product, only: %i[show activate deactivate update edit]
 
   def index
     @categories = ProductCategory.all.order(:name)
     @products = Product.all
   end
 
-  def show
-    @product = Product.find(params[:id])
+  def show; end
+
+  def activate
+    @product.active!
+    redirect_to @product, notice: t('.success')
+  end
+
+  def deactivate
+    @product.inactive!
+    redirect_to @product, notice: t('.success')
   end
 
   def new
     @product = Product.new
   end
 
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
 
   def create
     @product = Product.new(product_params)
@@ -31,7 +37,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:notice] = t('.update_success')
       redirect_to @product
@@ -42,6 +47,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:product_model, :launch_year, :brand, :price,
