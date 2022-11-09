@@ -1,0 +1,5 @@
+pt-BR:
+  products:
+    update:
+      update_success: 'Produto atualizado com sucesso!'
+      update_failure: 'Não foi possivel atualizar produto.'

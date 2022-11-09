@@ -8,7 +8,7 @@ pt-BR:
         other: Produtos
     attributes:
       product:
-        product_model: 'Modelo de Produto'
+        product_model: 'Modelo do Produto'
         launch_year: 'Ano de Lançamento'
         brand: 'Marca'
         price: 'Preço'
