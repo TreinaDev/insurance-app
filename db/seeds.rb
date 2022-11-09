@@ -1,5 +1,10 @@
-InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+InsuranceCompany.create!(name: 'Seguradora Vida', email_domain: 'seruradoravida.com.br',
+                         registration_number: '01333288000189', company_status: 1)
+InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
+                         registration_number: '29929380000125')
+InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '89929380000456')
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
+User.create!(name: 'Funcionário', email: 'funcionario@portoseguro.com.br', password: 'password', role: :employee)
 
 InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
 User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')

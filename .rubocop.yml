@@ -46,3 +46,8 @@ Lint/EmptyBlock:
     - 'spec/factories/**/*'
     - 'spec/models/**/*'
 
+# Permite sintaxe compact style na definição de classe
+# Exemplo: class Api::V1::ApiController < ActionController::API
+Style/ClassAndModuleChildren:
+  Enabled: false
+
