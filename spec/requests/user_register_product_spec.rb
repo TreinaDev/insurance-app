@@ -14,4 +14,14 @@ describe 'Usuário registra um produto' do
     expect(response).to redirect_to(root_path)
     expect(Product.all.length).to eq(0)
   end
+
+  it 'a partir da página de cadastro e não é administrador' do
+    InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+
+    login_as(user)
+    get(new_product_path)
+
+    expect(response).to redirect_to(root_path)
+  end
 end

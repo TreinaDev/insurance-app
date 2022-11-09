@@ -35,7 +35,7 @@ Style/FrozenStringLiteralComment:
 # Escrevemos mais linhas em arquivos de teste do que em arquivos de 
 # código, então é importante poder ter esses arquivos do tamanho necessário
 Metrics/BlockLength:
-  AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+  AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let', 'it']
 
 Layout/EndOfLine:
   Enabled: True
@@ -45,4 +45,9 @@ Lint/EmptyBlock:
   Exclude:
     - 'spec/factories/**/*'
     - 'spec/models/**/*'
+
+# Permite sintaxe compact style na definição de classe
+# Exemplo: class Api::V1::ApiController < ActionController::API
+Style/ClassAndModuleChildren:
+  Enabled: false
 

@@ -10,11 +10,10 @@ describe 'Usuário cadastra um produto' do
     click_on 'Produtos'
     click_on 'Adicionar Produto'
 
-    expect(page).to have_field 'Modelo de Produto'
+    expect(page).to have_field 'Modelo do Produto'
     expect(page).to have_field 'Ano de Lançamento'
     expect(page).to have_field 'Marca'
     expect(page).to have_field 'Preço'
-    expect(page).to have_select 'Status'
     expect(page).to have_select 'Categoria'
     expect(page).to have_button 'Criar Produto'
   end
@@ -29,12 +28,12 @@ describe 'Usuário cadastra um produto' do
     visit root_path
     click_on 'Produtos'
     click_on 'Adicionar Produto'
-    fill_in 'Modelo de Produto', with: 'ABCD'
+    fill_in 'Modelo do Produto', with: 'ABCD'
     fill_in 'Ano de Lançamento', with: '2021'
     fill_in 'Marca', with: 'Samsung'
     fill_in 'Preço', with: '1200'
-    select 'Ativo', from: 'Status'
     select 'Smartphones', from: 'Categoria'
+    attach_file 'Foto', Rails.root.join('spec/support/images/smartphone_samsung.jpg')
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto criado com sucesso!')
@@ -44,6 +43,9 @@ describe 'Usuário cadastra um produto' do
     expect(page).to have_content('Samsung')
     expect(page).to have_content('R$ 1.200,00')
     expect(page).to have_content('Smartphones')
+    expect(page).to have_css('img[src*="smartphone_samsung.jpg"]')
+    product = Product.last
+    expect(product.active?).to be true
   end
 
   it 'faltando informações' do
@@ -56,14 +58,14 @@ describe 'Usuário cadastra um produto' do
     visit root_path
     click_on 'Produtos'
     click_on 'Adicionar Produto'
-    fill_in 'Modelo de Produto', with: ''
+    fill_in 'Modelo do Produto', with: ''
     fill_in 'Ano de Lançamento', with: ''
     fill_in 'Marca', with: ''
     fill_in 'Preço', with: ''
     click_on 'Criar Produto'
 
     expect(page).to have_content('Produto não foi criado')
-    expect(page).to have_content('Modelo de Produto não pode ficar em branco')
+    expect(page).to have_content('Modelo do Produto não pode ficar em branco')
     expect(page).to have_content('Ano de Lançamento não pode ficar em branco')
     expect(page).to have_content('Marca não pode ficar em branco')
     expect(page).to have_content('Preço não pode ficar em branco')
@@ -79,9 +81,7 @@ describe 'Usuário cadastra um produto' do
     login_as(user)
     visit root_path
     click_on 'Produtos'
-    click_on 'Adicionar Produto'
 
-    expect(current_path).to eq(root_path)
-    expect(page).to have_content('Apenas usuários administradores tem acesso a essa função')
+    expect(page).not_to have_link('Adicionar Produto')
   end
 end
