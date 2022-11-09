@@ -22,7 +22,7 @@ describe 'Usuário altera o status de um produto' do
       login_as user
       post(deactivate_product_path(product.id))
 
-      expect(response).not_to redirect_to(product_path(product.id))
+      expect(response.status).not_to be 200
     end
   end
 
@@ -47,7 +47,7 @@ describe 'Usuário altera o status de um produto' do
       login_as user
       post(activate_product_path(product.id))
 
-      expect(response).not_to redirect_to(product_path(product.id))
+      expect(response.status).not_to be 200
     end
   end
 end

@@ -1,19 +1,23 @@
-<div class = "container-card" style="margin:30px;"> 
-  <div class="card" style="width: 18rem;">  
-    <div class="card-body">
-      <p><h4><%= @product.product_model %> </h4></p>
-      <p><strong><%= Product.human_attribute_name(:status) %>:</strong> <%= Product.human_attribute_name("status.#{@product.status}") %>
-      <p><strong>Ano de lançamento:</strong> <%= @product.launch_year %>
-      <p><strong>Marca:</strong> <%= @product.brand %>
-      <p><strong>Preço:</strong> <%= number_to_currency(@product.price) %>
-      <p><strong>Categoria:</strong> <%= @product.product_category.name %>
-      <% if current_user.admin? %>
-        <% if @product.status == 'active' %>
-          <%= button_to 'Desativar', deactivate_product_path(@product.id), class: "btn btn-danger"  %>
-        <% else %>
-          <%= button_to 'Ativar', activate_product_path(@product.id), class: "btn btn-success"  %>
-        <% end %>
+<div class="card" style="width: 20rem;">  
+  
+  <% if @product.image.attached? %>
+    <%= image_tag @product.image, class:"card-img-top" %>
+  <% end %>
+  <div class="card-body">
+    <p><h4><%= @product.product_model %> </h4></p>
+    <p><strong><%= Product.human_attribute_name(:status) %>:</strong> <%= Product.human_attribute_name("status.#{@product.status}") %>
+    <p><strong><%= Product.human_attribute_name(:launch_year)%>:</strong> <%= @product.launch_year %>
+    <p><strong><%= Product.human_attribute_name(:brand)%>:</strong> <%= @product.brand %>
+    <p><strong><%= Product.human_attribute_name(:price)%>:</strong> <%= number_to_currency(@product.price) %>
+    <p><strong><%= Product.human_attribute_name(:product_category_id)%>:</strong> <%= @product.product_category.name %>
+
+    <% if current_user.admin? %>
+      <% if @product.active? %>
+        <%= button_to 'Desativar', deactivate_product_path(@product.id), class: "btn btn-danger"  %>
+      <% else %>
+        <%= button_to 'Ativar', activate_product_path(@product.id), class: "btn btn-success"  %>
       <% end %>
-    </div>
+      <%= link_to 'Editar', edit_product_path(@product.id), class: "btn btn-dark" %>
+    <% end %>
   </div>
 </div>

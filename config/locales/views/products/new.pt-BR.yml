@@ -1,0 +1,5 @@
+pt-BR:
+  products:
+    create:
+      success: 'Produto criado com sucesso!'
+      failure: 'Produto não foi criado'

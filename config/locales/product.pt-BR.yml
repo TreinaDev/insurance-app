@@ -4,11 +4,16 @@ pt-BR:
       product: Produto
     attributes:
       product:
-        product_model: Modelo de Produto
+        product_model: Modelo do Produto
         launch_year: Ano de Lançamento
         brand: Marca
         price: Preço
+        product_category: Categoria
         product_category_id: Categoria
+        status: "Status"
+      product/status:
+        active: "Ativo"
+        inactive: "Inativo"
   products:
     activate:
       success: 'Produto ativado com sucesso'

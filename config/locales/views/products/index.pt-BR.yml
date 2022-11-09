@@ -1,0 +1,8 @@
+pt-BR:
+  products:
+    index:
+      title: 'Lista de Produtos'
+      register_new_product: 'Cadastrar Novo Produto'
+      message: 'Não existem produtos cadastrados'
+      product_model: 'Modelo do Produto'
+      register: 'Adicionar Produto'

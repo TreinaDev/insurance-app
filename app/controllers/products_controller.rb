@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
-  before_action :check_admin, only: %i[activate deactivate new create]
-  before_action :set_product, only: %i[show activate deactivate]
+  before_action :check_admin, only: %i[activate deactivate new create edit update]
+  before_action :set_product, only: %i[show activate deactivate update edit]
 
   def index
+    @categories = ProductCategory.all.order(:name)
     @products = Product.all
   end
 
@@ -22,6 +23,8 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def edit; end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -33,6 +36,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def update
+    if @product.update(product_params)
+      flash[:notice] = t('.update_success')
+      redirect_to @product
+    else
+      flash.now[:notice] = t('.update_failure')
+      render 'edit'
+    end
+  end
+
   private
 
   def set_product
@@ -41,6 +54,6 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:product_model, :launch_year, :brand, :price,
-                                    :status, :product_category_id)
+                                    :product_category_id, :image)
   end
 end
