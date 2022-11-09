@@ -86,8 +86,6 @@ $ rails s
 
 * Usuário funcionário de seguradora cadastrado: funcionario@portoseguro.com.br (senha: password)
 
-* Para todas categorias de distância, distância mínima é 100 m.
-
 * Gems instaladas: bootstrap, capybara, devise, rspec, rubocop, factory_bot, simplecov
 
 * Ruby: 3.1.2
