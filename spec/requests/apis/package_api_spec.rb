@@ -9,11 +9,11 @@ describe 'Package API' do
       insurance_company_b = InsuranceCompany.create!(name: 'Seguradora B', email_domain: 'seguradorab.com.br',
                                                      registration_number: '00000000000001')
       Package.create!(name: 'Pacote 1', max_period: 12, min_period: 6, insurance_company: insurance_company_a,
-                      price: 25.99, product_category:)
+                      price: 25.99, product_category_id: product_category.id)
       Package.create!(name: 'Pacote 2', max_period: 10, min_period: 5, insurance_company: insurance_company_b,
-                      price: 35.99, product_category:)
+                      price: 35.99, product_category_id: product_category.id)
       Package.create!(name: 'Pacote 3', max_period: 15, min_period: 7, insurance_company: insurance_company_b,
-                      price: 30.00, product_category:)
+                      price: 30.00, product_category_id: product_category.id)
 
       get '/api/v1/packages'
 
