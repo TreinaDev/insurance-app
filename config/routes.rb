@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   
   resources :product_categories, only: [:index, :new, :create]
+  resources :insurance_companies, only: [:index]  
 
   namespace :api do
     namespace :v1 do

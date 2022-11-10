@@ -30,7 +30,8 @@ RSpec.describe User, type: :model do
 
     context 'unique' do
       it 'e-mail é único' do
-        InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+        InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                                 registration_number: '73328094000104')
         User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
         user = User.new(email: 'pessoa@seguradoraa.com.br')
 
@@ -43,20 +44,29 @@ RSpec.describe User, type: :model do
 
   describe '#employee?' do
     it 'o usuário é um funcionário por padrão' do
-      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                               registration_number: '73328094000104')
       user = User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
 
       expect(user.employee?).to be true
     end
   end
 
-  describe 'atribui uma empresa' do
-    it 'ao criar um usuário' do
-      seguradora = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
-      InsuranceCompany.create!(name: 'Seguradora B', email_domain: 'seguradorab.com.br')
+  describe 'Ao criar um usuário' do
+    it 'funcionário atribui uma seguradora' do
+      seguradora = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                                            registration_number: '73328094000104')
+      InsuranceCompany.create!(name: 'Seguradora B', email_domain: 'seguradorab.com.br',
+                               registration_number: '00028094000104')
       user = User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
 
       expect(user.insurance_company_id).to eq seguradora.id
+    end
+
+    it 'administrador não atribui uma seguradora' do
+      user = User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
+
+      expect(user.insurance_company_id).to eq nil
     end
   end
 end

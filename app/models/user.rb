@@ -1,9 +1,8 @@
 class User < ApplicationRecord
   enum :role, { employee: 10, admin: 20 }, default: :employee
 
-  belongs_to :insurance_company
-
   before_validation :add_insurance_company, on: :create
+  belongs_to :insurance_company, optional: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,6 +14,6 @@ class User < ApplicationRecord
   private
 
   def add_insurance_company
-    self.insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last)
+    self.insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last) if employee?
   end
 end
