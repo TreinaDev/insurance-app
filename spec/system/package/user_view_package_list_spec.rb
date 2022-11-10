@@ -26,6 +26,7 @@ describe 'Usuário vê lista de pacotes' do
     expect(page).to have_content('Preço Mensal')
 
     expect(page).to have_content('Smartphones')
+    expect(page).to have_link('Seguradora')
     expect(page).to have_content('Premium')
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
@@ -70,11 +71,13 @@ describe 'Usuário vê lista de pacotes' do
       click_on 'Pacotes'
     end
 
+    expect(page).to have_link('Azul')
     expect(page).to have_content('Premium')
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
     expect(page).to have_content('R$ 90,00')
     expect(page).to have_content('Smartphones')
+    expect(page).not_to have_link('Laranja')
     expect(page).not_to have_content('Econômico')
     expect(page).not_to have_content('6 meses')
     expect(page).not_to have_content('18 meses')

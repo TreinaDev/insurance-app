@@ -16,7 +16,7 @@
       <% @packages.each do |package| %>
             <tr>
               <td><%= package.product_category.name %></td> 
-              <td><%= package.insurance_company.name %></td>
+              <td><%= link_to package.insurance_company.name, '#', class: "link-dark"  %></td>
               <td><%= package.name %></td>
               <td><%= package.min_period %> meses</td>
               <td><%= package.max_period %> meses</td>
