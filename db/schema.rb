@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_133935) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -65,7 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_133935) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "registration_number"
-    t.string "cnpj"
     t.string "token"
     t.index ["registration_number"], name: "index_insurance_companies_on_registration_number", unique: true
     t.index ["token"], name: "index_insurance_companies_on_token", unique: true
@@ -80,12 +79,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_133935) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_category_id", null: false
-    t.integer "service_pricing_id", null: false
-    t.integer "coverage_pricing_id", null: false
-    t.index ["coverage_pricing_id"], name: "index_packages_on_coverage_pricing_id"
     t.index ["insurance_company_id"], name: "index_packages_on_insurance_company_id"
     t.index ["product_category_id"], name: "index_packages_on_product_category_id"
-    t.index ["service_pricing_id"], name: "index_packages_on_service_pricing_id"
   end
 
   create_table "policies", force: :cascade do |t|
@@ -153,10 +148,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_133935) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "coverage_pricings", "coverages"
   add_foreign_key "coverage_pricings", "packages"
-  add_foreign_key "packages", "coverage_pricings"
   add_foreign_key "packages", "insurance_companies"
   add_foreign_key "packages", "product_categories"
-  add_foreign_key "packages", "service_pricings"
   add_foreign_key "products", "product_categories"
   add_foreign_key "service_pricings", "packages"
   add_foreign_key "service_pricings", "services"

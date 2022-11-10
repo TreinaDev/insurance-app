@@ -20,3 +20,6 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
+
+
+service1 = Service.create!(name:'Assinatura TV', description: 'Consede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
