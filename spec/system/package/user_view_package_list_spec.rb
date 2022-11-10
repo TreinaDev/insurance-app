@@ -2,17 +2,21 @@ require 'rails_helper'
 
 describe 'Usuário vê lista de pacotes' do
   it 'com sucesso' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
-    insurance = InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br')
+    
+    insurance = InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br', registration_number: '01000000123410')
     smartphones = ProductCategory.create!(name: 'Smartphones')
     laptops = ProductCategory.create!(name: 'Laptops')
-    Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance,
-                    price: 90.00, product_category: smartphones)
+
+    service = Service.create!(name: 'Retirada', description: 'Retirada do equipamento para o reparo')
+
+    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance,
+                              price: 90.00, product_category: smartphones)
     Package.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: insurance,
                     price: 70.00, product_category: smartphones)
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance,
                     price: 150.00, product_category: laptops)
+    service_pricing = ServicePricing.create!(percentage_price: 2.00, service: service, package: package)
 
     login_as(user)
     visit root_path
