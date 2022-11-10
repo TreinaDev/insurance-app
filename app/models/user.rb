@@ -14,6 +14,6 @@ class User < ApplicationRecord
   private
 
   def add_insurance_company
-    self.insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last) if admin? == false
+    self.insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last) if employee?
   end
 end
