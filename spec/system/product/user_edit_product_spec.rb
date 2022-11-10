@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Usúario edita um produto' do
   it 'e vê as informações do produto' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
@@ -22,7 +21,6 @@ describe 'Usúario edita um produto' do
   end
 
   it 'com sucesso' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
@@ -48,7 +46,6 @@ describe 'Usúario edita um produto' do
   end
 
   it 'com informações faltando' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
@@ -71,7 +68,7 @@ describe 'Usúario edita um produto' do
   end
 
   it 'e não é administrador' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '19805576000154')
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :employee)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
