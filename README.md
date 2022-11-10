@@ -42,6 +42,90 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   }
 ]
 ```
+### Obter dados de produto específico
+
+**Endpoint: GET /api/v1/products/id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 1,
+  "product_model": "Samsung Galaxy S20",
+  "launch_year": "2018",
+  "brand": "Samsung",
+  "price": "2000.0",
+  "status": "active",
+  "product_category_id": 1
+}
+```
+
+### Obter lista de seguradoras
+
+**Endpoint: GET /api/v1/insurance_companies**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Allianz Seguros",
+    "email_domain": "allianzseguros.com.br",
+    "company_status": "inactive",
+    "token_status": 0,
+    "created_at": "2022-11-10T21:30:24.926Z",
+    "updated_at": "2022-11-10T21:30:24.926Z",
+    "registration_number": "01333288000189",
+    "token": "3Y9C18LRZNSIHOQNMR0A"
+  },
+  {
+    "id": 2,
+    "name": "Porto Seguro",
+    "email_domain": "portoseguro.com.br",
+    "company_status": "active",
+    "token_status": 0,
+    "created_at": "2022-11-10T21:30:25.190Z",
+    "updated_at": "2022-11-10T21:30:25.190Z",
+    "registration_number": "29929380000125",
+    "token": "CDRQJPG5FNJ2HKERVCDL"
+  },
+  {
+    "id": 3,
+    "name": "Seguradora A",
+    "email_domain": "seguradoraa.com.br",
+    "company_status": "active",
+    "token_status": 0,
+    "created_at": "2022-11-10T21:30:26.499Z",
+    "updated_at": "2022-11-10T21:30:26.499Z",
+    "registration_number": "80929380000456",
+    "token": "QYTZYSHNJRL0AYVM9XJ0"
+  }
+]
+```
+### Obter informações sobre seguradora específica
+
+**Endpoint: GET /api/v1/insurance_companies/id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 1,
+  "name": "Allianz Seguros",
+  "email_domain": "allianzseguros.com.br",
+  "company_status": "inactive",
+  "token_status": 0,
+  "registration_number": "01333288000189",
+  "token": "3Y9C18LRZNSIHOQNMR0A"
+}
+```
 
 ### Status Codes
 
@@ -52,6 +136,9 @@ Retorna os status:
 | 200 | `OK` |
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
+
+
+ 
 
 ## Como rodar a aplicação
 
