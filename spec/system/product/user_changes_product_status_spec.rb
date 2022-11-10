@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'Usuário altera status do produto' do
   context 'como administrador' do
     it 'para inativo' do
-      InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
       admin = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
@@ -23,7 +22,6 @@ describe 'Usuário altera status do produto' do
     end
 
     it 'para ativo' do
-      InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br')
       admin = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
@@ -45,7 +43,8 @@ describe 'Usuário altera status do produto' do
 
   context 'como funcionário' do
     it 'para inativo' do
-      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                               registration_number: '19805576000154')
       user = User.create!(name: 'Aline', email: 'Aline@seguradoraa.com.br', password: 'password', role: :employee)
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
@@ -60,7 +59,8 @@ describe 'Usuário altera status do produto' do
     end
 
     it 'para ativo' do
-      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                               registration_number: '19805576000154')
       user = User.create!(name: 'Aline', email: 'Aline@seguradoraa.com.br', password: 'password', role: :employee)
       product_category = ProductCategory.create!(name: 'Celular')
       Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,

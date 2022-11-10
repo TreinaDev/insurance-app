@@ -16,7 +16,8 @@ describe 'Usuário registra um produto' do
   end
 
   it 'a partir da página de cadastro e não é administrador' do
-    InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br')
+    InsuranceCompany.create!(name: 'Seguradora', email_domain: 'seguradora.com.br',
+                             registration_number: '80958759000110')
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
 
     login_as(user)

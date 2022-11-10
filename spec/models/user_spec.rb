@@ -52,8 +52,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'atribui uma empresa' do
-    it 'ao criar um usuário' do
+  describe 'Ao criar um usuário' do
+    it 'funcionário atribui uma seguradora' do
       seguradora = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                                             registration_number: '73328094000104')
       InsuranceCompany.create!(name: 'Seguradora B', email_domain: 'seguradorab.com.br',
@@ -61,6 +61,12 @@ RSpec.describe User, type: :model do
       user = User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
 
       expect(user.insurance_company_id).to eq seguradora.id
+    end
+
+    it 'administrador não atribui uma seguradora' do
+      user = User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
+
+      expect(user.insurance_company_id).to eq nil
     end
   end
 end

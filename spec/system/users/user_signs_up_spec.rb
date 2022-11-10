@@ -32,8 +32,7 @@ describe 'Usuário se cadastra' do
     fill_in 'Confirme sua senha', with: ''
     click_on 'Criar conta'
 
-    expect(page).to have_content 'Não foi possível salvar usuário: 4 erros.'
-    expect(page).to have_content 'Seguradora é obrigatório(a)'
+    expect(page).to have_content 'Não foi possível salvar usuário: 3 erros.'
     expect(page).to have_content 'E-mail não pode ficar em branco'
     expect(page).to have_content 'Senha não pode ficar em branco'
     expect(page).to have_content 'Nome não pode ficar em branco'

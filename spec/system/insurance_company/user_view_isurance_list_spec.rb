@@ -7,7 +7,6 @@ describe 'Usuário vê lista de seguradoras' do
     InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                              registration_number: '99157841000105')
 
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '44639834000117')
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
 
     login_as(user)
@@ -26,7 +25,6 @@ describe 'Usuário vê lista de seguradoras' do
   end
 
   it 'e não tem nenhuma seguradora' do
-    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '44639834000117')
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
 
     login_as(user)

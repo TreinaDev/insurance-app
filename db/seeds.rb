@@ -1,16 +1,12 @@
-InsuranceCompany.create!(name: 'Seguradora Vida', email_domain: 'seruradoravida.com.br',
+InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
                          registration_number: '01333288000189', company_status: 1)
 InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                          registration_number: '29929380000125')
-InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '89929380000456')
-User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
-User.create!(name: 'Funcionário', email: 'funcionario@portoseguro.com.br', password: 'password', role: :employee)
-<<<<<<< HEAD
-=======
 
-InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br')
+User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
+InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                         registration_number: '80929380000456')
 User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
->>>>>>> main
 
 product_category_a = ProductCategory.create!(name: 'Celular')
 product_category_b = ProductCategory.create!(name: 'Televisão')
