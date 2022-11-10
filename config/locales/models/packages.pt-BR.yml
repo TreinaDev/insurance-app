@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      package:
+        one: Pacote
+        other: Pacotes
+    attributes:
+      package:
+        name: 'Nome'
+        max_period: 'Período Máximo'
+        min_period: 'Período Mínimo'
+        insurance_company: 'Seguradora'
+        insurance_company_id: 'Seguradora'
+        price: 'Preço'
+        product_category: 'Categoria'
+        product_category_id: 'Categoria'

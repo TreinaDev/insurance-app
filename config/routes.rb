@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   
   resources :product_categories, only: [:index, :new, :create]
 
+  resources :packages, only: [:index]
+
   namespace :api do
     namespace :v1 do
       resources :products, only: [:index, :show]
