@@ -20,3 +20,6 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
+
+coverage1 = Coverage.create!(name: 'Molhar',
+                                   description: 'Assistencia por danificação devido a molhar o aparelho.')
