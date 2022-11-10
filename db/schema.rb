@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_152055) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_133935) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_152055) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "coverage_pricings", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.decimal "percentage_price"
+    t.integer "coverage_id", null: false
+    t.integer "package_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coverage_id"], name: "index_coverage_pricings_on_coverage_id"
+    t.index ["package_id"], name: "index_coverage_pricings_on_package_id"
+  end
+
   create_table "coverages", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -65,7 +76,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_152055) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_category_id", null: false
+    t.integer "service_pricing_id", null: false
+    t.integer "coverage_pricing_id", null: false
+    t.index ["coverage_pricing_id"], name: "index_packages_on_coverage_pricing_id"
     t.index ["insurance_company_id"], name: "index_packages_on_insurance_company_id"
+    t.index ["product_category_id"], name: "index_packages_on_product_category_id"
+    t.index ["service_pricing_id"], name: "index_packages_on_service_pricing_id"
   end
 
   create_table "policies", force: :cascade do |t|
@@ -95,6 +112,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_152055) do
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
+  create_table "service_pricings", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.decimal "percentage_price"
+    t.integer "package_id", null: false
+    t.integer "service_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["package_id"], name: "index_service_pricings_on_package_id"
+    t.index ["service_id"], name: "index_service_pricings_on_service_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -120,7 +148,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_152055) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "coverage_pricings", "coverages"
+  add_foreign_key "coverage_pricings", "packages"
+  add_foreign_key "packages", "coverage_pricings"
   add_foreign_key "packages", "insurance_companies"
+  add_foreign_key "packages", "product_categories"
+  add_foreign_key "packages", "service_pricings"
   add_foreign_key "products", "product_categories"
+  add_foreign_key "service_pricings", "packages"
+  add_foreign_key "service_pricings", "services"
   add_foreign_key "users", "insurance_companies"
 end
