@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_11_170241) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -83,6 +83,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
     t.index ["product_category_id"], name: "index_packages_on_product_category_id"
   end
 
+  create_table "pending_packages", force: :cascade do |t|
+    t.string "name"
+    t.integer "min_period"
+    t.integer "max_period"
+    t.integer "insurance_company_id", null: false
+    t.integer "product_category_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insurance_company_id"], name: "index_pending_packages_on_insurance_company_id"
+    t.index ["product_category_id"], name: "index_pending_packages_on_product_category_id"
+  end
+
   create_table "policies", force: :cascade do |t|
     t.string "code"
     t.date "expiration_date"
@@ -150,6 +163,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
   add_foreign_key "coverage_pricings", "packages"
   add_foreign_key "packages", "insurance_companies"
   add_foreign_key "packages", "product_categories"
+  add_foreign_key "pending_packages", "insurance_companies"
+  add_foreign_key "pending_packages", "product_categories"
   add_foreign_key "products", "product_categories"
   add_foreign_key "service_pricings", "packages"
   add_foreign_key "service_pricings", "services"

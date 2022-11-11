@@ -1,0 +1,34 @@
+<h1 class="my-3"><%= t '.title' %></h1>
+
+<% if @pending_packages.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= PendingPackage.human_attribute_name(:product_category) %></th>
+        <th><%= PendingPackage.human_attribute_name(:insurance_company) %></th>
+        <th><%= PendingPackage.human_attribute_name(:name) %></th>
+        <th><%= PendingPackage.human_attribute_name(:min_period) %></th>
+        <th><%= PendingPackage.human_attribute_name(:max_period) %></th>
+        <th><%= PendingPackage.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pending_packages.each do |package| %>
+        <% if package.pending? %>
+          <tr>
+            <td><%= package.product_category.name %></td> 
+            <td><%= link_to package.insurance_company.name, '#', class: "link-dark"  %></td>
+            <td><%= package.name %></td>
+            <td><%= package.min_period %> meses</td>
+            <td><%= package.max_period %> meses</td>
+            <td class="fw-semibold text-muted"><%= package.status %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t '.message' %>
+  </div>
+<% end %>

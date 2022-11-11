@@ -1,0 +1,6 @@
+pt-BR:
+  pending_packages:
+    index:
+      title: 'Lista de Pacotes Pendentes'
+      message: 'Não existem pacotes pendentes cadastrados'
+      

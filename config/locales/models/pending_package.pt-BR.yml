@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      pending_package:
+        one: Pacote Pendete
+        other: Pacotes Pendetes
+    attributes:
+      pending_package:
+        name: 'Nome'
+        max_period: 'Período Máximo'
+        min_period: 'Período Mínimo'
+        insurance_company: 'Seguradora'
+        insurance_company_id: 'Seguradora'
+        product_category: 'Categoria'
+        product_category_id: 'Categoria'
