@@ -1,0 +1,6 @@
+pt-BR:
+  packages:
+    index:
+      title: 'Lista de Pacotes'
+      message: 'Não existem pacotes cadastrados'
+      

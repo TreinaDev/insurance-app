@@ -7,12 +7,11 @@ RSpec.describe CoveragePricing, type: :model do
         isurance_company1 = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                                                      registration_number: '80929380000456')
         product_category = ProductCategory.create!(name: 'Smartphone')
-        coverage1 = Coverage.new(name: 'Molhar',
+        coverage1 = PackageCoverage.create!(name: 'Molhar',
                                    description: 'Assistencia por danificação devido a molhar o aparelho.')
-        coverage1.save
         package1 = Package.create!(name: 'Seguro Completo', max_period: 12, min_period: 3,
                                    insurance_company: isurance_company1, product_category_id: product_category.id)
-        cp = CoveragePrice.new(status: :active, percentage_price: 0.2, package: package1, coverage: coverage1)
+        cp = CoveragePricing.new(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
 
         result = cp.valid?
 

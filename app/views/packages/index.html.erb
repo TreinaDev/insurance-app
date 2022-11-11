@@ -1,0 +1,32 @@
+<h1 class="my-3"><%= t '.title' %></h1>
+
+<% if @packages.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Package.human_attribute_name(:product_category) %></th>
+        <th><%= Package.human_attribute_name(:insurance_company) %></th>
+        <th><%= Package.human_attribute_name(:name) %></th>
+        <th><%= Package.human_attribute_name(:min_period) %></th>
+        <th><%= Package.human_attribute_name(:max_period) %></th>
+        <th><%= Package.human_attribute_name(:price) %> Mensal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @packages.each do |package| %>
+            <tr>
+              <td><%= package.product_category.name %></td> 
+              <td><%= link_to package.insurance_company.name, '#', class: "link-dark"  %></td>
+              <td><%= package.name %></td>
+              <td><%= package.min_period %> meses</td>
+              <td><%= package.max_period %> meses</td>
+              <td><%= number_to_currency(package.price) %></td>
+            </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t '.message' %>
+  </div>
+<% end %>
