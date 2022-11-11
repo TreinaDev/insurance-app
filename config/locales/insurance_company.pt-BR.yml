@@ -14,11 +14,13 @@ pt-BR:
         registration_number: CNPJ
       insurance_company/company_status:
         active: "Ativo"
-        inactive: "Inativo"  
+        inactive: "Inativo"
+      insurance_company/token_status:
+        token_active: "Ativo"
+        token_inactive: "Inativo"  
   insurance_companies:      
     index:
       authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
-       
 
 
      
