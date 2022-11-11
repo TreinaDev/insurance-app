@@ -22,5 +22,35 @@ describe 'Package API' do
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 3
     end
+
+    it 'retorna vazio caso não exista nenhum pacote' do
+      get '/api/v1/packages'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response).to eq []
+    end
+  end
+  context 'GET /api/v1/packages/1' do
+    it 'sucesso' do
+      product_category = ProductCategory.create!(name: 'Televisão')
+      insurance_company_a = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                                                     registration_number: '00000000000000')
+      package = Package.create!(name: 'Pacote 1', max_period: 12, min_period: 6, insurance_company: insurance_company_a,
+                                price: 1.1, product_category_id: product_category.id)
+
+      get "/api/v1/packages/#{package.id}"
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response['name']).to eq 'Pacote 1'
+      expect(json_response['max_period']).to eq 12
+      expect(json_response['min_period']).to eq 6
+      expect(json_response['insurance_company_id']).to eq insurance_company_a.id
+      expect(json_response['price']).to eq '1.1'
+      expect(json_response['product_category_id']).to eq product_category.id
+    end
   end
 end
