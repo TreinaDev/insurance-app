@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário vê lista de Categorias de Produto' do
   it 'com sucesso' do
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '19805576000154')
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password')
     ProductCategory.create!(name: 'Celular')
     ProductCategory.create!(name: 'Desktop')

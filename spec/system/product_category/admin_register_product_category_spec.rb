@@ -7,7 +7,7 @@ describe 'Administrador cadastra categoria de produto' do
     login_as(admin)
     visit root_path
     click_on 'Categorias de Produto'
-    click_on 'Cadastrar nova Categoria'
+    click_on 'Cadastrar Categoria'
     fill_in 'Nome',	with: 'TV'
     click_on 'Salvar'
 
@@ -21,7 +21,7 @@ describe 'Administrador cadastra categoria de produto' do
     login_as(admin)
     visit root_path
     click_on 'Categorias de Produto'
-    click_on 'Cadastrar nova Categoria'
+    click_on 'Cadastrar Categoria'
     fill_in 'Nome',	with: ''
     click_on 'Salvar'
 

@@ -1,15 +1,15 @@
-<h1><%= t '.title' %></h1>
+<h1 class="my-3"><%= t '.title' %></h1>
+
+<% if current_user.admin? %>
+  <%= link_to (t '.register'), new_product_category_path, class: "btn btn-dark"%>
+<% end %>
 
 <% if @product_categories.any? %>
-  <ul class="list-group list-group-flush">
+  <ul class="list-group my-3">
     <% @product_categories.each do |p| %>
       <li class="list-group-item"><%= p.name %></li>
     <% end %>
   </ul> 
 <% else %>
   <p><%= t '.fail' %></p>
-<% end %>
-
-<% if current_user.admin? %>
-  <%= link_to (t '.register'), new_product_category_path %>
 <% end %>
