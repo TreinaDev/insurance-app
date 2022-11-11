@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     post 'deactivate', on: :member
     post 'activate', on: :member
   end
-  
   resources :product_categories, only: [:index, :new, :create]
-  resources :insurance_companies, only: [:index, :show]  
+  resources :insurance_companies, only: [:index, :show]   
+  resources :packages, only: [:index]
 
   namespace :api do
     namespace :v1 do
