@@ -1,0 +1,16 @@
+pt-BR:
+  active: 'Ativo'
+  inactive: 'Desativado'
+  activerecord:
+    models:
+      service_pricing:
+        one: Precificação do serviço
+    attributes:
+      service_pricing:
+        active: 'Ativo'
+        inactive: 'Desativado'
+        package_service: 'Serviço'
+        package_service_id: 'Serviço'
+        package: 'Pacote'
+        package_id: 'Pacote'
+        percentage_price: 'Preço percentual'

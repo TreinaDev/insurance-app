@@ -3,8 +3,8 @@ InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.
                          registration_number: '01333288000189', company_status: 1)
 InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                          registration_number: '29929380000125')
-isurance_company1 = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
-                                             registration_number: '80929380000456')
+InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                         registration_number: '80929380000456')
 
 # class User
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
@@ -38,14 +38,23 @@ package1 = Package.create!(name: 'Ecônomico', min_period: 6, max_period: 24, in
 
 # class Service
 service1 = Service.create!(name: 'Assinatura TV',
-                           description: 'Consede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
+                           description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
+service2 = Service.create!(name: 'Desconto clubes seguros',
+                           description: 'Concede 10% de desconto em aquisição de seguro veicular.')
 
 # class ServicePricing
-ServicePricing.new(status: :active, percentage_price: 0.2, package: Package.first, service: service1)
+ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service1)
+ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service2)
 
 # class PackageCoverage
 coverage1 = PackageCoverage.create!(name: 'Molhar',
-                                    description: 'Assistencia por danificação devido a molhar o aparelho.')
+                                    description: 'Assistência por danificação devido a molhar o aparelho.')
+coverage2 = PackageCoverage.create!(name: 'Quebra de tela',
+                                    description: 'Assistência por danificação da tela do aparelho.')
+coverage3 = PackageCoverage.create!(name: 'Furto',
+                                    description: 'Reembolso de valor em caso de roubo do aparelho.')
 
 # class CoveragePricing
-CoveragePricing.new(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
+CoveragePricing.create!(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
+CoveragePricing.create!(status: :active, percentage_price: 1.2, package: package1, package_coverage: coverage2)
+CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package1, package_coverage: coverage3)
