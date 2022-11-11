@@ -31,7 +31,16 @@ describe 'Package API' do
       json_response = JSON.parse(response.body)
       expect(json_response).to eq []
     end
+
+    it 'e retorna erro interno' do 
+      allow(Package).to receive(:all).and_raise(ActiveRecord::QueryAborted)
+
+      get '/api/v1/packages'
+
+      expect(response).to have_http_status 500
+    end
   end
+  
   context 'GET /api/v1/packages/1' do
     it 'sucesso' do
       product_category = ProductCategory.create!(name: 'Televisão')
