@@ -1,5 +1,5 @@
 class InsuranceCompaniesController < ApplicationController
-  before_action :check_admin, only: %i[index]
+  before_action :check_admin, only: %i[index show]
   def index
     @insurance_companies = InsuranceCompany.all
   end

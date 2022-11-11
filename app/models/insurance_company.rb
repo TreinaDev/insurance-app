@@ -5,6 +5,7 @@ class InsuranceCompany < ApplicationRecord
   before_validation :generate_token, on: :create
   validates :token, length: { is: 20 }
   validates :name, :email_domain, :company_status, :token_status, :registration_number, :token, presence: true
+  validates :registration_number, uniqueness: true
 
   private
 
