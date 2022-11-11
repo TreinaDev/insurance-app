@@ -51,18 +51,18 @@ describe 'Usuário vê lista de pacotes pendentes' do
   end
 
   it 'com sucesso e é funcionário de uma seguradora' do
-    insurance_a = InsuranceCompany.create!(name: 'Azul', email_domain: 'azul.com.br', registration_number:
+    one = InsuranceCompany.create!(name: 'Azul', email_domain: 'azul.com.br', registration_number:
                                           '01000000123410')
-    insurance_b = InsuranceCompany.create!(name: 'Laranja', email_domain: 'laranja.com.br', registration_number:
+    two = InsuranceCompany.create!(name: 'Laranja', email_domain: 'laranja.com.br', registration_number:
                                           '02000000258210')
     user = User.create!(name: 'Funcionario', email: 'pessoa@azul.com.br', password: 'password',
-                        role: :employee, insurance_company: insurance_a)
+                        role: :employee, insurance_company: one)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     laptops = ProductCategory.create!(name: 'Laptops')
-    PendingPackage.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance_a,
-                          product_category: smartphones)
-    PendingPackage.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance_b,
-                          product_category: laptops)
+    PendingPackage.create!(name: 'Premium 1', min_period: 12, max_period: 24, insurance_company: one, product_category:
+                          smartphones)
+    PendingPackage.create!(name: 'Premium A', min_period: 12, max_period: 24, insurance_company: two, product_category:
+                          laptops)
 
     login_as(user)
     visit root_path
@@ -71,13 +71,13 @@ describe 'Usuário vê lista de pacotes pendentes' do
     end
 
     expect(page).to have_link('Azul')
-    expect(page).to have_content('Premium')
+    expect(page).to have_content('Premium 1')
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
     expect(page).to have_content('Smartphones')
     expect(page).to have_content('Pendente')
     expect(page).not_to have_link('Laranja')
-    expect(page).not_to have_content('Econômico')
+    expect(page).not_to have_content('Premium A')
     expect(page).not_to have_content('6 meses')
     expect(page).not_to have_content('18 meses')
     expect(page).not_to have_content('Laptops')

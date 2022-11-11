@@ -3,4 +3,4 @@ pt-BR:
     index:
       title: 'Lista de Pacotes Pendentes'
       message: 'Não existem pacotes pendentes cadastrados'
-      
+      register: 'Adicionar Pacote'

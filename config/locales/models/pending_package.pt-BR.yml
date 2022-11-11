@@ -1,4 +1,6 @@
 pt-BR:
+  pending: Pendente
+  active: Ativo
   activerecord:
     models:
       pending_package:
