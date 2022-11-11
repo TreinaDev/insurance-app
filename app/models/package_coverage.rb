@@ -1,0 +1,2 @@
+class PackageCoverage < ApplicationRecord
+end

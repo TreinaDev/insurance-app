@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_11_150424) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,13 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
     t.index ["package_id"], name: "index_coverage_pricings_on_package_id"
   end
 
-  create_table "coverages", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "insurance_companies", force: :cascade do |t|
     t.string "name"
     t.string "email_domain"
@@ -68,6 +61,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
     t.string "token"
     t.index ["registration_number"], name: "index_insurance_companies_on_registration_number", unique: true
     t.index ["token"], name: "index_insurance_companies_on_token", unique: true
+  end
+
+  create_table "package_coverages", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "packages", force: :cascade do |t|
@@ -146,7 +146,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "coverage_pricings", "coverages"
+  add_foreign_key "coverage_pricings", "package_coverages", column: "coverage_id"
   add_foreign_key "coverage_pricings", "packages"
   add_foreign_key "packages", "insurance_companies"
   add_foreign_key "packages", "product_categories"
