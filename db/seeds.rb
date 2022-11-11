@@ -1,31 +1,51 @@
+# class InsuranceCompany
 InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
                          registration_number: '01333288000189', company_status: 1)
 InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                          registration_number: '29929380000125')
+isurance_company1 = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                                             registration_number: '80929380000456')
 
+# class User
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
-InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
-                         registration_number: '80929380000456')
 User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
 
+# class ProductCategory
 product_category_a = ProductCategory.create!(name: 'Celular')
 product_category_b = ProductCategory.create!(name: 'Televisão')
 
+# class Product
+# Produto A
 product_a = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
                             product_category: product_category_a)
 image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
 product_a.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
-
+# Produto B
 product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'LG', price: 5000,
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
 
+# class Package
 Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
-                price: 90.00, product_category: product_category_a)
+                price: 30.00, product_category: product_category_a)
 Package.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
-                price: 70.00, product_category: product_category_a)
+                price: 7.00, product_category: product_category_a)
 Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
-                price: 150.00, product_category: product_category_b)
-Package.create!(name: 'Ecônomico', min_period: 6, max_period: 24, insurance_company: InsuranceCompany.last,
-                price: 85.00, product_category: product_category_b)
+                price: 15.00, product_category: product_category_b)
+package1 = Package.create!(name: 'Ecônomico', min_period: 6, max_period: 24, insurance_company: InsuranceCompany.last,
+                           price: 8.50, product_category: product_category_b)
+
+# class Service
+service1 = Service.create!(name: 'Assinatura TV',
+                           description: 'Consede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
+
+# class ServicePricing
+ServicePricing.new(status: :active, percentage_price: 0.2, package: Package.first, service: service1)
+
+# class PackageCoverage
+coverage1 = PackageCoverage.create!(name: 'Molhar',
+                                    description: 'Assistencia por danificação devido a molhar o aparelho.')
+
+# class CoveragePricing
+CoveragePricing.new(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
