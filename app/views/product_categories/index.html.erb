@@ -1,16 +1,14 @@
 <h1><%= t '.title' %></h1>
 
 <% if @product_categories.any? %>
-  <% @product_categories.each do |p| %>
-    <ul>
-      <li><%= t '.name' %>: <%= p.name %></li>
-    </ul>
-  <% end %>
+  <ul class="list-group list-group-flush">
+    <% @product_categories.each do |p| %>
+      <li class="list-group-item"><%= p.name %></li>
+    <% end %>
+  </ul> 
 <% else %>
   <p><%= t '.fail' %></p>
 <% end %>
-
-<%= link_to (t '.back'), root_path %>
 
 <% if current_user.admin? %>
   <%= link_to (t '.register'), new_product_category_path %>

@@ -12,7 +12,7 @@ describe 'Administrador cadastra categoria de produto' do
     click_on 'Salvar'
 
     expect(page).to have_content 'Categoria de produto cadastrada com sucesso'
-    expect(page).to have_content 'Nome da Categoria: TV'
+    expect(page).to have_content 'TV'
   end
 
   it 'com erro' do
