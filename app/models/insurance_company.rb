@@ -10,7 +10,3 @@ class InsuranceCompany < ApplicationRecord
     self.token = SecureRandom.alphanumeric(20).upcase
   end
 end
-
-def change
-  add_index :orders, :order_number, unique: true
-end

@@ -1,0 +1,24 @@
+<div class = "container-card" style="margin:30px;"> 
+  <div class="card" style="width: 20rem;">  
+    
+      <div class="card-body">
+      <div><h4><%= @insurance_company.name %> </h4>
+         <% if @insurance_company.company_status == 'active' %>
+            <p class="fw-semibold text-success"><%= InsuranceCompany.human_attribute_name("company_status.#{@insurance_company.company_status}") %></p>
+          <% else %>
+            <p class="fw-semibold text-muted"><%= InsuranceCompany.human_attribute_name("company_status.#{ @insurance_company.company_status}") %></p>
+          <% end %>
+      </div>
+      <strong><%= InsuranceCompany.human_attribute_name(:registration_number)%>:</strong> <p><%= @insurance_company.registration_number %></p>
+      <strong><%= InsuranceCompany.human_attribute_name(:email_domain)%>:</strong> 
+      <p><%= @insurance_company.email_domain %></p>
+      <strong><%= InsuranceCompany.human_attribute_name(:token)%>:</strong><br>           
+      <% if @insurance_company.token_status == 'token_active' %>
+            <p class="fw-semibold text-success" style="display:inline;"><%= InsuranceCompany.human_attribute_name("token_status.#{@insurance_company.token_status}") %></p>
+          <% else %>
+            <p class="fw-semibold text-muted" style="display:inline;"><%= InsuranceCompany.human_attribute_name("token_status.#{ @insurance_company.token_status}") %></p>
+      <% end %> - <%= @insurance_company.token %>          
+      </div>
+    </div>
+  </div>
+
