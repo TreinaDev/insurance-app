@@ -14,7 +14,7 @@ RSpec.describe 'Usuário visualiza detalhe de seguradoras', type: :request do
     InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                              registration_number: '80929380000456')
     user = User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
-    
+
     login_as(user)
     get '/insurance_companies/1'
 

@@ -13,7 +13,7 @@ describe 'Usuário administrador vê detalhes da Seguradora' do
     click_on 'Seguradoras'
     click_on 'Porto Seguro'
 
-    expect(page).to have_content("Porto Seguro -\nAtivo")    
+    expect(page).to have_content("Porto Seguro -\nAtivo")
     expect(page).to have_content('CNPJ:')
     expect(page).to have_content('99157841000105')
     expect(page).to have_content('Domínio de E-mail:')
@@ -34,7 +34,7 @@ describe 'Usuário administrador vê detalhes da Seguradora' do
     click_on 'Seguradoras'
     click_on 'Porto Seguro'
     click_on 'Voltar'
-    
+
     expect(current_path).to eq insurance_companies_path
   end
 end
