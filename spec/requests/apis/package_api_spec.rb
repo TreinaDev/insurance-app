@@ -52,5 +52,11 @@ describe 'Package API' do
       expect(json_response['price']).to eq '1.1'
       expect(json_response['product_category_id']).to eq product_category.id
     end
+
+    it 'falha se o pacote não é encontrado' do
+      get '/api/v1/packages/9999999999999999999999'
+
+      expect(response.status).to eq 404
+    end
   end
 end
