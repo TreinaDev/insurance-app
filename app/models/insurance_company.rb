@@ -1,8 +1,10 @@
 class InsuranceCompany < ApplicationRecord
   enum company_status: { active: 0, inactive: 1 }
+  enum token_status: { token_active: 0, token_inactive: 1 }
   validates :registration_number, length: { is: 14 }
   before_validation :generate_token, on: :create
   validates :token, length: { is: 20 }
+  validates :name, :email_domain, :company_status, :token_status, :registration_number, :token, presence: true
 
   private
 
