@@ -15,7 +15,7 @@
     <% if @insurance_companies.any? %>
       <% @insurance_companies.each do |insurance| %>
         <tr>
-          <td><%= link_to insurance.name, '#', class: "link-dark" %></td>          
+          <td><%= link_to insurance.name, insurance_company_path(insurance.id), class: "link-dark" %></td>          
           <td><%= insurance.registration_number %></td>          
           <% if insurance.company_status == 'active' %>
             <td class="fw-semibold text-success"><%= InsuranceCompany.human_attribute_name("company_status.#{insurance.company_status}") %></td>
