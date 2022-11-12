@@ -3,10 +3,11 @@ require 'rails_helper'
 describe 'Usuário administrador vê detalhes da Seguradora' do
   it 'a partir da tela de listar seguradoras' do
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
-
     allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('ACCDEFGHIJ0123456789')
-    InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
-                             registration_number: '99157841000105')
+    insurance_b = InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
+                                           registration_number: '99157841000105')
+    logo_path = Rails.root.join('spec/support/logos/porto_seguro.PNG')
+    insurance_b.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
 
     login_as(user)
     visit root_path
@@ -20,6 +21,7 @@ describe 'Usuário administrador vê detalhes da Seguradora' do
     expect(page).to have_content('portoseguro.com.br')
     expect(page).to have_content('Token de Integração:')
     expect(page).to have_content("Ativo\n- ACCDEFGHIJ0123456789")
+    expect(page).to have_css('img[src*="seguradora_a.PNG"]')
   end
 
   it 'a partir da tela de listar seguradoras' do
