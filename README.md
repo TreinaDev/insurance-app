@@ -2,7 +2,7 @@
 Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 ## Tabela de Conteúdos
-  * [Documentação da API](#documentação-da-api)
+  * [Documentação API](#documentação-da-api)
   * [Como rodar a aplicação](#como-rodar-a-aplicação)
   * [Informações adicionais](#informações-adicionais)
   * [Regras de negócio](#regras-de-negócio)
@@ -125,6 +125,28 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "token_status": 0,
   "registration_number": "01333288000189",
   "token": "3Y9C18LRZNSIHOQNMR0A"
+}
+```
+
+### Solicitar emissão de Apólice
+
+**Endpoint: POST /api/v1/policies**
+
+<p align = "justify">Retorno:</p>
+
+<p align = "justify">201 (Created)</p>
+
+```json
+{
+  "order_id": 1,
+  "insurance_company_id": 1,
+  "package_id": 1,
+  "equipment_id": 1,
+  "client_name": "Ana Martins",
+  "client_registration_number": "99950033340",
+  "client_email": "anamartins@email.com.br",
+  "purchase_date": "Sat, 12 Nov 2022",
+  "policy_period": 12
 }
 ```
 
