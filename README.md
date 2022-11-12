@@ -5,6 +5,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Documentação da API](#documentação-da-api)
   * [Como rodar a aplicação](#como-rodar-a-aplicação)
   * [Informações adicionais](#informações-adicionais)
+  * [Regras de negócio](#regras-de-negócio)
 
 ## Documentação da API
 
@@ -192,3 +193,10 @@ $ rails s
 * Ruby: 3.1.2
 
 * Rails: 7.0.4
+
+
+## Regras de negócio
+
+* Valor de cada serviço e cobertura de pacote não deve ser superior a 30% do valor do produto
+
+* Valor do pacote não deve ser superior a 100% do valor do produto
