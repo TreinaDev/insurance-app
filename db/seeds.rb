@@ -1,4 +1,4 @@
-# class Insurance
+# class Insurance_Company
 # Seguradora A
 insurance_a = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
                                        registration_number: '01333288000189', company_status: 1)
@@ -18,7 +18,6 @@ insurance_c.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
 # class User
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
-
 
 # class ProductCategory
 product_category_a = ProductCategory.create!(name: 'Celular')
