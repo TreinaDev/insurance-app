@@ -42,11 +42,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_170241) do
   create_table "coverage_pricings", force: :cascade do |t|
     t.integer "status", default: 0
     t.decimal "percentage_price"
-    t.integer "coverage_id", null: false
     t.integer "package_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coverage_id"], name: "index_coverage_pricings_on_coverage_id"
+    t.integer "package_coverage_id"
+    t.index ["package_coverage_id"], name: "index_coverage_pricings_on_package_coverage_id"
     t.index ["package_id"], name: "index_coverage_pricings_on_package_id"
   end
 
@@ -159,7 +159,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_170241) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "coverage_pricings", "package_coverages", column: "coverage_id"
+  add_foreign_key "coverage_pricings", "package_coverages"
   add_foreign_key "coverage_pricings", "packages"
   add_foreign_key "packages", "insurance_companies"
   add_foreign_key "packages", "product_categories"
