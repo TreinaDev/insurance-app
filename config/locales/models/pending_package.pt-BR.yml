@@ -1,6 +1,4 @@
 pt-BR:
-  pending: Pendente
-  active: Ativo
   activerecord:
     models:
       pending_package:
@@ -15,3 +13,6 @@ pt-BR:
         insurance_company_id: 'Seguradora'
         product_category: 'Categoria'
         product_category_id: 'Categoria'
+      pending_package/status:
+        pending: "Pendente"
+        active: "Ativo"

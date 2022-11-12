@@ -25,7 +25,7 @@
             <td><%= package.name %></td>
             <td><%= package.min_period %> meses</td>
             <td><%= package.max_period %> meses</td>
-            <td class="fw-semibold text-muted"><%= package.status %></td>
+            <td class="fw-semibold text-muted"><%= PendingPackage.human_attribute_name("status.#{package.status}") %></td>
           </tr>
         <% end %>
       <% end %>
