@@ -1,12 +1,19 @@
-InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
+insurance_a = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
                          registration_number: '01333288000189', company_status: 1)
-InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
+insurance_b = InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                          registration_number: '29929380000125')
 
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
-InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+insurance_c = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                          registration_number: '80929380000456')
 User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
+
+logo_path = Rails.root.join('spec/support/logos/allianz_seguros.PNG')
+insurance_a.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
+logo_path = Rails.root.join('spec/support/logos/porto_seguro.PNG')
+insurance_b.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
+logo_path = Rails.root.join('spec/support/logos/seguradora_a.PNG')
+insurance_c.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
 
 product_category_a = ProductCategory.create!(name: 'Celular')
 product_category_b = ProductCategory.create!(name: 'Televisão')
