@@ -23,7 +23,7 @@ class InsuranceCompaniesController < ApplicationController
       flash[:notice] = t('.success')
       redirect_to @insurance_company
     else
-      flash.now[:notice] = t('.failure')
+      flash.now[:alert] = t('.failure')
       render 'new'
     end
   end
@@ -34,7 +34,7 @@ class InsuranceCompaniesController < ApplicationController
       flash[:notice] = t('.update_success')
       redirect_to @insurance_company
     else
-      flash.now[:notice] = t('.update_failure')
+      flash.now[:alert] = t('.update_failure')
       render 'edit'
     end
   end

@@ -32,7 +32,7 @@ describe 'Usúario edita uma seguradora' do
     fill_in 'CNPJ', with: '00029380000125'
     click_on 'Atualizar Seguradora'
 
-    expect(page).to have_content('Seguradora atualizado com sucesso!')
+    expect(page).to have_content('Seguradora atualizada com sucesso!')
     expect(page).to have_content('CNPJ')
     expect(page).to have_content('00029380000125')
     expect(page).to have_css('img[src*="porto_seguro.PNG"]')

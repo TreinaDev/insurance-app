@@ -27,9 +27,9 @@ pt-BR:
       authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
     create:
       success: 'Seguradora criada com sucesso!'
-      failure: 'Seguradora não foi criado'
+      failure: 'Seguradora não foi criada.'
     update:
-      update_success: 'Seguradora atualizado com sucesso!'
+      update_success: 'Seguradora atualizada com sucesso!'
       update_failure: 'Não foi possivel atualizar seguradora.'  
 
 

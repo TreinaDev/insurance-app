@@ -50,7 +50,7 @@ describe 'Usuário cadastra uma seguradora' do
     fill_in 'CNPJ', with: ''
     click_on 'Criar Seguradora'
 
-    expect(page).to have_content('Seguradora não foi criado')
+    expect(page).to have_content('Seguradora não foi criada')
     expect(page).to have_content('Nome da Seguradora não pode ficar em branco')
     expect(page).to have_content('Domínio de E-mail não pode ficar em branco')
     expect(page).to have_content('CNPJ não pode ficar em branco')
