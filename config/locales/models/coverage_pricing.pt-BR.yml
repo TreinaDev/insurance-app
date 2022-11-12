@@ -1,0 +1,16 @@
+pt-BR:
+  active: 'Ativo'
+  inactive: 'Desativado'
+  activerecord:
+    models:
+      coverage_pricing:
+        one: Precificação da cobertura
+    attributes:
+      coverage_pricing:
+        active: 'Ativo'
+        inactive: 'Desativado'
+        package_coverage: 'Cobertura'
+        package_coverage_id: 'Cobertura'
+        package: 'Pacote'
+        package_id: 'Pacote'
+        percentage_price: 'Preço percentual'
