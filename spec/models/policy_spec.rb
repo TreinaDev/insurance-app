@@ -1,4 +1,255 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe Policy, type: :model do
-# end
+RSpec.describe Policy, type: :model do
+  describe 'valid?' do
+    it 'falso se não houver nome do cliente' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: '', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver CPF do cliente' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver email do cliente' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: '',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver id do pedido' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: '',
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver id do equipamento' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: '', purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver data de compra do pedido' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: '',
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver duração do seguro' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: '', package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se não houver duração do seguro' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                      price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: '')
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se id do pedido não for um número' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 'd',
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se id do equipamento não for um número' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 'd', purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+
+    it 'falso se duração do seguro não for um número' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 'd', package_id: package.id)
+
+      result = policy.valid?
+
+      expect(result).to be false
+    end
+  end
+
+  describe 'Gera um código aleatório' do
+    it 'ao criar uma nova apólice' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: package.id)
+
+      policy.save!
+      result = policy.code
+
+      expect(result).not_to be_empty
+      expect(result.length).to eq 10
+    end
+
+    it 'e o código é único' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      first_policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
+                                client_email: 'joseantonio@email.com',
+                                insurance_company_id: insurance_company.id, order_id: 1,
+                                equipment_id: 1, purchase_date: Time.zone.today,
+                                policy_period: 12, package_id: package.id)
+      second_policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                                 client_email: 'mariaalves@email.com',
+                                 insurance_company_id: insurance_company.id, order_id: 2,
+                                 equipment_id: 1, purchase_date: Time.zone.today,
+                                 policy_period: 12, package_id: package.id)
+
+      second_policy.save!
+
+      expect(second_policy.code).not_to eq first_policy.code
+    end
+  end
+
+  describe 'Gera data de validade automaticamente' do
+    it 'ao criar apólice' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
+                          client_email: 'joseantonio@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: '2022-11-12',
+                          policy_period: 12, package_id: package.id)
+
+      policy.save!
+      expiration_date = policy.expiration_date.strftime
+
+      expect(expiration_date).to eq('2023-11-12')
+    end
+  end
+end

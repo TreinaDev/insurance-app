@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show]
       resources :insurance_companies, only: [:index, :show]
+      resources :policies, only: [:create]
     end
   end
 end
