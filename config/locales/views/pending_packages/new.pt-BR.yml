@@ -1,0 +1,5 @@
+pt-BR:
+  pending_packages:
+    create:
+      success: 'Pacote criado com sucesso!'
+      failure: 'Pacote não foi criado'
