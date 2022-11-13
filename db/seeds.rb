@@ -1,19 +1,25 @@
 # class InsuranceCompany
 # Seguradora A
-insurance_a = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
-                                       registration_number: '01333288000189', company_status: 1)
-logo_path = Rails.root.join('spec/support/logos/allianz_seguros.PNG')
-insurance_a.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
+insurance_a = InsuranceCompany.create!(name: 'Liga de Seguros', email_domain: 'ligadeseguros.com.br',
+                                       registration_number: '01333288000189')
+logo_path = Rails.root.join('spec/support/logos/liga_seguros.PNG')
+insurance_a.logo.attach(io: logo_path.open, filename: 'liga_seguros.PNG')
 # Seguradora B
-insurance_b = InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
-                                       registration_number: '29929380000125')
-logo_path = Rails.root.join('spec/support/logos/porto_seguro.PNG')
-insurance_b.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
+insurance_b = InsuranceCompany.create!(name: 'Trapiche Seguro', email_domain: 'trapicheseguro.com.br',
+                                       registration_number: '29929380000125', company_status: 1)
+logo_path = Rails.root.join('spec/support/logos/trapiche_seguro.PNG')
+insurance_b.logo.attach(io: logo_path.open, filename: 'trapiche_seguro.PNG')
 # Seguradora C
 insurance_c = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                                        registration_number: '80929380000456')
 logo_path = Rails.root.join('spec/support/logos/seguradora_a.PNG')
 insurance_c.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
+
+# Seguradora C
+insurance_d = InsuranceCompany.create!(name: 'Anjo Seguradora', email_domain: 'anjoseguradora.com.br',
+                                       registration_number: '90929380000777')
+logo_path = Rails.root.join('spec/support/logos/anjo_seguradora.PNG')
+insurance_d.logo.attach(io: logo_path.open, filename: 'anjo_seguradora.PNG')
 
 # class User
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
