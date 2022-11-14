@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Product API' do
   context 'GET /api/v1/products' do
-    it 'list all products ordered by name' do
+    it 'lista todos os produtos ordeandos pelo nome' do
       product_category = ProductCategory.create!(name: 'TV')
       Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'LG',
                       price: 5000, product_category_id: product_category.id)
@@ -19,7 +19,7 @@ describe 'Product API' do
       expect(json_response[1]['product_model']).to eq 'TV 50'
     end
 
-    it 'return empty if there is no products' do
+    it 'retorna vazio se não houver produtos' do
       get '/api/v1/products'
 
       expect(response.status).to eq 200
@@ -28,7 +28,7 @@ describe 'Product API' do
       expect(json_response).to eq []
     end
 
-    it 'and raise internal error' do
+    it 'e acusa erro interno' do
       allow(Product).to receive(:all).and_raise(ActiveRecord::QueryAborted)
 
       get '/api/v1/products'
@@ -38,7 +38,7 @@ describe 'Product API' do
   end
 
   context 'GET /api/v1/products/1' do
-    it 'success' do
+    it 'sucesso' do
       product_category = ProductCategory.create!(name: 'TV')
       product = Product.create!(product_model: 'TV 32', launch_year: '2022',
                                 brand: 'LG', price: 5000, product_category_id: product_category.id)
@@ -56,7 +56,7 @@ describe 'Product API' do
       expect(json_response.keys).not_to include('updated_at')
     end
 
-    it 'fail if product not found' do
+    it 'falha se o produto não for encontrado' do
       get '/api/v1/products/3333'
 
       expect(response.status).to eq 404
