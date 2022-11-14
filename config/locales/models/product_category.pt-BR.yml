@@ -1,9 +1,10 @@
 pt-BR:
+  no_product_category_registered: "Não existem Categorias de Produto cadastradas"
   activerecord:
     models:
       product_category:
-        one: Categoria de Produto
-        other: Categorias de Produto
+        one: "Categoria de Produto"
+        other: "Categorias de Produto"
     attributes:
       product_category:
-        name: 'Nome'
+        name: "Nome"

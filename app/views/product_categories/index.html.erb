@@ -4,12 +4,4 @@
   <%= link_to (t '.register'), new_product_category_path, class: "btn btn-dark"%>
 <% end %>
 
-<% if @product_categories.any? %>
-  <ul class="list-group my-3">
-    <% @product_categories.each do |p| %>
-      <li class="list-group-item"><%= p.name %></li>
-    <% end %>
-  </ul> 
-<% else %>
-  <p><%= t '.fail' %></p>
-<% end %>
+<%= render 'product_categories_list' %>
