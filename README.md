@@ -108,6 +108,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   }
 ]
 ```
+
 ### Obter informações sobre seguradora específica
 
 **Endpoint: GET /api/v1/insurance_companies/id**
@@ -128,6 +129,69 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 }
 ```
 
+### Obter lista de Pacotes
+
+**Endpoint: GET /api/v1/packages**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 1,
+    "price": "3.0",
+    "created_at": "2022-11-14T14:01:39.173Z",
+    "updated_at": "2022-11-14T14:01:39.173Z",
+    "pending_package_id": 1,
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "price": "7.0",
+    "created_at": "2022-11-14T14:01:39.193Z",
+    "updated_at": "2022-11-14T14:01:39.193Z",
+    "pending_package_id": 2,
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "price": "15.0",
+    "created_at": "2022-11-14T14:01:39.210Z",
+    "updated_at": "2022-11-14T14:01:39.210Z",
+    "pending_package_id": 3,
+    "status": "inactive"
+  },
+  {
+    "id": 4,
+    "price": "8.5",
+    "created_at": "2022-11-14T14:01:39.245Z",
+    "updated_at": "2022-11-14T14:01:39.245Z",
+    "pending_package_id": 4,
+    "status": "active"
+  }
+]
+```
+### Obter dados de pacote específico
+
+**Endpoint: GET /api/v1/packages/id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 1,
+  "price": "3.0",
+  "created_at": "2022-11-14T14:01:39.173Z",
+  "updated_at": "2022-11-14T14:01:39.173Z",
+  "pending_package_id": 1,
+  "status": "active"
+}
+```
+
 ### Status Codes
 
 Retorna os status:
@@ -137,9 +201,6 @@ Retorna os status:
 | 200 | `OK` |
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
-
-
- 
 
 ## Como rodar a aplicação
 
@@ -181,7 +242,6 @@ $ rails s
 
 * Acesse http://localhost:3000/
 
-
 ## Informações adicionais
 
 * Usuário administrador cadastrado: pessoa@empresa.com.br (senha: password)
@@ -193,7 +253,6 @@ $ rails s
 * Ruby: 3.1.2
 
 * Rails: 7.0.4
-
 
 ## Regras de negócio
 
