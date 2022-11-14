@@ -143,28 +143,44 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 **Endpoint: POST /api/v1/policies**
 
+**Parâmetros a serem enviados para emissão de Apólice**
+
+```json
+{
+  "client_name": "Maria Alves",
+  "client_registration_number": "99950033340",
+  "client_email": "mariaalves@email.com",
+  "purchase_date": "2022-11-12", 
+  "policy_period": 12, 
+  "order_id": 1,
+  "package_id": 1,
+  "insurance_company_id": 1,
+  "equipment_id": 1
+}
+```
+Obs: "purchase_date" = data de compra do pacote
+
 <p align = "justify">Retorno:</p>
 
 <p align = "justify">201 (Created)</p>
 
 ```json
 {
-  "id": 2,
-  "code": "MTI93LFEMV",
-  "expiration_date": "2023-11-14",
+  "id": 1,
+  "code": "AGG7MYUQWA",
+  "expiration_date": "2023-11-12",
   "status": "pending",
-  "created_at": "2022-11-14T12:22:48.768Z",
-  "updated_at": "2022-11-14T12:22:48.768Z",
   "client_name": "Maria Alves",
   "client_registration_number": "99950033340",
   "client_email": "mariaalves@email.com",
   "equipment_id": 1,
-  "purchase_date": "2022-11-14",
+  "purchase_date": "2022-11-12",
   "policy_period": 12,
   "package_id": 1,
   "order_id": 1,
   "insurance_company_id": 1
 }
+
 ```
 
 <p align = "justify">Retorno:</p>

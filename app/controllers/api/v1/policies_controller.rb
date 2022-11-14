@@ -15,7 +15,7 @@ class Api::V1::PoliciesController < Api::V1::ApiController
                                                    :equipment_id, :purchase_date, :policy_period, :package_id)
     policy = Policy.new(policy_params)
     if policy.save
-      render status: :created, json: policy
+      render status: :created, json: policy.as_json(except: %i[created_at updated_at])
     else
       render status: :precondition_failed, json: { errors: policy.errors.full_messages }
     end
