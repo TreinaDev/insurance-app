@@ -128,6 +128,40 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 }
 ```
 
+### Obter dados de Coberturas
+
+**Endpoint: GET /api/v1/package_coverages**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id":1,
+    "name":"Molhar",
+    "description":"Assistência por danificação devido a molhar o aparelho.",
+    "created_at":"2022-11-13T22:22:12.818Z",
+    "updated_at":"2022-11-13T22:22:12.818Z"
+  },
+  {
+    "id":2,
+    "name":"Quebra de tela",
+    "description":"Assistência por danificação da tela do aparelho.",
+    "created_at":"2022-11-13T22:22:12.825Z",
+    "updated_at":"2022-11-13T22:22:12.825Z"
+  },
+  {
+    "id":3,
+    "name":"Furto",
+    "description":"Reembolso de valor em caso de roubo do aparelho.",
+    "created_at":"2022-11-13T22:22:12.832Z",
+    "updated_at":"2022-11-13T22:22:12.832Z"
+  }
+]
+```
+
 ### Status Codes
 
 Retorna os status:
