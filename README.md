@@ -173,6 +173,34 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 ]
 ```
 
+### Obter dados de Serviços
+
+**Endpoint: GET /api/v1/services**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id":1,
+    "name":"Assinatura TV",
+    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.",
+    "created_at":"2022-11-14T17:23:06.715Z",
+    "updated_at":"2022-11-14T17:23:06.715Z"
+  },
+  {
+    "id":2,
+    "name":"Desconto clubes seguros",
+    "description":"Concede 10% de desconto em aquisição de seguro veicular.",
+    "created_at":"2022-11-14T17:23:06.724Z",
+    "updated_at":"2022-11-14T17:23:06.724Z"
+  }
+]
+
+```
+
 ### Status Codes
 
 Retorna os status:
@@ -184,7 +212,6 @@ Retorna os status:
 | 500 | `INTERNAL SERVER ERROR` |
 
 
- 
 
 ## Como rodar a aplicação
 

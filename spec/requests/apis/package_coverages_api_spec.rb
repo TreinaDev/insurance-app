@@ -1,5 +1,5 @@
 require 'rails_helper'
-describe 'Product API' do
+describe 'PackageCoverage API' do
   context 'GET /api/v1/package_coverages' do
     it 'listar todas as coberturas ordenadas pelo nome' do
       PackageCoverage.create!(name: 'Molhar',
