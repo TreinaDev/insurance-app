@@ -1,10 +1,24 @@
 # class InsuranceCompany
-InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzseguros.com.br',
-                         registration_number: '01333288000189', company_status: 1)
-InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
-                         registration_number: '29929380000125')
-InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
-                         registration_number: '80929380000456')
+# Seguradora A
+insurance_a = InsuranceCompany.create!(name: 'Liga de Seguros', email_domain: 'ligadeseguros.com.br',
+                                       registration_number: '01333288000189')
+logo_path = Rails.root.join('spec/support/logos/liga_seguros.PNG')
+insurance_a.logo.attach(io: logo_path.open, filename: 'liga_seguros.PNG')
+# Seguradora B
+insurance_b = InsuranceCompany.create!(name: 'Trapiche Seguro', email_domain: 'trapicheseguro.com.br',
+                                       registration_number: '29929380000125', company_status: 1)
+logo_path = Rails.root.join('spec/support/logos/trapiche_seguro.PNG')
+insurance_b.logo.attach(io: logo_path.open, filename: 'trapiche_seguro.PNG')
+# Seguradora C
+insurance_c = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                                       registration_number: '80929380000456')
+logo_path = Rails.root.join('spec/support/logos/seguradora_a.PNG')
+insurance_c.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
+# Seguradora D
+insurance_d = InsuranceCompany.create!(name: 'Anjo Seguradora', email_domain: 'anjoseguradora.com.br',
+                                       registration_number: '90929380000777')
+logo_path = Rails.root.join('spec/support/logos/anjo_seguradora.PNG')
+insurance_d.logo.attach(io: logo_path.open, filename: 'anjo_seguradora.PNG')
 
 # class User
 User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
@@ -25,7 +39,7 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
-
+# class PendingPackage
 PendingPackage.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
                        product_category: product_category_a)
 PendingPackage.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.last,
@@ -36,13 +50,14 @@ PendingPackage.create!(name: 'Econômico', min_period: 6, max_period: 18, insura
                        product_category: product_category_b)
 
 # class Package
-Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
+Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
                 price: 30.00, product_category: product_category_a)
-Package.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
+Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
                 price: 7.00, product_category: product_category_a)
-Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
+Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
                 price: 15.00, product_category: product_category_b)
-package1 = Package.create!(name: 'Ecônomico', min_period: 6, max_period: 24, insurance_company: InsuranceCompany.last,
+package1 = Package.create!(name: 'Super Econômico', min_period: 6, max_period: 24,
+                           insurance_company: InsuranceCompany.last,
                            price: 8.50, product_category: product_category_b)
 
 # class Service

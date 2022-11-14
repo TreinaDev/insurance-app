@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'InsuranceCompany API' do
   context 'GET /api/v1/insurance_companies' do
-    it 'list all insurance companies ordered by name' do
+    it 'lista todas as seguradoras ordenadas pelo nome' do
       InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
                                company_status: 1, registration_number: '84157841000105')
       InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
@@ -21,7 +21,7 @@ describe 'InsuranceCompany API' do
       expect(json_response[2]['name']).to eq 'Trata Seguros'
     end
 
-    it 'returns empty list if there are no insurance companies' do
+    it 'retorna uma lista vazia se não houver seguradoras' do
       get '/api/v1/insurance_companies'
 
       expect(response.status).to eq 200
@@ -40,7 +40,7 @@ describe 'InsuranceCompany API' do
   end
 
   context 'GET api/v1/insurance_companies/1' do
-    it 'and returns details of insurance company' do
+    it 'e retorna detalhes da seguradora' do
       InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                                registration_number: '99157841000105')
       insurance_company = InsuranceCompany.create!(name: 'Trata Seguros', email_domain: 'trataseguros.com.br',
@@ -59,7 +59,7 @@ describe 'InsuranceCompany API' do
       expect(json_response.values).not_to include 'Porto Seguro'
     end
 
-    it 'fail if insurance company not found' do
+    it 'falha se a seguradora não é encontrada' do
       InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
                                registration_number: '99157841000105')
 

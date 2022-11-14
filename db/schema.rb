@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_133128) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_package_coverages_on_name", unique: true
   end
 
   create_table "packages", force: :cascade do |t|

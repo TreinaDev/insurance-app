@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuãrio vê lista de produtos' do
+describe 'Usuário vê lista de produtos' do
   it 'com sucesso e é admin' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
     product_category_a = ProductCategory.create!(name: 'Televisão')
