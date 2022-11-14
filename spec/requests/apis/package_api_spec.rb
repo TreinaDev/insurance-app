@@ -8,19 +8,21 @@ describe 'Package API' do
                                                      registration_number: '00000000000000')
       insurance_company_b = InsuranceCompany.create!(name: 'Seguradora B', email_domain: 'seguradorab.com.br',
                                                      registration_number: '00000000000001')
-      Package.create!(name: 'Pacote 1', max_period: 12, min_period: 6, insurance_company: insurance_company_a,
-                      price: 1.1, product_category_id: product_category.id)
-      Package.create!(name: 'Pacote 2', max_period: 10, min_period: 5, insurance_company: insurance_company_b,
-                      price: 2.7, product_category_id: product_category.id)
-      Package.create!(name: 'Pacote 3', max_period: 15, min_period: 7, insurance_company: insurance_company_b,
-                      price: 2.2, product_category_id: product_category.id)
+      pp1 = PendingPackage.create!(name: 'Pacote 1', max_period: 12, min_period: 6,
+                                   insurance_company: insurance_company_a,
+                                   product_category_id: product_category.id)
+      pp2 = PendingPackage.create!(name: 'Pacote 2', max_period: 10, min_period: 5,
+                                   insurance_company: insurance_company_b,
+                                   product_category_id: product_category.id)
+      Package.create!(price: 1.1, pending_package_id: pp1.id, status: :active)
+      Package.create!(price: 2.5, pending_package_id: pp2.id, status: :active)
 
       get '/api/v1/packages'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include('application/json')
       json_response = JSON.parse(response.body)
-      expect(json_response.length).to eq 3
+      expect(json_response.length).to eq 2
     end
 
     it 'retorna vazio caso não exista nenhum pacote' do
@@ -46,20 +48,19 @@ describe 'Package API' do
       product_category = ProductCategory.create!(name: 'Televisão')
       insurance_company_a = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                                                      registration_number: '00000000000000')
-      package = Package.create!(name: 'Pacote 1', max_period: 12, min_period: 6, insurance_company: insurance_company_a,
-                                price: 1.1, product_category_id: product_category.id)
+      pending_package = PendingPackage.create!(name: 'Pacote 1', max_period: 12, min_period: 6,
+                                               insurance_company: insurance_company_a,
+                                               product_category_id: product_category.id)
+      package = Package.create!(price: 1.1, pending_package_id: pending_package.id, status: :active)
 
       get "/api/v1/packages/#{package.id}"
 
       expect(response.status).to eq 200
       expect(response.content_type).to include('application/json')
       json_response = JSON.parse(response.body)
-      expect(json_response['name']).to eq 'Pacote 1'
-      expect(json_response['max_period']).to eq 12
-      expect(json_response['min_period']).to eq 6
-      expect(json_response['insurance_company_id']).to eq insurance_company_a.id
       expect(json_response['price']).to eq '1.1'
-      expect(json_response['product_category_id']).to eq product_category.id
+      expect(json_response['status']).to eq 'active'
+      expect(json_response['pending_package_id']).to eq pending_package.id
     end
 
     it 'falha se o pacote não é encontrado' do

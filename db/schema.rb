@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_14_131238) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,19 +42,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
   create_table "coverage_pricings", force: :cascade do |t|
     t.integer "status", default: 0
     t.decimal "percentage_price"
-    t.integer "coverage_id", null: false
-    t.integer "package_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coverage_id"], name: "index_coverage_pricings_on_coverage_id"
-    t.index ["package_id"], name: "index_coverage_pricings_on_package_id"
-  end
-
-  create_table "coverages", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "package_coverage_id"
+    t.integer "pending_package_id", null: false
+    t.index ["package_coverage_id"], name: "index_coverage_pricings_on_package_coverage_id"
+    t.index ["pending_package_id"], name: "index_coverage_pricings_on_pending_package_id"
   end
 
   create_table "insurance_companies", force: :cascade do |t|
@@ -70,17 +63,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
     t.index ["token"], name: "index_insurance_companies_on_token", unique: true
   end
 
-  create_table "packages", force: :cascade do |t|
+  create_table "package_coverages", force: :cascade do |t|
     t.string "name"
-    t.integer "max_period"
-    t.integer "min_period"
-    t.integer "insurance_company_id", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "packages", force: :cascade do |t|
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pending_package_id", null: false
+    t.integer "status", default: 9
+    t.index ["pending_package_id"], name: "index_packages_on_pending_package_id"
+  end
+
+  create_table "pending_packages", force: :cascade do |t|
+    t.string "name"
+    t.integer "min_period"
+    t.integer "max_period"
+    t.integer "insurance_company_id", null: false
     t.integer "product_category_id", null: false
-    t.index ["insurance_company_id"], name: "index_packages_on_insurance_company_id"
-    t.index ["product_category_id"], name: "index_packages_on_product_category_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insurance_company_id"], name: "index_pending_packages_on_insurance_company_id"
+    t.index ["product_category_id"], name: "index_pending_packages_on_product_category_id"
   end
 
   create_table "policies", force: :cascade do |t|
@@ -113,11 +122,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
   create_table "service_pricings", force: :cascade do |t|
     t.integer "status", default: 0
     t.decimal "percentage_price"
-    t.integer "package_id", null: false
     t.integer "service_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["package_id"], name: "index_service_pricings_on_package_id"
+    t.integer "pending_package_id", null: false
+    t.index ["pending_package_id"], name: "index_service_pricings_on_pending_package_id"
     t.index ["service_id"], name: "index_service_pricings_on_service_id"
   end
 
@@ -146,12 +155,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_171232) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "coverage_pricings", "coverages"
-  add_foreign_key "coverage_pricings", "packages"
-  add_foreign_key "packages", "insurance_companies"
-  add_foreign_key "packages", "product_categories"
+  add_foreign_key "coverage_pricings", "package_coverages"
+  add_foreign_key "coverage_pricings", "pending_packages"
+  add_foreign_key "packages", "pending_packages"
+  add_foreign_key "pending_packages", "insurance_companies"
+  add_foreign_key "pending_packages", "product_categories"
   add_foreign_key "products", "product_categories"
-  add_foreign_key "service_pricings", "packages"
+  add_foreign_key "service_pricings", "pending_packages"
   add_foreign_key "service_pricings", "services"
   add_foreign_key "users", "insurance_companies"
 end

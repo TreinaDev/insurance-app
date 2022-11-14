@@ -1,4 +1,5 @@
 class Package < ApplicationRecord
-  belongs_to :insurance_company
-  belongs_to :product_category
+  belongs_to :pending_package
+
+  enum status: { active: 9, inactive: 17 }
 end

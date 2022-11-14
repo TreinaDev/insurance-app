@@ -4,23 +4,23 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= Package.human_attribute_name(:product_category) %></th>
-        <th><%= Package.human_attribute_name(:insurance_company) %></th>
-        <th><%= Package.human_attribute_name(:name) %></th>
-        <th><%= Package.human_attribute_name(:min_period) %></th>
-        <th><%= Package.human_attribute_name(:max_period) %></th>
+        <th><%= PendingPackage.human_attribute_name(:product_category) %></th>
+        <th><%= PendingPackage.human_attribute_name(:insurance_company) %></th>
+        <th><%= PendingPackage.human_attribute_name(:name) %></th>
+        <th><%= PendingPackage.human_attribute_name(:min_period) %></th>
+        <th><%= PendingPackage.human_attribute_name(:max_period) %></th>
         <th><%= Package.human_attribute_name(:price) %> Mensal</th>
       </tr>
     </thead>
     <tbody>
       <% @packages.each do |package| %>
             <tr>
-              <td><%= package.product_category.name %></td> 
-              <td><%= link_to package.insurance_company.name, '#', class: "link-dark"  %></td>
-              <td><%= package.name %></td>
-              <td><%= package.min_period %> meses</td>
-              <td><%= package.max_period %> meses</td>
-              <td><%= number_to_currency(package.price) %></td>
+              <td><%= package.pending_package.product_category.name %></td> 
+              <td><%= link_to package.pending_package.insurance_company.name, package.pending_package.insurance_company, class: "link-dark"  %></td>
+              <td><%= package.pending_package.name %></td>
+              <td><%= package.pending_package.min_period %> meses</td>
+              <td><%= package.pending_package.max_period %> meses</td>
+              <td><%= number_to_percentage(package.price, precision: 2) %></td>
             </tr>
       <% end %>
     </tbody>
