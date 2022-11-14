@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário vê lista de serviços' do 
+describe 'Usuário vê lista de serviços' do
   it 'com sucesso' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
     Service.create!(name: 'Assinatura TV',
@@ -19,7 +19,7 @@ describe 'Usuário vê lista de serviços' do
     expect(page).to have_content('Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
     expect(page).to have_content('Desconto clubes seguros')
     expect(page).to have_content('Concede 10% de desconto em aquisição de seguro veicular')
-  end 
+  end
 
   it 'com sucesso e é funcionário' do
     InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '80958759000110')
@@ -40,7 +40,7 @@ describe 'Usuário vê lista de serviços' do
     expect(page).to have_content('Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
     expect(page).to have_content('Desconto clubes seguros')
     expect(page).to have_content('Concede 10% de desconto em aquisição de seguro veicular')
-  end 
+  end
 
   it 'e não tem nenhum serviço cadastrado' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
