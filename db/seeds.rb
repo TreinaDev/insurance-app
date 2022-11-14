@@ -67,3 +67,16 @@ coverage3 = PackageCoverage.create!(name: 'Furto',
 CoveragePricing.create!(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
 CoveragePricing.create!(status: :active, percentage_price: 1.2, package: package1, package_coverage: coverage2)
 CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package1, package_coverage: coverage3)
+
+# class Policy
+
+Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+               client_email: 'mariaalves@email.com',
+               insurance_company_id: InsuranceCompany.first.id, order_id: 1,
+               equipment_id: 1, purchase_date: Time.zone.today,
+               policy_period: 12, package_id: Package.first.id)
+Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
+               client_email: 'rafaelsouza@email.com',
+               insurance_company_id: InsuranceCompany.first.id, order_id: 2,
+               equipment_id: 2, purchase_date: Time.zone.today,
+               policy_period: 12, package_id: Package.first.id)

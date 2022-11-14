@@ -188,6 +188,28 @@ RSpec.describe Policy, type: :model do
 
       expect(result).to be false
     end
+
+    it 'falso se o id do pedido não for único' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                     client_email: 'mariaalves@email.com',
+                     insurance_company_id: insurance_company.id, order_id: 1,
+                     equipment_id: 1, purchase_date: Time.zone.today,
+                     policy_period: 12, package_id: package.id)
+      other_policy = Policy.new(client_name: 'Rafael Santos', client_registration_number: '11122233344',
+                                client_email: 'rafaelsantos@email.com',
+                                insurance_company_id: insurance_company.id, order_id: 1,
+                                equipment_id: 2, purchase_date: Time.zone.today,
+                                policy_period: 24, package_id: package.id)
+
+      result = other_policy.valid?
+
+      expect(result).to be false
+    end
   end
 
   describe 'Gera um código aleatório' do
@@ -250,6 +272,25 @@ RSpec.describe Policy, type: :model do
       expiration_date = policy.expiration_date.strftime
 
       expect(expiration_date).to eq('2023-11-12')
+    end
+  end
+
+  describe 'A apólice é pendente' do
+    it 'ao ser criada' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category:)
+      policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
+                          client_email: 'joseantonio@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1, purchase_date: '2022-11-12',
+                          policy_period: 12, package_id: package.id)
+
+      policy.save!
+
+      expect(policy.status).to eq('pending')
     end
   end
 end

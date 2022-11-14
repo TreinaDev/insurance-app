@@ -4,6 +4,7 @@ class Policy < ApplicationRecord
   validates(:code, :expiration_date, :client_name, :client_registration_number, :client_email, :equipment_id,
             :purchase_date, :policy_period, :package_id, :order_id, presence: true)
   validates :equipment_id, :order_id, :policy_period, numericality: true
+  validates :order_id, :code, uniqueness: true
 
   enum status: { pending: 0, active: 10, canceled: 20 }
 
