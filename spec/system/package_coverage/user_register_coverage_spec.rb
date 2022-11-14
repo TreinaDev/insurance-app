@@ -47,4 +47,15 @@ describe 'Usuário administrador registra cobertura' do
     expect(page).to have_content('Cobertura não pode ficar em branco')
     expect(page).to have_content('Descrição não pode ficar em branco')
   end
+
+  it 'e é funcionário de seguradora' do
+    InsuranceCompany.create!(name: 'Empresa', email_domain: 'empresa.com.br', registration_number: '80958759000110')
+    user = User.create!(name: 'Edna', email: 'edna@empresa.com.br', password: 'password', role: :employee)
+
+    login_as(user)
+    visit root_path
+    click_on 'Coberturas'
+
+    expect(page).not_to have_link('Adicionar Cobertura')
+  end
 end
