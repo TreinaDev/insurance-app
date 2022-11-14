@@ -52,4 +52,35 @@ describe 'Package API' do
       expect(response).to have_http_status 500
     end
   end
+
+  context 'GET /api/v1/packages/1' do
+    it 'sucesso' do
+      product_category = ProductCategory.create!(name: 'Televisão')
+      insurance_company_a = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                                                     registration_number: '00000000000000')
+      package = Package.create!(name: 'Pacote 1', max_period: 12, min_period: 6, insurance_company: insurance_company_a,
+                                product_category_id: product_category.id, price: 1.1, status: :active)
+
+      get "/api/v1/packages/#{package.id}"
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response['name']).to eq 'Pacote 1'
+      expect(json_response['max_period']).to eq 12
+      expect(json_response['min_period']).to eq 6
+      expect(json_response['insurance_company_id']).to eq insurance_company_a.id
+      expect(json_response['product_category_id']).to eq product_category.id
+      expect(json_response['price']).to eq '1.1'
+      expect(json_response['status']).to eq 'active'
+      expect(json_response.keys).not_to include('created_at')
+      expect(json_response.keys).not_to include('updated_at')
+    end
+
+    it 'falha se o pacote não é encontrado' do
+      get '/api/v1/packages/9999999999999999999999'
+
+      expect(response.status).to eq 404
+    end
+  end
 end
