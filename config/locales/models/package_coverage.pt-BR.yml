@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      package_coverage:
+        one: 'Cobertura'
+        other: 'Coberturas'
+    attributes:
+      package_coverage:
+        package_coverage: 'Cobertura'
+        description: 'Descrição'
+        name: 'Cobertura'

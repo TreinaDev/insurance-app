@@ -1,0 +1,64 @@
+<%= form_with(model: @insurance_company) do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label fw-semibold" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <% if(@insurance_company.errors.include? :name) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @insurance_company.errors.full_messages_for(:name).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email_domain, class: "form-label fw-semibold" %>
+    <%= f.text_field :email_domain, class: "form-control" %>
+
+    <% if(@insurance_company.errors.include? :email_domain) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @insurance_company.errors.full_messages_for(:email_domain).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :registration_number, class: "form-label fw-semibold" %>
+    <%= f.text_field :registration_number, class: "form-control" %>
+
+    <% if(@insurance_company.errors.include? :registration_number) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @insurance_company.errors.full_messages_for(:registration_number).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :logo, class: "form-label fw-semibold" %>
+    <%= f.file_field :logo, accept: 'logo/png, logo/jpeg, logo/svg', class: "form-control" %>
+
+    <% if(@insurance_company.errors.include? :logo) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @insurance_company.errors.full_messages_for(:logo).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>
