@@ -10,6 +10,8 @@ class InsuranceCompany < ApplicationRecord
   validates :name, :email_domain, :company_status, :token_status, :registration_number, :token, presence: true
   validates :registration_number, uniqueness: true
 
+  has_one_attached :logo
+
   private
 
   def generate_token

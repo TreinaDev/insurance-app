@@ -1,8 +1,12 @@
-
-
 <h1 class="my-3">Seguradoras</h1>
 
+<div class="my-3">
+  <% if current_user.admin? %>
+    <%= link_to (t '.register'), new_insurance_company_path, class: "btn btn-dark " %>
+  <% end %>
+</div>
 
+<% if @insurance_companies.any? %>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -11,8 +15,7 @@
         <th><%= InsuranceCompany.human_attribute_name(:company_status) %></th>       
       </tr>
     </thead>
-    <tbody>
-    <% if @insurance_companies.any? %>
+    <tbody>  
       <% @insurance_companies.each do |insurance| %>
         <tr>
           <td><%= link_to insurance.name, insurance_company_path(insurance.id), class: "link-dark" %></td>          
