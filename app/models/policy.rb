@@ -6,7 +6,7 @@ class Policy < ApplicationRecord
   validates :equipment_id, :order_id, :policy_period, numericality: true
   validates :order_id, :code, uniqueness: true
 
-  enum status: { pending: 0, active: 10, canceled: 20 }
+  enum status: { pending: 0, pending_payment: 8, active: 10, canceled: 20 }
 
   before_validation :set_expiration_date, on: :create
   before_validation :generate_code, on: :create
