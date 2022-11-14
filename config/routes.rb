@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :insurance_companies, only: [:index, :show]   
   resources :packages, only: [:index]
   resources :pending_packages, only: [:index, :new, :create]
+  resources :services, only: [:index]
 
   namespace :api do
     namespace :v1 do

@@ -1,0 +1,26 @@
+<h1 class="my-3"><%= t '.title' %></h1>
+<%# <div class="my-3">
+  <%= link_to (t '.register'), new_product_path, class: "btn btn-dark " %>
+<%# </div> %> %>
+<% if @services.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Service.human_attribute_name(:name) %></th>
+        <th><%= Service.human_attribute_name(:description) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @services.each do |service| %>
+        <tr>
+          <td><%= service.name %></td> 
+          <td><%= service.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t '.message' %>
+  </div>
+<% end %>
