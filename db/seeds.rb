@@ -39,15 +39,6 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
-# class PendingPackage
-PendingPackage.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
-                       product_category: product_category_a)
-PendingPackage.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.last,
-                       product_category: product_category_a)
-PendingPackage.create!(name: 'Premium', min_period: 12, max_period: 18, insurance_company: InsuranceCompany.last,
-                       product_category: product_category_b)
-PendingPackage.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
-                       product_category: product_category_b)
 
 # class Package
 Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
