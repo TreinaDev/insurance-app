@@ -8,9 +8,9 @@ describe 'Usuário vê lista de pacotes' do
                                         '01000000123410')
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance,
-                    price: 90.00, product_category: smartphones)
+                    product_category: smartphones)
     Package.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: insurance,
-                    price: 70.00, product_category: smartphones)
+                    product_category: smartphones)
 
     login_as(user)
     visit root_path
@@ -24,18 +24,19 @@ describe 'Usuário vê lista de pacotes' do
     expect(page).to have_content('Período Mínimo')
     expect(page).to have_content('Período Máximo')
     expect(page).to have_content('Preço Mensal')
+    expect(page).to have_content('Status')
 
     expect(page).to have_content('Smartphones')
     expect(page).to have_link('Seguradora')
     expect(page).to have_content('Premium')
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
-    expect(page).to have_content('R$ 90,00')
+    expect(page).to have_content('Pendente')
 
     expect(page).to have_content('Econômico')
     expect(page).to have_content('6 meses')
     expect(page).to have_content('18 meses')
-    expect(page).to have_content('R$ 70,00')
+    expect(page).to have_content('Pendente')
   end
 
   it 'e não tem nenhum pacote cadastrado' do
@@ -61,9 +62,9 @@ describe 'Usuário vê lista de pacotes' do
     smartphones = ProductCategory.create!(name: 'Smartphones')
     laptops = ProductCategory.create!(name: 'Laptops')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance_a,
-                    price: 90.00, product_category: smartphones)
+                    product_category: smartphones)
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance_b,
-                    price: 150.00, product_category: laptops)
+                    product_category: laptops)
 
     login_as(user)
     visit root_path
@@ -75,13 +76,12 @@ describe 'Usuário vê lista de pacotes' do
     expect(page).to have_content('Premium')
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
-    expect(page).to have_content('R$ 90,00')
     expect(page).to have_content('Smartphones')
+    expect(page).to have_content('Pendente')
     expect(page).not_to have_link('Laranja')
     expect(page).not_to have_content('Econômico')
     expect(page).not_to have_content('6 meses')
     expect(page).not_to have_content('18 meses')
-    expect(page).not_to have_content('R$ 70,00')
     expect(page).not_to have_content('Laptops')
   end
 end
