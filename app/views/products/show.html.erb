@@ -1,8 +1,10 @@
 <a class="btn btn-outline-dark" style="margin-bottom:16px;" href="<%= products_path %>" role="button">Voltar</a>
-<div class="card" style="width: 20rem;">  
+<div class="card" style="width: 25rem;">  
   
   <% if @product.image.attached? %>
     <%= image_tag @product.image, class:"card-img-top" %>
+  <% else %>
+    <%= image_tag  'produto.PNG', class:"card-img-top" %>
   <% end %>
   
   <div class="card-body">

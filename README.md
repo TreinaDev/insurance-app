@@ -5,6 +5,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Documentação da API](#documentação-da-api)
   * [Como rodar a aplicação](#como-rodar-a-aplicação)
   * [Informações adicionais](#informações-adicionais)
+  * [Regras de negócio](#regras-de-negócio)
 
 ## Documentação da API
 
@@ -73,39 +74,50 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 ```json
 [
   {
-    "id": 1,
-    "name": "Allianz Seguros",
-    "email_domain": "allianzseguros.com.br",
-    "company_status": "inactive",
-    "token_status": 0,
-    "created_at": "2022-11-10T21:30:24.926Z",
-    "updated_at": "2022-11-10T21:30:24.926Z",
-    "registration_number": "01333288000189",
-    "token": "3Y9C18LRZNSIHOQNMR0A"
+    "id":4,
+    "name":"Anjo Seguradora",
+    "email_domain":"anjoseguradora.com.br",
+    "company_status":"active",
+    "token_status":"token_active",
+    "created_at":"2022-11-14T13:41:14.300Z",
+    "updated_at":"2022-11-14T13:41:14.329Z",
+    "registration_number":"90929380000777",
+    "token":"JZLBBGYMVJRG630OWZ6O"
   },
   {
-    "id": 2,
-    "name": "Porto Seguro",
-    "email_domain": "portoseguro.com.br",
-    "company_status": "active",
-    "token_status": 0,
-    "created_at": "2022-11-10T21:30:25.190Z",
-    "updated_at": "2022-11-10T21:30:25.190Z",
-    "registration_number": "29929380000125",
-    "token": "CDRQJPG5FNJ2HKERVCDL"
+    "id":1,
+    "name":"Liga de Seguros",
+    "email_domain":"ligadeseguros.com.br",
+    "company_status":"active",
+    "token_status":"token_active",
+    "created_at":"2022-11-14T13:41:14.129Z",
+    "updated_at":"2022-11-14T13:41:14.201Z",
+    "registration_number":"01333288000189",
+    "token":"JUYJWZAQT45HMODM2L1D"
   },
   {
-    "id": 3,
-    "name": "Seguradora A",
-    "email_domain": "seguradoraa.com.br",
-    "company_status": "active",
-    "token_status": 0,
-    "created_at": "2022-11-10T21:30:26.499Z",
-    "updated_at": "2022-11-10T21:30:26.499Z",
-    "registration_number": "80929380000456",
-    "token": "QYTZYSHNJRL0AYVM9XJ0"
+    "id":3,
+    "name":"Seguradora A",
+    "email_domain":"seguradoraa.com.br",
+    "company_status":"active",
+    "token_status":"token_active",
+    "created_at":"2022-11-14T13:41:14.253Z",
+    "updated_at":"2022-11-14T13:41:14.277Z",
+    "registration_number":"80929380000456",
+    "token":"ZMBHW3L2DDH5NMPX3OEY"
+  },
+  {
+    "id":2,
+    "name":"Trapiche Seguro",
+    "email_domain":"trapicheseguro.com.br",
+    "company_status":"inactive",
+    "token_status":"token_active",
+    "created_at":"2022-11-14T13:41:14.215Z",
+    "updated_at":"2022-11-14T13:41:14.239Z",
+    "registration_number":"29929380000125",
+    "token":"BHL5UNU78ABLMMJKVPHW"
   }
-]
+  ]
 ```
 ### Obter informações sobre seguradora específica
 
@@ -117,13 +129,13 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 ```json
 {
-  "id": 1,
-  "name": "Allianz Seguros",
-  "email_domain": "allianzseguros.com.br",
-  "company_status": "inactive",
-  "token_status": 0,
-  "registration_number": "01333288000189",
-  "token": "3Y9C18LRZNSIHOQNMR0A"
+  "id":1,
+  "name":"Liga de Seguros",
+  "email_domain":"ligadeseguros.com.br",
+  "company_status":"active",
+  "token_status":"token_active",
+  "registration_number":"01333288000189",
+  "token":"JUYJWZAQT45HMODM2L1D"
 }
 ```
 
@@ -192,3 +204,10 @@ $ rails s
 * Ruby: 3.1.2
 
 * Rails: 7.0.4
+
+
+## Regras de negócio
+
+* Valor de cada serviço e cobertura de pacote não deve ser superior a 30% do valor do produto
+
+* Valor do pacote não deve ser superior a 100% do valor do produto

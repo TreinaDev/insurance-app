@@ -12,6 +12,7 @@ pt-BR:
         company_status: Status da Seguradora
         token: Token de Integração
         registration_number: CNPJ
+        logo: Logo da Seguradora
       insurance_company/company_status:
         active: "Ativo"
         inactive: "Inativo"
@@ -20,7 +21,16 @@ pt-BR:
         token_inactive: "Inativo"  
   insurance_companies:      
     index:
+      register: 'Adicionar Seguradora'
       authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+    new:
+      authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+    create:
+      success: 'Seguradora criada com sucesso!'
+      failure: 'Seguradora não foi criada.'
+    update:
+      update_success: 'Seguradora atualizada com sucesso!'
+      update_failure: 'Não foi possivel atualizar seguradora.'  
 
 
      

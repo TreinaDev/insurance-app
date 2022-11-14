@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_11_150424) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_192358) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,11 +42,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_150424) do
   create_table "coverage_pricings", force: :cascade do |t|
     t.integer "status", default: 0
     t.decimal "percentage_price"
-    t.integer "coverage_id", null: false
     t.integer "package_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coverage_id"], name: "index_coverage_pricings_on_coverage_id"
+    t.integer "package_coverage_id"
+    t.index ["package_coverage_id"], name: "index_coverage_pricings_on_package_coverage_id"
     t.index ["package_id"], name: "index_coverage_pricings_on_package_id"
   end
 
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_150424) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_package_coverages_on_name", unique: true
   end
 
   create_table "packages", force: :cascade do |t|
@@ -81,6 +82,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_150424) do
     t.integer "product_category_id", null: false
     t.index ["insurance_company_id"], name: "index_packages_on_insurance_company_id"
     t.index ["product_category_id"], name: "index_packages_on_product_category_id"
+  end
+
+  create_table "pending_packages", force: :cascade do |t|
+    t.string "name"
+    t.integer "min_period"
+    t.integer "max_period"
+    t.integer "insurance_company_id", null: false
+    t.integer "product_category_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insurance_company_id"], name: "index_pending_packages_on_insurance_company_id"
+    t.index ["product_category_id"], name: "index_pending_packages_on_product_category_id"
   end
 
   create_table "policies", force: :cascade do |t|
@@ -146,10 +160,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_150424) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "coverage_pricings", "package_coverages", column: "coverage_id"
+  add_foreign_key "coverage_pricings", "package_coverages"
   add_foreign_key "coverage_pricings", "packages"
   add_foreign_key "packages", "insurance_companies"
   add_foreign_key "packages", "product_categories"
+  add_foreign_key "pending_packages", "insurance_companies"
+  add_foreign_key "pending_packages", "product_categories"
   add_foreign_key "products", "product_categories"
   add_foreign_key "service_pricings", "packages"
   add_foreign_key "service_pricings", "services"

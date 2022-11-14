@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ProductCategory, type: :model do
   describe '#valid?' do
-    it 'false when name is empty' do
+    it 'falso quando o nome está em branco' do
       product_category = ProductCategory.new(name: '')
 
       result = product_category.valid?
@@ -10,7 +10,7 @@ RSpec.describe ProductCategory, type: :model do
       expect(result).to eq false
     end
 
-    it 'false when name is already in use' do
+    it 'falso quando o nome está em uso' do
       ProductCategory.create!(name: 'TV')
       product_category = ProductCategory.new(name: 'TV')
 
@@ -19,7 +19,7 @@ RSpec.describe ProductCategory, type: :model do
       expect(result).to eq false
     end
 
-    it 'false when name is already in use for case sensitive' do
+    it 'falso quando o nome já está em uso para uma outra formatação' do
       ProductCategory.create!(name: 'tv')
       product_category = ProductCategory.new(name: 'TV')
 
