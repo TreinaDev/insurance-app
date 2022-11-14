@@ -14,8 +14,7 @@ insurance_c = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'segu
                                        registration_number: '80929380000456')
 logo_path = Rails.root.join('spec/support/logos/seguradora_a.PNG')
 insurance_c.logo.attach(io: logo_path.open, filename: 'seguradora_a.PNG')
-
-# Seguradora C
+# Seguradora D
 insurance_d = InsuranceCompany.create!(name: 'Anjo Seguradora', email_domain: 'anjoseguradora.com.br',
                                        registration_number: '90929380000777')
 logo_path = Rails.root.join('spec/support/logos/anjo_seguradora.PNG')
@@ -40,7 +39,6 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
-
 # class PendingPackage
 PendingPackage.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
                        product_category: product_category_a)

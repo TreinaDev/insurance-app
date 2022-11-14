@@ -1,9 +1,11 @@
 <a class="btn btn-outline-dark" style="margin-bottom:16px;" href="<%= insurance_companies_path %>" role="button">Voltar</a>
 <div class = "container-card" > 
-  <div class="card" style="width: 20rem;">
+  <div class="card" style="width: 25rem;">
 
     <% if @insurance_company.logo.attached? %>
       <%= image_tag @insurance_company.logo, class:"card-img-top" %>
+    <% else %>
+      <%= image_tag  'seguradora.PNG', class:"card-img-top" %>
     <% end %>
 
       <div class="card-body">
