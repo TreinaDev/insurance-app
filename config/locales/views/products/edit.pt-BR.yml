@@ -1,5 +1,6 @@
 pt-BR:
   products:
+    authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
     update:
       update_success: 'Produto atualizado com sucesso!'
       update_failure: 'Não foi possivel atualizar produto.'

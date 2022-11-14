@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário administrador registra cobertura' do
   it 'a partir da tela inicial' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
-    
+
     login_as(user)
     visit root_path
     click_on 'Coberturas'
@@ -16,7 +16,7 @@ describe 'Usuário administrador registra cobertura' do
 
   it 'com sucesso' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
-    
+
     login_as(user)
     visit root_path
     click_on 'Coberturas'
@@ -32,6 +32,19 @@ describe 'Usuário administrador registra cobertura' do
     end
   end
 
+  it 'e falta informações' do
+    user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 
-  
+    login_as(user)
+    visit root_path
+    click_on 'Coberturas'
+    click_on 'Adicionar Cobertura'
+    fill_in 'Cobertura', with: ''
+    fill_in 'Descrição', with: ''
+    click_on 'Criar Cobertura'
+
+    expect(page).to have_content('Não foi possível cadastrar a cobertura')
+    expect(page).to have_content('Cobertura não pode ficar em branco')
+    expect(page).to have_content('Descrição não pode ficar em branco')
+  end
 end
