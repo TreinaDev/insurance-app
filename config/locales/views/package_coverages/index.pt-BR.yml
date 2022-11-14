@@ -1,0 +1,5 @@
+pt-BR:
+  package_coverages:
+    index:
+      title: 'Lista de Coberturas'
+      message: 'Não existem coberturas cadastradas!'

@@ -1,0 +1,26 @@
+<h1 class="my-3"><%= t '.title' %></h1>
+
+<section id="package-coverages-list">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= PackageCoverage.human_attribute_name(:name) %></th>
+        <th><%= PackageCoverage.human_attribute_name(:description) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @package_coverages.any? %>
+        <% @package_coverages.each do |coverage| %>
+          <tr>
+            <td><%= link_to coverage.name, '#', class: "link-dark" %></td>
+            <td><%= coverage.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+      <% else %>
+        <div class="alert alert-secondary text-center">
+          <p><%= t '.message' %></p>
+        </div>
+      <% end %>
+</section>
