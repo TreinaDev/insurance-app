@@ -12,7 +12,7 @@
       <% if @package_coverages.any? %>
         <% @package_coverages.each do |coverage| %>
           <tr>
-            <td><%= link_to coverage.name, '#', class: "link-dark" %></td>
+            <td><%= coverage.name %></td>
             <td><%= coverage.description %></td>
           </tr>
         <% end %>
