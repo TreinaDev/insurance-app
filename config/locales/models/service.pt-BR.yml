@@ -5,5 +5,5 @@ pt-BR:
         one: Precificação do serviço
     attributes:
       service:
-        name: 'Nome'
+        name: 'Serviço'
         description: 'Descrição'

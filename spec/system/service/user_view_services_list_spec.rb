@@ -13,7 +13,7 @@ describe 'Usuário vê lista de serviços' do
     click_on 'Serviços'
 
     expect(page).to have_content('Lista de Serviços')
-    expect(page).to have_content('Nome')
+    expect(page).to have_content('Serviço')
     expect(page).to have_content('Descrição')
     expect(page).to have_content('Assinatura TV')
     expect(page).to have_content('Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
@@ -34,7 +34,7 @@ describe 'Usuário vê lista de serviços' do
     click_on 'Serviços'
 
     expect(page).to have_content('Lista de Serviços')
-    expect(page).to have_content('Nome')
+    expect(page).to have_content('Serviço')
     expect(page).to have_content('Descrição')
     expect(page).to have_content('Assinatura TV')
     expect(page).to have_content('Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
