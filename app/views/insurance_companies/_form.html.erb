@@ -45,6 +45,14 @@
 
   <div class="mb-3">
     <%= f.label :logo, class: "form-label fw-semibold" %>
+
+  <div>
+    <% if @insurance_company.logo.attached? %>      
+      <p style="font-size: 12px">Imagem cadastrada:</p>
+      <%= image_tag @insurance_company.logo, style: "width: 80px; display: block" %>
+    <% end %>
+  </div><br>
+
     <%= f.file_field :logo, accept: 'logo/png, logo/jpeg, logo/svg', class: "form-control" %>
 
     <% if(@insurance_company.errors.include? :logo) %>
@@ -57,7 +65,7 @@
       </div>
     <% end %>
   </div>
-
+<br>
   <div class="d-grid mb-3">
     <%= f.submit class: "btn btn-dark" %>
   </div>

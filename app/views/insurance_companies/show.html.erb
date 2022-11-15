@@ -26,15 +26,22 @@
             <p class="fw-semibold text-success" style="display:inline;"><%= InsuranceCompany.human_attribute_name("token_status.#{@insurance_company.token_status}") %></p>
           <% else %>
             <p class="fw-semibold text-muted" style="display:inline;"><%= InsuranceCompany.human_attribute_name("token_status.#{ @insurance_company.token_status}") %></p>
-      <% end %> - <%= @insurance_company.token %>    
+      <% end %> - <%= @insurance_company.token %>
 
       <% if current_user.admin? %>
       <div class="row">
         <div class="d-grid gap-2 col-4 my-3">
           <%= link_to 'Editar', edit_insurance_company_path(@insurance_company.id), class: "btn btn-dark" %>
-        </div>       
-      </div>      
-    <% end %>      
+        </div>
+        <div class="d-grid gap-2 col-4 my-3">
+          <% if @insurance_company.active? %>
+            <%= button_to 'Desativar', deactivate_insurance_company_path(@insurance_company.id), class: "btn btn-danger"  %>
+          <% else %>
+            <%= button_to 'Ativar', activate_insurance_company_path(@insurance_company.id), class: "btn btn-success"  %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
       </div>
     </div>
   </div>
