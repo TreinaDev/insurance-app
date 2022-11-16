@@ -5,6 +5,7 @@ class ProductCategoriesController < ApplicationController
 
   def new
     @product_category = ProductCategory.new
+    @product_categories = ProductCategory.all
   end
 
   def create
@@ -13,7 +14,8 @@ class ProductCategoriesController < ApplicationController
     if @product_category.save
       redirect_to product_categories_path, notice: (t '.success')
     else
-      flash.now[:notice] = (t '.fail')
+      flash.now[:alert] = (t '.fail')
+      @product_categories = ProductCategory.all
       render 'new'
     end
   end

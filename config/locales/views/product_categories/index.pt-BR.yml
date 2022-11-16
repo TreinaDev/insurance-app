@@ -1,8 +1,6 @@
 pt-BR:
   product_categories:
     index:
-      title: 'Lista de Categorias de Produtos'
+      title: 'Categorias de Produtos'
       name: 'Nome da Categoria'
-      fail: 'Não existem Categorias de Produto cadastradas'
-      back: 'Voltar'
-      register: 'Cadastrar nova Categoria'
+      register: 'Cadastrar Categoria'
