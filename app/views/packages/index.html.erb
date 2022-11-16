@@ -34,7 +34,7 @@
           <% if package.active? %>
             <td><%= package.price %>%</td>
           <% else %>
-            <td class="text-center"> - </td>
+            <td> - </td>
           <% end %>
           <% if package.active? %>
             <td class="fw-semibold text-success"><%= Package.human_attribute_name("status.#{package.status}") %></td>
