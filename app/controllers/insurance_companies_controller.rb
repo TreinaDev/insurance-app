@@ -1,5 +1,5 @@
 class InsuranceCompaniesController < ApplicationController
-  before_action :check_admin, only: %i[index show new create edit update]
+  before_action :check_admin, only: %i[index show new create edit update activate deactivate]
 
   def index
     @insurance_companies = InsuranceCompany.all
@@ -37,6 +37,18 @@ class InsuranceCompaniesController < ApplicationController
       flash.now[:alert] = t('.update_failure')
       render 'edit'
     end
+  end
+
+  def activate
+    @insurance_company = InsuranceCompany.find(params[:id])
+    @insurance_company.active!
+    redirect_to @insurance_company, notice: t('.success')
+  end
+
+  def deactivate
+    @insurance_company = InsuranceCompany.find(params[:id])
+    @insurance_company.inactive!
+    redirect_to @insurance_company, notice: t('.success')
   end
 
   private

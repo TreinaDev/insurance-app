@@ -44,11 +44,11 @@ product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
 Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
                 price: 3.00, product_category: product_category_a)
 Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
-                price: 2.50, product_category: product_category_a)
+                price: 7.00, product_category: product_category_a, status: :active)
 Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
                 price: 1.50, product_category: product_category_b)
 package1 = Package.create!(name: 'Super Econômico', min_period: 6, max_period: 24,
-                           insurance_company: InsuranceCompany.last,
+                           insurance_company: InsuranceCompany.last, status: :active,
                            price: 8.50, product_category: product_category_b)
 
 # class Service

@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     post 'activate', on: :member
   end
   
+  resources :insurance_companies, only: [:index, :show, :new, :create, :edit, :update] do
+    post 'deactivate', on: :member
+    post 'activate', on: :member
+  end
+  
   resources :product_categories, only: [:index, :new, :create]
   resources :insurance_companies, only: [:index, :show, :new, :create, :edit, :update]   
   resources :packages, only: [:index, :new, :create]
@@ -17,6 +22,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show]
       resources :insurance_companies, only: [:index, :show]
+      resources :packages, only: [:index, :show]
       resources :package_coverages, only: [:index]
       resources :services, only: [:index]
       resources :policies, only: [:index, :show, :create]
