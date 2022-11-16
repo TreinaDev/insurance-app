@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_13_192358) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_14_133128) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_192358) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -103,6 +103,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_192358) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "client_name"
+    t.string "client_registration_number"
+    t.string "client_email"
+    t.integer "equipment_id"
+    t.date "purchase_date"
+    t.integer "policy_period"
+    t.integer "package_id"
+    t.integer "order_id"
+    t.integer "insurance_company_id", null: false
+    t.index ["code"], name: "index_policies_on_code", unique: true
+    t.index ["insurance_company_id"], name: "index_policies_on_insurance_company_id"
+    t.index ["order_id"], name: "index_policies_on_order_id", unique: true
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -166,6 +178,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_192358) do
   add_foreign_key "packages", "product_categories"
   add_foreign_key "pending_packages", "insurance_companies"
   add_foreign_key "pending_packages", "product_categories"
+  add_foreign_key "policies", "insurance_companies"
   add_foreign_key "products", "product_categories"
   add_foreign_key "service_pricings", "packages"
   add_foreign_key "service_pricings", "services"

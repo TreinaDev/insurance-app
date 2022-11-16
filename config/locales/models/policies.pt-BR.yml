@@ -1,0 +1,27 @@
+pt-BR:
+  pending: 'Pendente'
+  active: "Ativa"
+  canceled: 'Cancelada'
+  activerecord:
+    models:
+      policy:
+        one: Apólice
+        other: Apólices
+    attributes:
+      policy:
+        client_name: 'Nome do Cliente'
+        client_registration_number: 'CPF do Cliente'
+        client_email: 'E-mail do Cliente'
+        insurance_company_id: 'Seguradora'
+        insurance_company: 'Seguradora'
+        order_id: 'Pedido'
+        order: 'Pedido'
+        equipment_id: 'Dispositivo'
+        equipment: 'Dispositivo'
+        purchase_date: 'Data de Compra'
+        policy_period: 'Prazo de Contratação'
+        package_id: 'Pacote'
+        package: 'Pacote'
+        expiration_date: 'Data de Término'
+        code: 'Código'
+        status: 'Situação'

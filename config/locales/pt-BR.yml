@@ -225,3 +225,4 @@ pt-BR:
   sign_out: "Sair"
   sign_up: "Criar conta"
   authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+  pending: 'Pendente'
