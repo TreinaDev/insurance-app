@@ -73,6 +73,13 @@
     <% end %>
   </div>
 
+<div>
+    <% if @product.image.attached? %>      
+      <p style="font-size: 12px">Imagem cadastrada:</p>
+      <%= image_tag @product.image, style: "width: 80px; display: block" %>
+    <% end %>
+</div><br>
+
   <div class="mb-3">
     <%= f.label :image, class: "form-label fw-semibold" %>
     <%= f.file_field :image, accept: 'image/png, image/jpeg, image/svg', class: "form-control" %>
