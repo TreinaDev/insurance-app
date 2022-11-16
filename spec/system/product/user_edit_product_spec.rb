@@ -4,8 +4,10 @@ describe 'Usúario edita um produto' do
   it 'e vê as informações do produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
-    Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category:)
+    product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
+                              product_category_id: product_category.id)
+    image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
+    product.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
 
     login_as(user)
     visit root_path
@@ -13,6 +15,8 @@ describe 'Usúario edita um produto' do
     click_on 'Samsung Galaxy S20'
     click_on 'Editar'
 
+    expect(page).to have_css('img[src*="galaxy-s20-produto"]')
+    expect(page).to have_content 'Imagem cadastrada:'
     expect(page).to have_field('Modelo do Produto', with: 'Samsung Galaxy S20')
     expect(page).to have_field('Ano de Lançamento', with: '2018')
     expect(page).to have_field('Marca', with: 'Samsung')
@@ -24,7 +28,7 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                              product_category:)
+                              product_category_id: product_category.id)
     image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
     product.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
 
@@ -49,7 +53,7 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category:)
+                    product_category_id: product_category.id)
 
     login_as(user)
     visit root_path
@@ -72,7 +76,7 @@ describe 'Usúario edita um produto' do
     user = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :employee)
     product_category = ProductCategory.create!(name: 'Celular')
     Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                    product_category:)
+                    product_category_id: product_category.id)
 
     login_as(user)
     visit root_path

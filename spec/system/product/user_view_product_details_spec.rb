@@ -5,7 +5,7 @@ describe 'Usuário acessa página de um produto específico' do
     user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
     product_category = ProductCategory.create!(name: 'Celular')
     product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung', price: 2000.0,
-                              product_category:)
+                              product_category_id: product_category.id)
     image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
     product.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
 
