@@ -117,7 +117,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "registration_number":"29929380000125",
     "token":"BHL5UNU78ABLMMJKVPHW"
   }
-  ]
+]
 ```
 ### Obter informações sobre seguradora específica
 
@@ -138,7 +138,6 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "token":"JUYJWZAQT45HMODM2L1D"
 }
 ```
-
 ### Solicitar emissão de Apólice
 
 **Endpoint: POST /api/v1/policies**
@@ -253,7 +252,6 @@ Obs: "purchase_date" = data de compra do pacote
   }
 ]
 ```
-
 ### Obter apólice específica
 
 **Endpoint: GET /api/v1/policies/id**
@@ -263,22 +261,69 @@ Obs: "purchase_date" = data de compra do pacote
 <p align = "justify">200 (Sucesso)</p>
 
 ```json
-{
-  "id": 1,
-  "code": "R4OBOVSVD7",
-  "expiration_date": "2023-11-14",
-  "status": "pending",
-  "client_name": "Maria Alves",
-  "client_registration_number": "99950033340",
-  "client_email": "mariaalves@email.com",
-  "equipment_id": 1,
-  "purchase_date": "2022-11-14",
-  "policy_period": 12,
-  "package_id": 1,
-  "order_id": 1,
-  "insurance_company_id": 1
-}
+[ 
+  {
+    "id": 1,
+    "code": "R4OBOVSVD7",
+    "expiration_date": "2023-11-14",
+    "status": "pending",
+    "client_name": "Maria Alves",
+    "client_registration_number": "99950033340",
+    "client_email": "mariaalves@email.com",
+    "equipment_id": 1,
+    "purchase_date": "2022-11-14",
+    "policy_period": 12,
+    "package_id": 1,
+    "order_id": 1,
+    "insurance_company_id": 1
+  }
+]
 ```
+
+### Obter dados de Coberturas
+
+**Endpoint: GET /api/v1/package_coverages**
+
+```json
+[
+  {
+    "id":1,
+    "name":"Molhar",
+    "description":"Assistência por danificação devido a molhar o aparelho."
+  },
+  {
+    "id":2,
+    "name":"Quebra de tela",
+    "description":"Assistência por danificação da tela do aparelho."
+  },
+  {
+    "id":3,
+    "name":"Furto",
+    "description":"Reembolso de valor em caso de roubo do aparelho."
+  }
+]
+```
+
+### Obter dados de Serviços
+
+**Endpoint: GET /api/v1/services**
+
+```json
+[
+  {
+    "id":1,
+    "name":"Assinatura TV",
+    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado."
+  },
+  {
+    "id":2,
+    "name":"Desconto clubes seguros",
+    "description":"Concede 10% de desconto em aquisição de seguro veicular."
+  }
+]
+
+```
+
 ### Status Codes
 
 Retorna os status:
@@ -291,7 +336,6 @@ Retorna os status:
 | 412 | `PRECONDITION FAILED` |
 
 
- 
 
 ## Como rodar a aplicação
 
