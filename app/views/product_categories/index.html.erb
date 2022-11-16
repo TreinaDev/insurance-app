@@ -1,17 +1,7 @@
-<h1><%= t '.title' %></h1>
-
-<% if @product_categories.any? %>
-  <% @product_categories.each do |p| %>
-    <ul>
-      <li><%= t '.name' %>: <%= p.name %></li>
-    </ul>
-  <% end %>
-<% else %>
-  <p><%= t '.fail' %></p>
-<% end %>
-
-<%= link_to (t '.back'), root_path %>
+<h1 class="my-3"><%= t '.title' %></h1>
 
 <% if current_user.admin? %>
-  <%= link_to (t '.register'), new_product_category_path %>
+  <%= link_to (t '.register'), new_product_category_path, class: "btn btn-dark"%>
 <% end %>
+
+<%= render 'product_categories_list' %>
