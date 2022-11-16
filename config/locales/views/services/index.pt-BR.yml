@@ -1,0 +1,7 @@
+pt-BR:
+  services:
+    index:
+      title: 'Lista de Serviços'
+      register_new: 'Cadastrar Serviço'
+      message: 'Não existem serviços cadastrados'
+      register: 'Adicionar Serviço'

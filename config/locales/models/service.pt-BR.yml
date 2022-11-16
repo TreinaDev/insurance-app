@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      service:
+        one: Precificação do serviço
+    attributes:
+      service:
+        name: 'Serviço'
+        description: 'Descrição'

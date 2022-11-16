@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :insurance_companies, only: [:index, :show, :new, :create, :edit, :update]   
   resources :packages, only: [:index]
   resources :pending_packages, only: [:index, :new, :create]
+  resources :services, only: [:index]
   resources :package_coverages, only: [:index, :new, :create]
 
   namespace :api do
