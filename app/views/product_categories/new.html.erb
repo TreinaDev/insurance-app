@@ -1,18 +1,23 @@
-<h1>Cadastrar Nova Categoria de Produto</h1>
-<% if(@product_category.errors.any?) %>
-  <p>Verifique os erros abaixo:</p>
-  <ul>
-    <% @product_category.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<h1 class="my-3"><%= t '.title' %></h1>
 <%= form_with(model: @product_category) do |f|%>
-  <div>
-    <%= f.label :name, 'Nome:' %>
-    <%= f.text_field :name %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label fw-semibold" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <% if(@product_category.errors.include? :name) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @product_category.errors.full_messages_for(:name).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
-  <div>  
-    <%= f.submit 'Salvar'%>
+  <div class="d-grid mb-3">  
+    <%= f.submit 'Salvar', class: "btn btn-dark"%>
   </div>
 <%end%>
+
+<h1 class="my-3">Categorias de Produto</h1>
+
+<%= render 'product_categories_list' %>

@@ -1,0 +1,9 @@
+<% if @product_categories.any? %>
+  <ul class="list-group my-3">
+    <% @product_categories.each do |p| %>
+      <li class="list-group-item"><%= p.name %></li>
+    <% end %>
+  </ul> 
+<% else %>
+  <p><%= t 'no_product_category_registered' %></p>
+<% end %>
