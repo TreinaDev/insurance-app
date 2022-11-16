@@ -1,0 +1,33 @@
+<%= form_with(model: @package_coverage) do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label fw-semibold" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <% if(@package_coverage.errors.include? :name) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @package_coverage.errors.full_messages_for(:name).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, class: "form-label fw-semibold" %>
+    <%= f.text_field :description, class: "form-control" %>
+    <% if(@package_coverage.errors.include? :name) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @package_coverage.errors.full_messages_for(:description).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>

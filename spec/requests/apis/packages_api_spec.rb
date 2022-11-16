@@ -23,8 +23,12 @@ describe 'Package API' do
       expect(response.content_type).to include('application/json')
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 2
-      expect(json_response[0]['status']).to eq 'active'
-      expect(json_response[1]['status']).to eq 'active'
+      expect(json_response[0]['name']).to eq 'Pacote 1'
+      expect(json_response[0].keys).not_to include('created_at')
+      expect(json_response[0].keys).not_to include('updated_at')
+      expect(json_response[1]['name']).to eq 'Pacote 3'
+      expect(json_response[1].keys).not_to include('created_at')
+      expect(json_response[1].keys).not_to include('updated_at')
     end
 
     it 'retorna vazio caso não existam pacotes ativos' do

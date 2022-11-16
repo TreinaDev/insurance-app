@@ -2,7 +2,7 @@
 Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 ## Tabela de Conteúdos
-  * [Documentação da API](#documentação-da-api)
+  * [Documentação API](#documentação-da-api)
   * [Como rodar a aplicação](#como-rodar-a-aplicação)
   * [Informações adicionais](#informações-adicionais)
   * [Regras de negócio](#regras-de-negócio)
@@ -117,7 +117,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "registration_number":"29929380000125",
     "token":"BHL5UNU78ABLMMJKVPHW"
   }
-  ]
+]
 ```
 ### Obter informações sobre seguradora específica
 
@@ -138,6 +138,191 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "token":"JUYJWZAQT45HMODM2L1D"
 }
 ```
+### Solicitar emissão de Apólice
+
+**Endpoint: POST /api/v1/policies**
+
+**Parâmetros a serem enviados para emissão de Apólice**
+
+```json
+{
+  "client_name": "Maria Alves",
+  "client_registration_number": "99950033340",
+  "client_email": "mariaalves@email.com",
+  "purchase_date": "2022-11-12", 
+  "policy_period": 12, 
+  "order_id": 1,
+  "package_id": 1,
+  "insurance_company_id": 1,
+  "equipment_id": 1
+}
+```
+Obs: "purchase_date" = data de compra do pacote
+
+<p align = "justify">Retorno:</p>
+
+<p align = "justify">201 (Created)</p>
+
+```json
+{
+  "id": 1,
+  "code": "AGG7MYUQWA",
+  "expiration_date": "2023-11-12",
+  "status": "pending",
+  "client_name": "Maria Alves",
+  "client_registration_number": "99950033340",
+  "client_email": "mariaalves@email.com",
+  "equipment_id": 1,
+  "purchase_date": "2022-11-12",
+  "policy_period": 12,
+  "package_id": 1,
+  "order_id": 1,
+  "insurance_company_id": 1
+}
+
+```
+
+<p align = "justify">Retorno:</p>
+
+<p align = "justify">412 (Precondition failed)</p>
+
+```json
+{
+  "errors": [
+      "Seguradora é obrigatório(a)",
+      "Data de Término não pode ficar em branco",
+      "Nome do Cliente não pode ficar em branco",
+      "CPF do Cliente não pode ficar em branco",
+      "E-mail do Cliente não pode ficar em branco",
+      "Dispositivo não pode ficar em branco",
+      "Data de Compra não pode ficar em branco",
+      "Prazo de Contratação não pode ficar em branco",
+      "Pacote não pode ficar em branco",
+      "Pedido não pode ficar em branco",
+      "Dispositivo não é um número",
+      "Pedido não é um número",
+      "Prazo de Contratação não é um número"
+  ]
+}
+```
+
+### Obter lista de apólices
+
+**Endpoint: GET /api/v1/policies**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 1,
+    "code": "R4OBOVSVD7",
+    "expiration_date": "2023-11-14",
+    "status": "pending",
+    "created_at": "2022-11-14T13:14:28.608Z",
+    "updated_at": "2022-11-14T13:14:28.608Z",
+    "client_name": "Maria Alves",
+    "client_registration_number": "99950033340",
+    "client_email": "mariaalves@email.com",
+    "equipment_id": 1,
+    "purchase_date": "2022-11-14",
+    "policy_period": 12,
+    "package_id": 1,
+    "order_id": 1,
+    "insurance_company_id": 1
+  },
+  {
+    "id": 2,
+    "code": "7CJZLLQMKK",
+    "expiration_date": "2023-11-14",
+    "status": "pending",
+    "created_at": "2022-11-14T13:14:28.860Z",
+    "updated_at": "2022-11-14T13:14:28.860Z",
+    "client_name": "Rafael Souza",
+    "client_registration_number": "55511122220",
+    "client_email": "rafaelsouza@email.com",
+    "equipment_id": 2,
+    "purchase_date": "2022-11-14",
+    "policy_period": 12,
+    "package_id": 1,
+    "order_id": 2,
+    "insurance_company_id": 1
+  }
+]
+```
+### Obter apólice específica
+
+**Endpoint: GET /api/v1/policies/id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[ 
+  {
+    "id": 1,
+    "code": "R4OBOVSVD7",
+    "expiration_date": "2023-11-14",
+    "status": "pending",
+    "client_name": "Maria Alves",
+    "client_registration_number": "99950033340",
+    "client_email": "mariaalves@email.com",
+    "equipment_id": 1,
+    "purchase_date": "2022-11-14",
+    "policy_period": 12,
+    "package_id": 1,
+    "order_id": 1,
+    "insurance_company_id": 1
+  }
+]
+```
+
+### Obter dados de Coberturas
+
+**Endpoint: GET /api/v1/package_coverages**
+
+```json
+[
+  {
+    "id":1,
+    "name":"Molhar",
+    "description":"Assistência por danificação devido a molhar o aparelho."
+  },
+  {
+    "id":2,
+    "name":"Quebra de tela",
+    "description":"Assistência por danificação da tela do aparelho."
+  },
+  {
+    "id":3,
+    "name":"Furto",
+    "description":"Reembolso de valor em caso de roubo do aparelho."
+  }
+]
+```
+
+### Obter dados de Serviços
+
+**Endpoint: GET /api/v1/services**
+
+```json
+[
+  {
+    "id":1,
+    "name":"Assinatura TV",
+    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado."
+  },
+  {
+    "id":2,
+    "name":"Desconto clubes seguros",
+    "description":"Concede 10% de desconto em aquisição de seguro veicular."
+  }
+]
+
+```
 
 ### Obter lista de Pacotes
 
@@ -156,8 +341,6 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "min_period": 6,
     "insurance_company_id": 1,
     "price": "7.0",
-    "created_at": "2022-11-14T20:26:59.452Z",
-    "updated_at": "2022-11-14T20:26:59.452Z",
     "product_category_id": 1,
     "status": "active"
   },
@@ -168,8 +351,6 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "min_period": 6,
     "insurance_company_id": 4,
     "price": "8.5",
-    "created_at": "2022-11-14T20:26:59.478Z",
-    "updated_at": "2022-11-14T20:26:59.478Z",
     "product_category_id": 2,
     "status": "active"
   }
@@ -205,9 +386,9 @@ Retorna os status:
 | 200 | `OK` |
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
+| 412 | `PRECONDITION FAILED` |
 
 
- 
 
 ## Como rodar a aplicação
 
