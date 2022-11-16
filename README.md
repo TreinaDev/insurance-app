@@ -324,6 +324,59 @@ Obs: "purchase_date" = data de compra do pacote
 
 ```
 
+### Obter lista de Pacotes
+
+**Endpoint: GET /api/v1/packages**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 2,
+    "name": "Super Econômico",
+    "max_period": 18,
+    "min_period": 6,
+    "insurance_company_id": 1,
+    "price": "7.0",
+    "product_category_id": 1,
+    "status": "active"
+  },
+  {
+    "id": 4,
+    "name": "Super Econômico",
+    "max_period": 24,
+    "min_period": 6,
+    "insurance_company_id": 4,
+    "price": "8.5",
+    "product_category_id": 2,
+    "status": "active"
+  }
+]
+```
+### Obter dados de pacote específico
+
+**Endpoint: GET /api/v1/packages/id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 2,
+  "name": "Super Econômico",
+  "max_period": 18,
+  "min_period": 6,
+  "insurance_company_id": 1,
+  "price": "7.0",
+  "product_category_id": 1,
+  "status": "active"
+}
+```
+
 ### Status Codes
 
 Retorna os status:

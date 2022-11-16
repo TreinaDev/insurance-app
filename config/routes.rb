@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show]
       resources :insurance_companies, only: [:index, :show]
+      resources :packages, only: [:index, :show]
       resources :package_coverages, only: [:index]
       resources :services, only: [:index]
       resources :policies, only: [:index, :show, :create]
