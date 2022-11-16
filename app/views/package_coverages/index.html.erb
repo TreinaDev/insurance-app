@@ -1,5 +1,9 @@
 <h1 class="my-3"><%= t '.title' %></h1>
-
+<div class="my-3">
+  <% if current_user.admin? %>
+    <%= link_to (t '.register'), new_package_coverage_path, class: "btn btn-dark " %>
+  <% end %>
+</div>
 <section id="package-coverages-list">
   <table class="table table-striped">
     <thead>
@@ -12,7 +16,7 @@
       <% if @package_coverages.any? %>
         <% @package_coverages.each do |coverage| %>
           <tr>
-            <td><%= link_to coverage.name, '#', class: "link-dark" %></td>
+            <td><%= coverage.name  %></td>
             <td><%= coverage.description %></td>
           </tr>
         <% end %>
