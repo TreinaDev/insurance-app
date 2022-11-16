@@ -10,18 +10,24 @@
         <th><%= Package.human_attribute_name(:min_period) %></th>
         <th><%= Package.human_attribute_name(:max_period) %></th>
         <th><%= Package.human_attribute_name(:price) %> Mensal</th>
+        <th><%= Package.human_attribute_name(:status) %></th>
       </tr>
     </thead>
     <tbody>
       <% @packages.each do |package| %>
-            <tr>
-              <td><%= package.product_category.name %></td> 
-              <td><%= link_to package.insurance_company.name, '#', class: "link-dark"  %></td>
-              <td><%= package.name %></td>
-              <td><%= package.min_period %> meses</td>
-              <td><%= package.max_period %> meses</td>
-              <td><%= number_to_currency(package.price) %></td>
-            </tr>
+        <tr>
+          <td><%= package.product_category.name %></td> 
+          <td><%= link_to package.insurance_company.name, package.insurance_company, class: "link-dark"  %></td>
+          <td><%= package.name %></td>
+          <td><%= package.min_period %> meses</td>
+          <td><%= package.max_period %> meses</td>
+          <td><%= package.price %>%</td>
+          <% if package.active? %>
+            <td class="fw-semibold text-success"><%= Package.human_attribute_name("status.#{package.status}") %></td>
+          <% else %>
+            <td class="fw-semibold text-muted"><%= Package.human_attribute_name("status.#{package.status}") %></td>
+          <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>

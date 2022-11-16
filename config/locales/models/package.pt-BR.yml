@@ -14,3 +14,8 @@ pt-BR:
         price: 'Preço'
         product_category: 'Categoria'
         product_category_id: 'Categoria'
+        status: 'Status'
+      package/status:
+        pending: "Pendente"
+        active: "Ativo"
+        inactive: "Inativo"
