@@ -1,5 +1,11 @@
 <h1 class="my-3"><%= t '.title' %></h1>
 
+<div class="my-3">
+  <% if current_user.employee? %>
+    <%= link_to (t '.register'), new_package_path, class: "btn btn-dark " %>
+  <% end %>
+</div>
+
 <% if @packages.any? %>
   <table class="table table-striped">
     <thead>

@@ -1,0 +1,8 @@
+pt-BR:
+  packages:
+    new:
+      title: 'Cadastrar Novo Pacote'
+      message: 'Não existem pacotes cadastrados.'
+    create: 
+      success: 'Pacote cadastrado com sucesso!'
+      failure: 'Não foi possível cadastrar o pacote.'

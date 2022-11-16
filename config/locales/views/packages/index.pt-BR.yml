@@ -3,3 +3,4 @@ pt-BR:
     index:
       title: 'Lista de Pacotes'
       message: 'Não existem pacotes cadastrados'
+      register: 'Adicionar Pacote'
