@@ -23,11 +23,19 @@
       <% @packages.each do |package| %>
         <tr>
           <td><%= package.product_category.name %></td> 
-          <td><%= link_to package.insurance_company.name, package.insurance_company, class: "link-dark"  %></td>
+          <% if current_user.employee? %>
+            <td><%= package.insurance_company.name %></td>
+          <% else %>
+            <td><%= link_to package.insurance_company.name, package.insurance_company, class: "link-dark"  %></td>
+          <% end %>
           <td><%= package.name %></td>
           <td><%= package.min_period %> meses</td>
           <td><%= package.max_period %> meses</td>
-          <td><%= package.price %>%</td>
+          <% if package.active? %>
+            <td><%= package.price %>%</td>
+          <% else %>
+            <td class="text-center"> - </td>
+          <% end %>
           <% if package.active? %>
             <td class="fw-semibold text-success"><%= Package.human_attribute_name("status.#{package.status}") %></td>
           <% else %>

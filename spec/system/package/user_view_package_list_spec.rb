@@ -72,7 +72,7 @@ describe 'Usuário vê lista de pacotes' do
       click_on 'Pacotes'
     end
 
-    expect(page).to have_link('Azul')
+    expect(page).to have_content('Azul')
     expect(page).to have_content('Premium')
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
