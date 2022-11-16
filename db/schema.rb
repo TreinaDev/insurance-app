@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_14_161705) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_14_194525) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_161705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_category_id", null: false
+    t.integer "status", default: 0
     t.index ["insurance_company_id"], name: "index_packages_on_insurance_company_id"
     t.index ["product_category_id"], name: "index_packages_on_product_category_id"
   end
@@ -103,6 +104,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_161705) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "client_name"
+    t.string "client_registration_number"
+    t.string "client_email"
+    t.integer "equipment_id"
+    t.date "purchase_date"
+    t.integer "policy_period"
+    t.integer "package_id"
+    t.integer "order_id"
+    t.integer "insurance_company_id", null: false
+    t.index ["code"], name: "index_policies_on_code", unique: true
+    t.index ["insurance_company_id"], name: "index_policies_on_insurance_company_id"
+    t.index ["order_id"], name: "index_policies_on_order_id", unique: true
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -167,6 +180,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_161705) do
   add_foreign_key "packages", "product_categories"
   add_foreign_key "pending_packages", "insurance_companies"
   add_foreign_key "pending_packages", "product_categories"
+  add_foreign_key "policies", "insurance_companies"
   add_foreign_key "products", "product_categories"
   add_foreign_key "service_pricings", "packages"
   add_foreign_key "service_pricings", "services"
