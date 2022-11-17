@@ -23,6 +23,8 @@ class Api::V1::PoliciesController < Api::V1::ApiController
     end
   end
 
+  private
+
   def create_json(policy)
     p = policy.as_json(except: %i[created_at updated_at])
     p[:file_url] = url_for(policy.file) if policy.file.attached?
