@@ -1,0 +1,61 @@
+<%= form_with(model: @package) do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label fw-semibold" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <% if(@package.errors.include? :name) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @package.errors.full_messages_for(:name).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :min_period, class: "form-label fw-semibold" %>
+    <%= f.number_field :min_period, class: "form-control" %>
+    <% if(@package.errors.include? :min_period) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @package.errors.full_messages_for(:min_period).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :max_period, class: "form-label fw-semibold" %>
+    <%= f.number_field :max_period, class: "form-control" %>
+    <% if(@package.errors.include? :max_period) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @package.errors.full_messages_for(:max_period).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :product_category_id, class: "form-label fw-semibold" %>
+    <%= f.collection_select :product_category_id, ProductCategory.all, :id, :name, class: "form-control" %>
+    <% if(@package.errors.include? :product_category_id) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @package.errors.full_messages_for(:product_category_id).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>
