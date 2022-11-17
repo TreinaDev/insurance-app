@@ -46,16 +46,17 @@ Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance
 Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
                 price: 7.00, product_category: product_category_a, status: :active)
 Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
-                price: 1.50, product_category: product_category_b, status: :active,)
+                price: 1.50, product_category: product_category_b, status: :active)
 package1 = Package.create!(name: 'Super Econômico', min_period: 6, max_period: 24,
                            insurance_company: InsuranceCompany.last, status: :active,
                            price: 8.50, product_category: product_category_b)
 
 # class Service
 service1 = Service.create!(name: 'Assinatura TV',
-                           description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
+                           description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
+                           status: :active)
 service2 = Service.create!(name: 'Desconto clubes seguros',
-                           description: 'Concede 10% de desconto em aquisição de seguro veicular.')
+                           description: 'Concede 10% de desconto em aquisição de seguro veicular.', status: :active)
 
 # class ServicePricing
 ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service1)

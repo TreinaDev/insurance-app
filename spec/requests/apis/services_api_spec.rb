@@ -3,9 +3,10 @@ describe 'Service API' do
   context 'GET /api/v1/services' do
     it 'listar todos os serviços ordenados pelo nome' do
       Service.create!(name: 'Assinatura TV',
-                      description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
+                      description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
+                      status: :active)
       Service.create!(name: 'Desconto clubes seguros',
-                      description: 'Concede 10% de desconto em aquisição de seguro veicular.')
+                      description: 'Concede 10% de desconto em aquisição de seguro veicular.', status: :active)
 
       get '/api/v1/services'
       expect(response.status).to eq 200

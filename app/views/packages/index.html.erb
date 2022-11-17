@@ -1,5 +1,11 @@
 <h1 class="my-3"><%= t '.title' %></h1>
 
+<div class="my-3">
+  <% if current_user.employee? %>
+    <%= link_to (t '.register'), new_package_path, class: "btn btn-dark " %>
+  <% end %>
+</div>
+
 <% if @packages.any? %>
   <table class="table table-striped">
     <thead>
@@ -17,11 +23,19 @@
       <% @packages.each do |package| %>
         <tr>
           <td><%= package.product_category.name %></td> 
-          <td><%= link_to package.insurance_company.name, package.insurance_company, class: "link-dark"  %></td>
+          <% if current_user.employee? %>
+            <td><%= package.insurance_company.name %></td>
+          <% else %>
+            <td><%= link_to package.insurance_company.name, package.insurance_company, class: "link-dark"  %></td>
+          <% end %>
           <td><%= package.name %></td>
           <td><%= package.min_period %> meses</td>
           <td><%= package.max_period %> meses</td>
-          <td><%= package.price %>%</td>
+          <% if package.active? %>
+            <td><%= package.price %>%</td>
+          <% else %>
+            <td> - </td>
+          <% end %>
           <% if package.active? %>
             <td class="fw-semibold text-success"><%= Package.human_attribute_name("status.#{package.status}") %></td>
           <% else %>

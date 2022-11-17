@@ -20,7 +20,8 @@ RSpec.describe Service, type: :model do
       Service.create!(name: 'Assinatura TV',
                       description: 'Concede um mês grátis em assinatura do netflix.')
       service = Service.new(name: 'Assinatura TV',
-                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado')
+                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado',
+                            status: :active)
 
       expect(service.valid?).to eq false
     end
@@ -28,6 +29,35 @@ RSpec.describe Service, type: :model do
     it 'falso quando a descrição for menor que 3 caracteres' do
       service = Service.new(name: 'Assinatura TV',
                             description: 'Co')
+
+      expect(service.valid?).to eq false
+    end
+
+    it 'falso quando a status nulo' do
+      service = Service.new(name: 'Assinatura TV',
+                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado',
+                            status: nil)
+
+      expect(service.valid?).to eq false
+    end
+
+    it 'falso quando o código é nulo' do
+      allow(SecureRandom).to receive(:alphanumeric).and_return('')
+      service = Service.new(name: 'Assinatura TV',
+                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado',
+                            status: :active)
+
+      expect(service.valid?).to eq false
+    end
+
+    it 'falso quando o código é nulo' do
+      allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
+      Service.create!(name: 'Desconto clubes seguros',
+                      description: 'Concede 10% de desconto em aquisição de seguro veicular.', status: :active)
+      allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
+      service = Service.new(name: 'Assinatura TV',
+                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado',
+                            status: :active)
 
       expect(service.valid?).to eq false
     end

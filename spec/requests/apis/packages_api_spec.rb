@@ -10,7 +10,7 @@ describe 'Package API' do
                                                      registration_number: '00000000000001')
       Package.create!(name: 'Pacote 1', max_period: 12, min_period: 6, insurance_company: insurance_company_a,
                       product_category_id: product_category.id, price: 1.1, status: :active)
-      Package.create!(name: 'Pacote 2', max_period: 6, min_period: 15, insurance_company: insurance_company_b,
+      Package.create!(name: 'Pacote 2', max_period: 15, min_period: 6, insurance_company: insurance_company_b,
                       product_category_id: product_category.id, price: 3.5, status: :inactive)
       Package.create!(name: 'Pacote 3', max_period: 10, min_period: 5, insurance_company: insurance_company_b,
                       product_category_id: product_category.id, price: 2.5, status: :active)
@@ -35,7 +35,7 @@ describe 'Package API' do
       product_category = ProductCategory.create!(name: 'Televisão')
       insurance_company_a = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
                                                      registration_number: '00000000000000')
-      Package.create!(name: 'Pacote 2', max_period: 6, min_period: 15, insurance_company: insurance_company_a,
+      Package.create!(name: 'Pacote 2', max_period: 15, min_period: 6, insurance_company: insurance_company_a,
                       product_category_id: product_category.id, price: 3.5, status: :inactive)
       Package.create!(name: 'Pacote 4', max_period: 20, min_period: 9, insurance_company: insurance_company_a,
                       product_category_id: product_category.id, price: 2, status: :pending)

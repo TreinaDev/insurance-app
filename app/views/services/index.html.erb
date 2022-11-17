@@ -6,15 +6,19 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th><%= Service.human_attribute_name(:code) %></th>
         <th><%= Service.human_attribute_name(:name) %></th>
         <th><%= Service.human_attribute_name(:description) %></th>
+        <th><%= Service.human_attribute_name(:status) %></th>
       </tr>
     </thead>
     <tbody>
       <% @services.each do |service| %>
         <tr>
-          <td><%= service.name %></td> 
+          <td><%= service.code %></td>
+          <td><%= service.name %></td>
           <td><%= service.description %></td>
+          <td><%= t(service.status) %></td>
         </tr>
       <% end %>
     </tbody>

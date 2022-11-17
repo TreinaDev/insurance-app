@@ -1,4 +1,6 @@
 pt-BR:
+  active: Ativo
+  inactive: Inativo
   services:
     index:
       title: 'Lista de Serviços'
