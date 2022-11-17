@@ -1,0 +1,10 @@
+pt-BR:
+  package_services:
+    authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+    new:
+      title: 'Cadastrar Novo Serviço'
+      message: 'Não existem serviços cadastrados!'
+      register: 'Adicionar Serviço'
+    create: 
+      success: 'Serviço cadastrado com sucesso'
+      failure: 'Não foi possível cadastrar o serviço'

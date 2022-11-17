@@ -1,6 +1,6 @@
 pt-BR:
   package_coverages:
     index:
-      title: 'Adicionar Coberturas'
+      title: 'Lista de Coberturas'
       message: 'Não existem coberturas cadastradas!'
       register: 'Adicionar Cobertura'
