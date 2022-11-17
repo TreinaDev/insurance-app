@@ -1,0 +1,6 @@
+pt-BR:
+  policies:
+    _polices_table:
+      title: 'Lista de Apólices'
+      policies_pending: 'Pendentes'
+      policies_pending_payment: 'Aguardando Pagamento'

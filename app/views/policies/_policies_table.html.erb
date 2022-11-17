@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= Policy.human_attribute_name(:code) %></th>
+      <th><%= Policy.human_attribute_name(:client_name) %></th>
+      <th><%= Policy.human_attribute_name(:purchase_date) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @policies.each do |policy| %>
+      <tr>
+        <td><%= link_to policy.code, @policy, class: "link-dark" %></td>
+        <td><%= policy.client_name %></td>
+        <td><%= policy.purchase_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>    

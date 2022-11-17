@@ -1,0 +1,14 @@
+pt-BR:
+  policies:
+    index:
+      title: 'Lista de Apólices'
+      policies_pending: 'Pendentes'
+      policies_pending_payment: 'Aguardando Pagamento'
+      policies_active: 'Ativas'
+      policies_expired: 'Vencidas'
+      policies_canceled: 'Canceladas'
+      no_pending_policies_registered: 'Não existem apólices pendentes'
+      no_pending_payment_policies_registered: 'Não existem apólices com pagamento pendente'
+      no_active_policies_registered: 'Não existem apólices ativas'
+      no_expired_policies_registered: 'Não existem apólices vencidas'
+      no_canceled_policies_registered: 'Não existem apólices canceladas'
