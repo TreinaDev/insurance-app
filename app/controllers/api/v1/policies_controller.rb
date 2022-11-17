@@ -1,12 +1,14 @@
 class Api::V1::PoliciesController < Api::V1::ApiController
   def index
     policies = Policy.all
-    render status: :ok, json: policies
+    render status: :ok, json: policies.map { |p| create_json(p) }
   end
 
   def show
-    policy = Policy.find(params[:id])
-    render status: :ok, json: policy.as_json(except: %i[created_at updated_at])
+    policy = Policy.find_by(code: params[:code])
+    return render status: :ok, json: create_json(policy) if policy.present?
+
+    raise ActiveRecord::RecordNotFound
   end
 
   def create
@@ -19,5 +21,11 @@ class Api::V1::PoliciesController < Api::V1::ApiController
     else
       render status: :precondition_failed, json: { errors: policy.errors.full_messages }
     end
+  end
+
+  def create_json(policy)
+    p = policy.as_json(except: %i[created_at updated_at])
+    p[:file_url] = url_for(policy.file) if policy.file.attached?
+    p
   end
 end
