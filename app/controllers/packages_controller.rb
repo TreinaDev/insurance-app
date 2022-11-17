@@ -13,7 +13,7 @@ class PackagesController < ApplicationController
 
   def create
     @package = Package.new(package_params)
-    @package.insurance_company_id = current_user.insurance_company_id if current_user.employee!
+    @package.insurance_company_id = current_user.insurance_company_id if current_user.employee?
     if @package.save
       redirect_to packages_path, notice: t('.success')
     else
