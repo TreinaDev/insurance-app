@@ -54,9 +54,10 @@ package1 = Package.create!(name: 'Super Econômico', min_period: 6, max_period: 
 # class Service
 service1 = Service.create!(name: 'Assinatura TV',
                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
-                           status: :active)
+                           status: :active, code: 'ZK7')
 service2 = Service.create!(name: 'Desconto clubes seguros',
-                           description: 'Concede 10% de desconto em aquisição de seguro veicular.', status: :active)
+                           description: 'Concede 10% de desconto em aquisição de seguro veicular.',
+                           status: :active, code: 'ZK9')
 
 # class ServicePricing
 ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service1)
@@ -64,11 +65,14 @@ ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1
 
 # class PackageCoverage
 coverage1 = PackageCoverage.create!(name: 'Molhar',
-                                    description: 'Assistência por danificação devido a molhar o aparelho.')
+                                    description: 'Assistência por danificação devido a molhar o aparelho.',
+                                    status: :active, code: 'ZK3')
 coverage2 = PackageCoverage.create!(name: 'Quebra de tela',
-                                    description: 'Assistência por danificação da tela do aparelho.')
+                                    description: 'Assistência por danificação da tela do aparelho.',
+                                    status: :active, code: 'ZK4')
 coverage3 = PackageCoverage.create!(name: 'Furto',
-                                    description: 'Reembolso de valor em caso de roubo do aparelho.')
+                                    description: 'Reembolso de valor em caso de roubo do aparelho.',
+                                    status: :active, code: 'ZK5')
 
 # class CoveragePricing
 CoveragePricing.create!(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
