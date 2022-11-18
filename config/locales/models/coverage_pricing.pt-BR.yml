@@ -1,4 +1,6 @@
 pt-BR:
+  add_coverage_error: 'Erro na adição de Cobertura'
+  add_coverage_success: 'Cobertura adicionada com sucesso!'
   active: 'Ativo'
   inactive: 'Desativado'
   activerecord:
@@ -13,4 +15,4 @@ pt-BR:
         package_coverage_id: 'Cobertura'
         package: 'Pacote'
         package_id: 'Pacote'
-        percentage_price: 'Preço percentual'
+        percentage_price: 'Preço Percentual'

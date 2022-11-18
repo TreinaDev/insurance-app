@@ -1,0 +1,4 @@
+pt-BR:
+  packages:
+    show:
+      no_coverages: 'Não existem Coberturas Adicionadas para este Pacote'

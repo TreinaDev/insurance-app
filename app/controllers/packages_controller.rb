@@ -9,6 +9,8 @@ class PackagesController < ApplicationController
 
   def show
     @package = Package.find(params[:id])
+    @coverage_pricing = CoveragePricing.new
+    @coverage_pricings = @package.coverage_pricings
   end
 
   def new
