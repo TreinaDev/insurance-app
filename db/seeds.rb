@@ -78,16 +78,16 @@ CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package
 
 Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
                client_email: 'mariaalves@email.com',
-               insurance_company_id: InsuranceCompany.first.id, order_id: 1,
+               insurance_company_id: insurance_a.id, order_id: 1,
                equipment_id: 1, purchase_date: Time.zone.today,
-               policy_period: 12, package_id: Package.first.id)
+               policy_period: 12, package_id: Package.first.id, status: :pending)
 Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
                client_email: 'rafaelsouza@email.com',
-               insurance_company_id: InsuranceCompany.second.id, order_id: 2,
+               insurance_company_id: insurance_c.id, order_id: 2,
                equipment_id: 2, purchase_date: Time.zone.today,
-               policy_period: 12, package_id: Package.first.id)
+               policy_period: 12, package_id: Package.second.id, status: :active)
 Policy.create!(client_name: 'Pedro Dias', client_registration_number: '66511122220',
                client_email: 'pedrodias@email.com',
-               insurance_company_id: InsuranceCompany.second.id, order_id: 3,
+               insurance_company_id: insurance_c.id, order_id: 3,
                equipment_id: 2, purchase_date: Time.zone.today,
-               policy_period: 12, package_id: Package.first.id)
+               policy_period: 12, package_id: Package.second.id)

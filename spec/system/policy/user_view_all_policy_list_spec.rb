@@ -85,7 +85,7 @@ describe 'Funcionário vê lista de todas as apólices da sua seguradora ' do
                    client_email: 'caioalves@email.com',
                    insurance_company_id: insurance_company2.id, order_id: 3,
                    equipment_id: 1, purchase_date: 1.day.from_now,
-                   policy_period: 12, package_id: package2.id, status: :active)
+                   policy_period: 12, package_id: package2.id)
 
     login_as(user)
     visit root_path
