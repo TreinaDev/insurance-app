@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       resources :package_coverages, only: [:index]
       resources :services, only: [:index]
       resources :policies, only: [:index, :show, :create]
+      resources :product_categories, only: [:index] do
+        get 'products', on: :member
+      end
     end
   end
 end

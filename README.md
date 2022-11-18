@@ -387,6 +387,56 @@ Obs: "purchase_date" = data de compra do pacote
 }
 ```
 
+### Obter lista de categorias de produto
+
+**Endpoint: GET /api/v1/product_categories**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Celular",
+    "created_at": "2022-11-18T00:01:34.910Z",
+    "updated_at": "2022-11-18T00:01:34.910Z"
+  },
+  {
+    "id": 2,
+    "name": "Televisão",
+    "created_at": "2022-11-18T00:01:35.132Z",
+    "updated_at": "2022-11-18T00:01:35.132Z"
+  }
+]
+```
+
+### Obter produtos em categoria
+
+**Endpoint: GET /api/v1/product_categories/id/products**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 1,
+    "product_model": "Samsung Galaxy S20",
+    "launch_year": "2018",
+    "brand": "Samsung",
+    "price": "2000.0",
+    "status": "active",
+    "product_category_id": 1,
+    "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--677e89aa27092ea9bbb3e13b6a048138d50182fa/galaxy-s20-produto.jpg"
+  }
+]
+```
+
+
+
 ### Status Codes
 
 Retorna os status:
