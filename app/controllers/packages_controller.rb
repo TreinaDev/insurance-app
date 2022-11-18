@@ -7,6 +7,10 @@ class PackagesController < ApplicationController
                 end
   end
 
+  def show
+    @package = Package.find(params[:id])
+  end
+
   def new
     @package = Package.new
   end
@@ -20,10 +24,6 @@ class PackagesController < ApplicationController
       flash.now[:alert] = t('.failure')
       render 'new'
     end
-  end
-
-  def show
-    @package = Package.find(params[:id])
   end
 
   private
