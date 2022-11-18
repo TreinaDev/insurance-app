@@ -64,7 +64,7 @@ describe 'ProductCategory API' do
     end
 
     it 'e categoria de produto não existe' do
-      get "/api/v1/product_categories/666/products"
+      get '/api/v1/product_categories/666/products'
 
       expect(response).to have_http_status 404
     end
