@@ -41,8 +41,7 @@ describe 'Usuário vê lista de seguradoras' do
 
     login_as(user)
     visit root_path
-    click_on 'Seguradoras'
 
-    expect(page).to have_content 'Apenas usuários administradores tem acesso a essa função'
+    expect(page).not_to have_link insurance_companies_path
   end
 end

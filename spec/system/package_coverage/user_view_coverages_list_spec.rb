@@ -3,8 +3,10 @@ require 'rails_helper'
 describe 'Usuário vê lista de Coberturas' do
   it 'com sucesso e é admin' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
+    allow(SecureRandom).to receive(:alphanumeric).with(3).and_return('AAA')
     PackageCoverage.create!(name: 'Molhar',
                             description: 'Assistência por danificação devido a molhar o aparelho.')
+    allow(SecureRandom).to receive(:alphanumeric).with(3).and_return('AAB')
     PackageCoverage.create!(name: 'Quebra de tela',
                             description: 'Assistência por danificação da tela do aparelho.')
 
@@ -19,6 +21,10 @@ describe 'Usuário vê lista de Coberturas' do
       expect(page).to have_content 'Assistência por danificação devido a molhar o aparelho'
       expect(page).to have_content 'Quebra de tela'
       expect(page).to have_content 'Assistência por danificação da tela do aparelho'
+      expect(page).to have_content('Status')
+      expect(page).to have_content('Código')
+      expect(page).to have_content('Ativo')
+      expect(page).to have_content('AAA')
     end
   end
 
@@ -27,6 +33,7 @@ describe 'Usuário vê lista de Coberturas' do
     user = User.create!(name: 'Edna', email: 'edna@empresa.com.br', password: 'password', role: :employee)
     PackageCoverage.create!(name: 'Molhar',
                             description: 'Assistência por danificação devido a molhar o aparelho.')
+    allow(SecureRandom).to receive(:alphanumeric).with(3).and_return('AAA')
     PackageCoverage.create!(name: 'Quebra de tela',
                             description: 'Assistência por danificação da tela do aparelho.')
 
@@ -41,6 +48,10 @@ describe 'Usuário vê lista de Coberturas' do
       expect(page).to have_content 'Assistência por danificação devido a molhar o aparelho'
       expect(page).to have_content 'Quebra de tela'
       expect(page).to have_content 'Assistência por danificação da tela do aparelho'
+      expect(page).to have_content 'Status'
+      expect(page).to have_content 'Código'
+      expect(page).to have_content 'Ativo'
+      expect(page).to have_content 'AAA'
     end
   end
 

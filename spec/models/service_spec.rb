@@ -50,11 +50,10 @@ RSpec.describe Service, type: :model do
       expect(service.valid?).to eq false
     end
 
-    it 'falso quando o código é nulo' do
+    it 'falso quando o código não é único' do
       allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
       Service.create!(name: 'Desconto clubes seguros',
                       description: 'Concede 10% de desconto em aquisição de seguro veicular.', status: :active)
-      allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
       service = Service.new(name: 'Assinatura TV',
                             description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado',
                             status: :active)

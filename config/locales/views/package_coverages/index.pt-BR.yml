@@ -1,6 +1,9 @@
 pt-BR:
+  active: Ativo
+  inactive: Inativo
   package_coverages:
     index:
       title: 'Lista de Coberturas'
       message: 'Não existem coberturas cadastradas!'
       register: 'Adicionar Cobertura'
+      message: 'Não existem coberturas cadastradas'

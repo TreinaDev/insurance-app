@@ -5,6 +5,8 @@ describe 'Service API' do
       Service.create!(name: 'Assinatura TV',
                       description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
                       status: :active)
+
+      allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
       Service.create!(name: 'Desconto clubes seguros',
                       description: 'Concede 10% de desconto em aquisição de seguro veicular.', status: :active)
 
@@ -14,7 +16,11 @@ describe 'Service API' do
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 2
       expect(json_response[0]['name']).to eq 'Assinatura TV'
+      expect(json_response[0]['status']).to eq 'active'
       expect(json_response[1]['name']).to eq 'Desconto clubes seguros'
+      expect(json_response[1]['code']).to eq 'AAA'
+      expect(json_response[1]['status']).to eq 'active'
+      expect(json_response[1]['description']).to eq 'Concede 10% de desconto em aquisição de seguro veicular.'
     end
 
     it 'Retorna vazio se não existir serviços' do
