@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Funcionário vê lista de apólices canceladas' do
+describe 'Funcionário vê lista de todas as apólices ' do
   it 'com sucesso' do
     insurance_company = InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
                                                  registration_number: '84157841000105')
@@ -14,12 +14,19 @@ describe 'Funcionário vê lista de apólices canceladas' do
                   client_email: 'mariaalves@email.com',
                   insurance_company_id: insurance_company.id, order_id: 1,
                   equipment_id: 1, purchase_date: Time.zone.today,
-                  policy_period: 12, package_id: package.id, status: :canceled)
+                  policy_period: 12, package_id: package.id, status: :active)
+
+    allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('DEF1234567')
+    Policy.create(client_name: 'Bruna Alves', client_registration_number: '00050033340',
+                  client_email: 'brunaalves@email.com',
+                  insurance_company_id: insurance_company.id, order_id: 2,
+                  equipment_id: 1, purchase_date: 1.day.from_now,
+                  policy_period: 12, package_id: package.id, status: :pending)
 
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Canceladas'
+    click_on 'Todas'
 
     expect(page).to have_content 'Código da Apólice'
     expect(page).to have_content 'Nome do Cliente'
@@ -27,8 +34,11 @@ describe 'Funcionário vê lista de apólices canceladas' do
     expect(page).to have_content 'ABC1234567'
     expect(page).to have_content 'Maria Alves'
     expect(page).to have_content Time.zone.today.strftime('%d/%m/%Y')
+    expect(page).to have_content 'DEF1234567'
+    expect(page).to have_content 'Bruna Alves'
+    expect(page).to have_content 1.day.from_now.strftime('%d/%m/%Y')
   end
-  it 'e não há apólices canceladas' do
+  it 'e não há apólices cadastradas' do
     InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
                              registration_number: '84157841000105')
     user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria')
@@ -36,8 +46,8 @@ describe 'Funcionário vê lista de apólices canceladas' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Canceladas'
+    click_on 'Todas'
 
-    expect(page).to have_content 'Não existem apólices ativas'
+    expect(page).to have_content 'Não existem apólices cadastradas'
   end
 end

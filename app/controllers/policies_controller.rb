@@ -1,5 +1,6 @@
 class PoliciesController < ApplicationController
   def index
+    @policies_all = Policy.all
     @policies_pending = Policy.pending
     @policies_pending_payment = Policy.pending_payment
     @policies_active = Policy.active

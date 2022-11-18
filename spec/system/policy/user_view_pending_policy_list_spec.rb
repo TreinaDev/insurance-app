@@ -26,7 +26,7 @@ describe 'Funcionário vê lista de apólices pendentes' do
     expect(page).to have_content 'Data da Contratação'
     expect(page).to have_content 'ABC1234567'
     expect(page).to have_content 'Maria Alves'
-    expect(page).to have_content Time.zone.today
+    expect(page).to have_content Time.zone.today.strftime('%d/%m/%Y')
   end
   it 'e não há apólices pendentes cadastradas' do
     InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
