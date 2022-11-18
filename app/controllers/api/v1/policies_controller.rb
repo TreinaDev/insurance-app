@@ -22,7 +22,14 @@ class Api::V1::PoliciesController < Api::V1::ApiController
   end
 
   def equipment
-    policy = Policy.active.find_by(equipment_id: params[:equipment_id])
+    policy = Policy.where(equipment_id: params[:equipment_id])
+    return render status: :ok, json: policy.as_json(except: %i[created_at updated_at]) if policy.present?
+
+    raise ActiveRecord::RecordNotFound
+  end
+
+  def order
+    policy = Policy.find_by(order_id: params[:order_id])
     return render status: :ok, json: policy.as_json(except: %i[created_at updated_at]) if policy.present?
 
     raise ActiveRecord::RecordNotFound

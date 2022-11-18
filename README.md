@@ -9,6 +9,24 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 ## Documentação da API
 
+  * [Obter lista de produtos](#obter-lista-de-produtos)
+  * [Obter dados de produto específico](#obter-dados-de-produto-específico)
+  * [Obter lista de seguradoras](#obter-lista-de-seguradoras)
+  * [Obter informações sobre seguradora específica](#obter-informações-sobre-seguradora-específica)
+  * [Solicitar emissão de apólice](#solicitar-emissão-de-apólice)
+  * [Obter apólice específica](#obter-lista-de-apólices)
+  * [Consulta de apólices através de equipment_id](#consulta-de-apólices-através-de-equipment_id)
+  * [Consulta de apólice através de order_id](#consulta-de-apólice-através-de-order_id)
+  * [Obter apólice específica](#obter-apólice-específica)
+  * [Obter dados de Coberturas](#obter-dados-de-coberturas)
+  * [Obter dados de Serviços](#obter-dados-de-serviços)
+  * [Obter lista de Pacotes](#obter-lista-de-pacotes)
+  * [Obter dados de pacote específico](#obter-dados-de-pacote-específico)
+  * [Status Codes](#status-codes)
+
+
+
+
 ### Obter lista de Produtos
 
 **Endpoint: GET /api/v1/products**
@@ -20,26 +38,24 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 ```json
 [
   {
-    "id":1,
-    "product_model":"TV 32",
-    "launch_year":"2022",
-    "brand":"LG",
-    "price":"5000.0",
-    "status":"active",
-    "product_category_id":1,
-    "created_at":"2022-11-08T19:42:47.921Z",
-    "updated_at":"2022-11-08T19:42:47.921Z"
+    "id": 1,
+    "product_model": "Samsung Galaxy S20",
+    "launch_year": "2018",
+    "brand": "Samsung",
+    "price": "2000.0",
+    "status": "active",
+    "product_category_id": 1,
+    "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--677e89aa27092ea9bbb3e13b6a048138d50182fa/galaxy-s20-produto.jpg"
   },
   {
-    "id":2,
-    "product_model":"TV 50",
-    "launch_year":"2021",
-    "brand":"SAMSUNG",
-    "price":"8000.0",
-    "status":"active",
-    "product_category_id":1,
-    "created_at":"2022-11-08T19:43:08.381Z",
-    "updated_at":"2022-11-08T19:43:08.381Z"
+    "id": 2,
+    "product_model": "TV 32",
+    "launch_year": "2022",
+    "brand": "LG",
+    "price": "5000.0",
+    "status": "active",
+    "product_category_id": 2,
+    "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--15f487e8484bb093cac5b36aa49b40eec45cef17/tv32.jpeg"
   }
 ]
 ```
@@ -59,7 +75,8 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "brand": "Samsung",
   "price": "2000.0",
   "status": "active",
-  "product_category_id": 1
+  "product_category_id": 1,
+  "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--677e89aa27092ea9bbb3e13b6a048138d50182fa/galaxy-s20-produto.jpg"
 }
 ```
 
@@ -74,48 +91,44 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 ```json
 [
   {
-    "id":4,
-    "name":"Anjo Seguradora",
-    "email_domain":"anjoseguradora.com.br",
-    "company_status":"active",
-    "token_status":"token_active",
-    "created_at":"2022-11-14T13:41:14.300Z",
-    "updated_at":"2022-11-14T13:41:14.329Z",
-    "registration_number":"90929380000777",
-    "token":"JZLBBGYMVJRG630OWZ6O"
+    "id": 4,
+    "name": "Anjo Seguradora",
+    "email_domain": "anjoseguradora.com.br",
+    "company_status": "active",
+    "token_status": "token_active",
+    "registration_number": "90929380000777",
+    "token": "MCJJJC4Q7YLCLWDZLRMF",
+    "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1da4565a5c1f4d14cf2376f46b4d4ab3b41080e5/anjo_seguradora.PNG"
   },
   {
-    "id":1,
-    "name":"Liga de Seguros",
-    "email_domain":"ligadeseguros.com.br",
-    "company_status":"active",
-    "token_status":"token_active",
-    "created_at":"2022-11-14T13:41:14.129Z",
-    "updated_at":"2022-11-14T13:41:14.201Z",
-    "registration_number":"01333288000189",
-    "token":"JUYJWZAQT45HMODM2L1D"
+    "id": 1,
+    "name": "Liga de Seguros",
+    "email_domain": "ligadeseguros.com.br",
+    "company_status": "active",
+    "token_status": "token_active",
+    "registration_number": "01333288000189",
+    "token": "LZ3PLTPTOGGQRTWYT2OE",
+    "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e6342b93abe5afefdc5369e4c715907c7dac161e/liga_seguros.PNG"
   },
   {
-    "id":3,
-    "name":"Seguradora A",
-    "email_domain":"seguradoraa.com.br",
-    "company_status":"active",
-    "token_status":"token_active",
-    "created_at":"2022-11-14T13:41:14.253Z",
-    "updated_at":"2022-11-14T13:41:14.277Z",
-    "registration_number":"80929380000456",
-    "token":"ZMBHW3L2DDH5NMPX3OEY"
+    "id": 3,
+    "name": "Seguradora A",
+    "email_domain": "seguradoraa.com.br",
+    "company_status": "active",
+    "token_status": "token_active",
+    "registration_number": "80929380000456",
+    "token": "QON5MQFEWI5U9BUGKVDJ",
+    "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9452a209d86eb32f10254edd051e80d36045072b/seguradora_a.PNG"
   },
   {
-    "id":2,
-    "name":"Trapiche Seguro",
-    "email_domain":"trapicheseguro.com.br",
-    "company_status":"inactive",
-    "token_status":"token_active",
-    "created_at":"2022-11-14T13:41:14.215Z",
-    "updated_at":"2022-11-14T13:41:14.239Z",
-    "registration_number":"29929380000125",
-    "token":"BHL5UNU78ABLMMJKVPHW"
+    "id": 2,
+    "name": "Trapiche Seguro",
+    "email_domain": "trapicheseguro.com.br",
+    "company_status": "inactive",
+    "token_status": "token_active",
+    "registration_number": "29929380000125",
+    "token": "LT6DS2TVK3RFKRLT9KU5",
+    "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e833b0f0014b81bbd99436086c784d9347f475c9/trapiche_seguro.PNG"
   }
 ]
 ```
@@ -129,13 +142,14 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 ```json
 {
-  "id":1,
-  "name":"Liga de Seguros",
-  "email_domain":"ligadeseguros.com.br",
-  "company_status":"active",
-  "token_status":"token_active",
-  "registration_number":"01333288000189",
-  "token":"JUYJWZAQT45HMODM2L1D"
+  "id": 1,
+  "name": "Liga de Seguros",
+  "email_domain": "ligadeseguros.com.br",
+  "company_status": "active",
+  "token_status": "token_active",
+  "registration_number": "01333288000189",
+  "token": "LZ3PLTPTOGGQRTWYT2OE",
+  "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e6342b93abe5afefdc5369e4c715907c7dac161e/liga_seguros.PNG"
 }
 ```
 ### Solicitar emissão de Apólice
@@ -206,9 +220,36 @@ Obs: "purchase_date" = data de compra do pacote
 }
 ```
 
-### Obter lista de apólices
+### Obter apólice específica
 
-**Endpoint: GET /api/v1/policies**
+**Endpoint: GET /api/v1/policies/code**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 2,
+  "code": "L2IXANKGZ8",
+  "expiration_date": "2023-11-17",
+  "status": "pending",
+  "client_name": "Rafael Souza",
+  "client_registration_number": "55511122220",
+  "client_email": "rafaelsouza@email.com",
+  "equipment_id": 2,
+  "purchase_date": "2022-11-17",
+  "policy_period": 12,
+  "package_id": 1,
+  "order_id": 2,
+  "insurance_company_id": 1,
+  "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fee25a97dc109b9069e7edefc3036978ba295eaa/sample-policy-b.pdf"
+}
+```
+
+### Consulta de apólices através de equipment_id
+
+**Endpoint: GET /api/v1/policies/equipment/equipment_id**
 
 <p align = "justify">Retornos:</p>
 
@@ -218,66 +259,45 @@ Obs: "purchase_date" = data de compra do pacote
 [
   {
     "id": 1,
-    "code": "R4OBOVSVD7",
-    "expiration_date": "2023-11-14",
+    "code": "FWIF7WEBUF",
+    "expiration_date": "2023-11-18",
     "status": "pending",
-    "created_at": "2022-11-14T13:14:28.608Z",
-    "updated_at": "2022-11-14T13:14:28.608Z",
     "client_name": "Maria Alves",
     "client_registration_number": "99950033340",
     "client_email": "mariaalves@email.com",
     "equipment_id": 1,
-    "purchase_date": "2022-11-14",
+    "purchase_date": "2022-11-18",
     "policy_period": 12,
     "package_id": 1,
     "order_id": 1,
     "insurance_company_id": 1
-  },
-  {
-    "id": 2,
-    "code": "7CJZLLQMKK",
-    "expiration_date": "2023-11-14",
-    "status": "pending",
-    "created_at": "2022-11-14T13:14:28.860Z",
-    "updated_at": "2022-11-14T13:14:28.860Z",
-    "client_name": "Rafael Souza",
-    "client_registration_number": "55511122220",
-    "client_email": "rafaelsouza@email.com",
-    "equipment_id": 2,
-    "purchase_date": "2022-11-14",
-    "policy_period": 12,
-    "package_id": 1,
-    "order_id": 2,
-    "insurance_company_id": 1
   }
 ]
 ```
-### Obter apólice específica
+### Consulta de apólice através de order_id
 
-**Endpoint: GET /api/v1/policies/id**
+**Endpoint: GET /api/v1/policies/order/order_id**
 
 <p align = "justify">Retornos:</p>
 
 <p align = "justify">200 (Sucesso)</p>
 
 ```json
-[ 
-  {
-    "id": 1,
-    "code": "R4OBOVSVD7",
-    "expiration_date": "2023-11-14",
-    "status": "pending",
-    "client_name": "Maria Alves",
-    "client_registration_number": "99950033340",
-    "client_email": "mariaalves@email.com",
-    "equipment_id": 1,
-    "purchase_date": "2022-11-14",
-    "policy_period": 12,
-    "package_id": 1,
-    "order_id": 1,
-    "insurance_company_id": 1
-  }
-]
+{
+  "id": 2,
+  "code": "MNMHYDCUWC",
+  "expiration_date": "2023-11-18",
+  "status": "pending",
+  "client_name": "Rafael Souza",
+  "client_registration_number": "55511122220",
+  "client_email": "rafaelsouza@email.com",
+  "equipment_id": 2,
+  "purchase_date": "2022-11-18",
+  "policy_period": 12,
+  "package_id": 1,
+  "order_id": 2,
+  "insurance_company_id": 1
+}
 ```
 
 ### Obter dados de Coberturas
@@ -289,23 +309,17 @@ Obs: "purchase_date" = data de compra do pacote
   {
     "id":1,
     "name":"Molhar",
-    "description":"Assistência por danificação devido a molhar o aparelho.",
-    "status":"active",
-    "code":"HWI"
+    "description":"Assistência por danificação devido a molhar o aparelho."
   },
   {
     "id":2,
     "name":"Quebra de tela",
-    "description":"Assistência por danificação da tela do aparelho.",
-    "status":"active",
-    "code":"HWB"
+    "description":"Assistência por danificação da tela do aparelho."
   },
   {
     "id":3,
     "name":"Furto",
-    "description":"Reembolso de valor em caso de roubo do aparelho.",
-    "status":"active",
-    "code":"HWZ"
+    "description":"Reembolso de valor em caso de roubo do aparelho."
   }
 ]
 ```
@@ -319,16 +333,12 @@ Obs: "purchase_date" = data de compra do pacote
   {
     "id":1,
     "name":"Assinatura TV",
-    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.",
-    "status":"active",
-    "code":"HWQ"
+    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado."
   },
   {
     "id":2,
     "name":"Desconto clubes seguros",
-    "description":"Concede 10% de desconto em aquisição de seguro veicular.",
-    "status":"active",
-    "code":"HWA"
+    "description":"Concede 10% de desconto em aquisição de seguro veicular."
   }
 ]
 
