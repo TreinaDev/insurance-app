@@ -1,0 +1,16 @@
+pt-BR:
+  pending: 'Pendente'
+  active: "Ativa"
+  canceled: 'Cancelada'
+  expired: 'Vencida'
+  policies:
+    show:
+      title: 'Apólice'
+      back: 'Voltar'
+      months: 'meses'
+  status:
+    pending: 'Pendente'
+    active: "Ativa"
+    canceled: 'Cancelada'
+    expired: 'Vencida'
+    

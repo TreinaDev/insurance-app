@@ -9,6 +9,10 @@ class PoliciesController < ApplicationController
     @policies_canceled = Policy.canceled
   end
 
+  def show
+    @policy = Policy.find(params[:id])
+  end
+
   private
 
   def find_policy_by_id
