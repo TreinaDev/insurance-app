@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe 'Funcionário vê lista de apólices aguardando pagamento' do
+describe 'Administrador vê lista de apólices aguardando pagamento' do
   it 'com sucesso' do
     insurance_company = InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
                                                  registration_number: '84157841000105')
-    user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria')
+    user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                               price: 90.00, product_category_id: product_category.id)
@@ -31,7 +31,7 @@ describe 'Funcionário vê lista de apólices aguardando pagamento' do
   it 'e não há apólices pendentes de pagamento cadastradas' do
     InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
                              registration_number: '84157841000105')
-    user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria')
+    user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria', role: :admin)
 
     login_as(user)
     visit root_path

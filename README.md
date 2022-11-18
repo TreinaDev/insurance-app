@@ -435,7 +435,7 @@ $ rails s
 
 * Usuário administrador cadastrado: pessoa@empresa.com.br (senha: password)
 
-* Usuário funcionário de seguradora cadastrado: funcionario@portoseguro.com.br (senha: password)
+* Usuário funcionário de seguradora cadastrado: funcionario@seguradoraa.com.br (senha: password)
 
 * Gems instaladas: bootstrap, capybara, devise, rspec, rubocop, factory_bot, simplecov
 
