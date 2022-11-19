@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Usuário ativa um pacote' do
-  it 'pendente adicionando coberturas' do
+describe 'Usuário adiciona coberturas a um pacote pendente' do
+  it 'com sucesso' do
     company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
                                        registration_number: '80958759000110')
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
@@ -43,5 +43,49 @@ describe 'Usuário ativa um pacote' do
       expect(page).to have_content '0,32%'
       expect(page).to have_content '0,50%'
     end
+  end
+
+  it 'incluindo cobertura já adicionada' do
+    company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
+                                       registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
+                    product_category: smartphones, status: :pending)
+    PackageCoverage.create!(name: 'Quebra de tela',
+                            description: 'Assistência por danificação da tela do aparelho.')
+
+    login_as(user)
+    visit root_path
+    click_on 'Pacotes'
+    click_on 'Premium'
+    select 'Quebra de tela', from: 'Cobertura'
+    fill_in 'Preço Percentual', with: 0.32
+    click_on 'Adicionar Cobertura'
+    select 'Quebra de tela', from: 'Cobertura'
+    fill_in 'Preço Percentual', with: 0.5
+    click_on 'Adicionar Cobertura'
+
+    expect(page).to have_content 'Erro na adição de Cobertura'
+  end
+
+  it 'com informações incompletas' do
+    company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
+                                       registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
+                    product_category: smartphones, status: :pending)
+    PackageCoverage.create!(name: 'Quebra de tela',
+                            description: 'Assistência por danificação da tela do aparelho.')
+
+    login_as(user)
+    visit root_path
+    click_on 'Pacotes'
+    click_on 'Premium'
+    fill_in 'Preço Percentual', with: ''
+    click_on 'Adicionar Cobertura'
+
+    expect(page).to have_content 'Erro na adição de Cobertura'
   end
 end
