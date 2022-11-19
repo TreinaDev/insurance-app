@@ -289,17 +289,23 @@ Obs: "purchase_date" = data de compra do pacote
   {
     "id":1,
     "name":"Molhar",
-    "description":"Assistência por danificação devido a molhar o aparelho."
+    "description":"Assistência por danificação devido a molhar o aparelho.",
+    "status":"active",
+    "code":"HWI"
   },
   {
     "id":2,
     "name":"Quebra de tela",
-    "description":"Assistência por danificação da tela do aparelho."
+    "description":"Assistência por danificação da tela do aparelho.",
+    "status":"active",
+    "code":"HWB"
   },
   {
     "id":3,
     "name":"Furto",
-    "description":"Reembolso de valor em caso de roubo do aparelho."
+    "description":"Reembolso de valor em caso de roubo do aparelho.",
+    "status":"active",
+    "code":"HWZ"
   }
 ]
 ```
@@ -313,12 +319,16 @@ Obs: "purchase_date" = data de compra do pacote
   {
     "id":1,
     "name":"Assinatura TV",
-    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado."
+    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.",
+    "status":"active",
+    "code":"HWQ"
   },
   {
     "id":2,
     "name":"Desconto clubes seguros",
-    "description":"Concede 10% de desconto em aquisição de seguro veicular."
+    "description":"Concede 10% de desconto em aquisição de seguro veicular.",
+    "status":"active",
+    "code":"HWA"
   }
 ]
 

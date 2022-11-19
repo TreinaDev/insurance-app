@@ -4,6 +4,7 @@ describe 'PackageCoverage API' do
     it 'listar todas as coberturas ordenadas pelo nome' do
       PackageCoverage.create!(name: 'Molhar',
                               description: 'Assistência por danificação devido a molhar o aparelho.')
+      allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
       PackageCoverage.create!(name: 'Quebra de tela',
                               description: 'Assistência por danificação da tela do aparelho.')
 
@@ -13,8 +14,13 @@ describe 'PackageCoverage API' do
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 2
       expect(json_response[0]['name']).to eq 'Molhar'
+      expect(json_response[0]['status']).to eq 'active'
+      expect(json_response[0]['description']).to eq 'Assistência por danificação devido a molhar o aparelho.'
       expect(json_response[1]['name']).to eq 'Quebra de tela'
+      expect(json_response[1]['code']).to eq 'AAA'
+      expect(json_response[1]['status']).to eq 'active'
     end
+
     it 'Retorna vazio se não existir coberturas' do
       get '/api/v1/package_coverages'
 

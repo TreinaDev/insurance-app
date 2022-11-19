@@ -28,6 +28,17 @@ RSpec.describe PackageCoverage, type: :model do
 
         expect(result).to be false
       end
+
+      it 'falso quando código é nulo' do
+        allow(SecureRandom).to receive(:alphanumeric).and_return('')
+        pc = PackageCoverage.new(name: 'Molhar',
+                                 description: 'Assistência por danificação devido a molhar o aparelho.',
+                                 status: :active)
+
+        result = pc.valid?
+
+        expect(result).to eq false
+      end
     end
 
     context '#length' do
@@ -51,6 +62,19 @@ RSpec.describe PackageCoverage, type: :model do
         result = pc.valid?
 
         expect(result).to be false
+      end
+
+      it 'falso quando código não é único' do
+        allow(SecureRandom).to receive(:alphanumeric).and_return('AAA')
+        PackageCoverage.create!(name: 'Quebra de tela',
+                                description: 'Assistência por danificação da tela do aparelho.')
+        pc = PackageCoverage.new(name: 'Molhar',
+                                 description: 'Assistência por danificação devido a molhar o aparelho.',
+                                 status: :active)
+
+        result = pc.valid?
+
+        expect(result).to eq false
       end
     end
   end
