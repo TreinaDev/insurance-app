@@ -59,4 +59,21 @@ describe 'Usuário vê página de detalhes do pacote' do
     expect(page).to have_content('Para continuar, faça login ou registre-se.')
     expect(current_path).to eq user_session_path
   end
+
+  it 'como funcionário de outra seguradora' do
+    InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                             registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradoraa.com.br', password: 'password', name: 'Maria', role: :employee)
+    company = InsuranceCompany.create!(name: 'Azul', email_domain: 'azul.com.br',
+                                       registration_number: '12358759000110')
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
+                              product_category: smartphones)
+
+    login_as(user)
+    visit package_path(package.id)
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Pacote indisponível'
+  end
 end

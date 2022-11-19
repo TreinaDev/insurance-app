@@ -9,8 +9,12 @@ class PackagesController < ApplicationController
 
   def show
     @package = Package.find(params[:id])
-    @coverage_pricing = CoveragePricing.new
-    @coverage_pricings = @package.coverage_pricings
+    if current_user.admin? || current_user.insurance_company == @package.insurance_company
+      @coverage_pricing = CoveragePricing.new
+      @coverage_pricings = @package.coverage_pricings
+    else
+      redirect_to root_url, alert: t('.error')
+    end
   end
 
   def new

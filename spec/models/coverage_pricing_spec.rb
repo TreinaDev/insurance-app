@@ -153,8 +153,8 @@ RSpec.describe CoveragePricing, type: :model do
                                    insurance_company: company,
                                    product_category: category)
         package2 = Package.create!(name: 'Seguro Extra', max_period: 11, min_period: 4,
-                                    insurance_company: company,
-                                    product_category: category)
+                                   insurance_company: company,
+                                   product_category: category)
         CoveragePricing.create!(percentage_price: 0.3, package: package1, package_coverage: coverage1)
         cp = CoveragePricing.new(percentage_price: 0.3, package: package2, package_coverage: coverage1)
 
