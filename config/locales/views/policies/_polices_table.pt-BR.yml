@@ -3,4 +3,4 @@ pt-BR:
     _polices_table:
       title: 'Lista de Apólices'
       policies_pending: 'Pendentes'
-      policies_pending_payment: 'Aguardando Pagamento'
+      policies_pending_payment: 'Pagamento Pendente'

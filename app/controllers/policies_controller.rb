@@ -13,6 +13,18 @@ class PoliciesController < ApplicationController
     @policy = Policy.find(params[:id])
   end
 
+  def approved
+    @policy = Policy.find(params[:id])
+    @policy.pending_payment!
+    redirect_to @policy, notice: t('.success')
+  end
+
+  def disapproved
+    @policy = Policy.find(params[:id])
+    @policy.canceled!
+    redirect_to @policy, notice: t('.success')
+  end
+
   private
 
   def find_policy_by_id

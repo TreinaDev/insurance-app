@@ -8,9 +8,12 @@ pt-BR:
       title: 'Apólice'
       back: 'Voltar'
       months: 'meses'
+    approved:
+      success: 'Apólice aprovada com sucesso'
+    disapproved:
+      success: 'Apólice reprovada'
   status:
     pending: 'Pendente'
     active: "Ativa"
     canceled: 'Cancelada'
     expired: 'Vencida'
-    
