@@ -8,14 +8,6 @@ class PoliciesController < ApplicationController
     end
   end
 
-  # def find_policies_by_status(current_status)
-  #   if current_user.admin?
-  #     policies = current_user.policies.where(status: current_status)
-  #   else
-  #     policies = current_user.insurance_company.policies.current_status
-  #   end
-  # end
-
   private
 
   def find_current_policies
