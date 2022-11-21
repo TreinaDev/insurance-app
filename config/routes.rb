@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       resources :packages, only: [:index, :show]
       resources :package_coverages, only: [:index]
       resources :services, only: [:index]
-      resources :policies, only: [:index, :show, :create]
+      resources :policies, only: [:index, :show, :create], param: :code
     end
   end
 end

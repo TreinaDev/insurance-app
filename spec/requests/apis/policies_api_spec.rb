@@ -78,16 +78,20 @@ describe 'Policy API' do
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                                 price: 90.00, product_category_id: product_category.id)
-      Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
-                     client_email: 'mariaalves@email.com',
-                     insurance_company_id: insurance_company.id, order_id: 1,
-                     equipment_id: 1, purchase_date: Time.zone.today,
-                     policy_period: 12, package_id: package.id)
-      Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
-                     client_email: 'rafaelsouza@email.com',
-                     insurance_company_id: insurance_company.id, order_id: 2,
-                     equipment_id: 1, purchase_date: Time.zone.today,
-                     policy_period: 12, package_id: package.id)
+      policy_a = Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                                client_email: 'mariaalves@email.com',
+                                insurance_company_id: insurance_company.id, order_id: 1,
+                                equipment_id: 1, purchase_date: Time.zone.today,
+                                policy_period: 12, package_id: package.id, status: :active)
+      pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-a.pdf')
+      policy_a.file.attach(io: pdf_path.open, filename: 'sample-policy-a.pdf')
+      policy_b = Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
+                                client_email: 'rafaelsouza@email.com',
+                                insurance_company_id: insurance_company.id, order_id: 2,
+                                equipment_id: 1, purchase_date: Time.zone.today,
+                                policy_period: 12, package_id: package.id, status: :active)
+      pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-b.pdf')
+      policy_b.file.attach(io: pdf_path.open, filename: 'sample-policy-b.pdf')
 
       get '/api/v1/policies'
 
@@ -97,6 +101,7 @@ describe 'Policy API' do
       expect(json_response.length).to eq 2
       expect(json_response[0]['client_name']).to eq 'Maria Alves'
       expect(json_response[1]['client_name']).to eq 'Rafael Souza'
+      expect(json_response[0].keys).to include 'file_url'
     end
 
     it 'retorna vazio se não há apólices' do
@@ -129,8 +134,10 @@ describe 'Policy API' do
                               insurance_company_id: insurance_company.id, order_id: 1,
                               equipment_id: 1, purchase_date: Time.zone.today,
                               policy_period: 12, package_id: package.id)
+      pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-b.pdf')
+      policy.file.attach(io: pdf_path.open, filename: 'sample-policy-b.pdf')
 
-      get "/api/v1/policies/#{policy.id}"
+      get "/api/v1/policies/#{policy.code}"
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -144,6 +151,7 @@ describe 'Policy API' do
       expect(json_response['purchase_date']).to eq Time.zone.today.strftime
       expect(json_response['policy_period']).to eq 12
       expect(json_response['package_id']).to eq(package.id)
+      expect(json_response.keys).to include 'file_url'
     end
 
     it 'falha se apólice não for encontrada' do
