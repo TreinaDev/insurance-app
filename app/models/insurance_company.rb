@@ -1,6 +1,7 @@
 class InsuranceCompany < ApplicationRecord
   has_many :packages, dependent: nil
   has_many :pending_packages, dependent: nil
+  has_many :policies, dependent: nil
 
   enum company_status: { active: 0, inactive: 1 }
   enum token_status: { token_active: 0, token_inactive: 1 }
