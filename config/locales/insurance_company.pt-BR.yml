@@ -19,7 +19,7 @@ pt-BR:
       insurance_company/token_status:
         token_active: "Ativo"
         token_inactive: "Inativo"  
-  insurance_companies:      
+  insurance_companies:
     index:
       register: 'Adicionar Seguradora'
       authorization_failure: 'Apenas usuários administradores tem acesso a essa função'

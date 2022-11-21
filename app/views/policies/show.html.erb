@@ -1,0 +1,18 @@
+<a class="btn btn-outline-dark" style="margin-bottom:16px;" href="<%= policies_path %>" role="button"><%= t '.back' %></a>
+<div class = "container-card" > 
+  <div class="card" style="width: 25rem;">    
+    <div class="card-body">
+      <h4><%= t '.title' %>: <%= @policy.code %></h4><br/>
+        <p><strong><%= Policy.human_attribute_name(:status)%>: </strong><%= I18n.translate @policy.status %></p>
+        <p><strong><%= Policy.human_attribute_name(:client_name)%>: </strong><%= @policy.client_name %></p>
+        <p><strong><%= Policy.human_attribute_name(:client_registration_number)%>: </strong><%= @policy.client_registration_number %></p>
+        <p><strong><%= Policy.human_attribute_name(:client_email)%>: </strong><%= @policy.client_email %></p>
+        <p><strong><%= Policy.human_attribute_name(:insurance_company_id)%>:</strong> <%= @policy.insurance_company.name %></p>
+        <p><strong><%= Policy.human_attribute_name(:package_id)%>: </strong><%= @policy.package.name %></p>
+        <p><strong><%= Policy.human_attribute_name(:purchase_date)%>: </strong><%= @policy.purchase_date.strftime('%d/%m/%Y') %></p>
+        <p><strong><%= Policy.human_attribute_name(:policy_period)%>: </strong><%= @policy.policy_period %> <%= t '.months' %></p>
+        <p><strong><%= Policy.human_attribute_name(:expiration_date)%>: </strong><%= @policy.expiration_date.strftime('%d/%m/%Y') %></p>
+      </div>
+    </div>
+  </div>
+
