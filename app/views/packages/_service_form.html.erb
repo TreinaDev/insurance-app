@@ -1,0 +1,26 @@
+<div class="card my-3" id="service-form">
+  <div class="card-body">
+    <h4 class="mb-4">Incluir Serviço</h4>
+    <%= form_with(model: [@package, @service_pricing]) do |f| %>
+      <div class="row">
+        <div class="mb-3">
+          <%= f.label :service_id, class: "form-label fw-semibold" %>:
+          <%= f.collection_select :service_id, Service.all.order(:name), :id, :name, prompt: true, class: "form-control" %>
+        </div>
+        <div class="mb-3 col-auto">
+          <div class="row">
+            <div class="col-auto">
+              <%= f.label :percentage_price, class: "form-label fw-semibold" %> (%):
+            </div>
+            <div class="col-auto">
+              <%= f.number_field :percentage_price, step: 0.01, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <%= f.submit 'Adicionar Serviço', class: "btn btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -19,12 +19,14 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     visit root_path
     click_on 'Pacotes'
     click_on 'Premium'
-    select 'Molhar', from: 'Cobertura'
-    fill_in 'Preço Percentual', with: 0.32
-    click_on 'Adicionar Cobertura'
-    select 'Roubo', from: 'Cobertura'
-    fill_in 'Preço Percentual', with: 0.5
-    click_on 'Adicionar Cobertura'
+    within '#coverage-form' do
+      select 'Molhar', from: 'Cobertura'
+      fill_in 'Preço Percentual', with: 0.32
+      click_on 'Adicionar Cobertura'
+      select 'Roubo', from: 'Cobertura'
+      fill_in 'Preço Percentual', with: 0.5
+      click_on 'Adicionar Cobertura'
+    end
 
     expect(current_path).to eq package_path(package.id)
     expect(page).to have_content 'Cobertura adicionada com sucesso!'
@@ -59,12 +61,14 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     visit root_path
     click_on 'Pacotes'
     click_on 'Premium'
-    select 'Quebra de tela', from: 'Cobertura'
-    fill_in 'Preço Percentual', with: 0.32
-    click_on 'Adicionar Cobertura'
-    select 'Quebra de tela', from: 'Cobertura'
-    fill_in 'Preço Percentual', with: 0.5
-    click_on 'Adicionar Cobertura'
+    within '#coverage-form' do
+      select 'Quebra de tela', from: 'Cobertura'
+      fill_in 'Preço Percentual', with: 0.32
+      click_on 'Adicionar Cobertura'
+      select 'Quebra de tela', from: 'Cobertura'
+      fill_in 'Preço Percentual', with: 0.5
+      click_on 'Adicionar Cobertura'
+    end
 
     expect(page).to have_content 'Erro na adição de Cobertura'
   end
@@ -83,8 +87,10 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     visit root_path
     click_on 'Pacotes'
     click_on 'Premium'
-    fill_in 'Preço Percentual', with: ''
-    click_on 'Adicionar Cobertura'
+    within '#coverage-form' do
+      fill_in 'Preço Percentual', with: ''
+      click_on 'Adicionar Cobertura'
+    end
 
     expect(page).to have_content 'Erro na adição de Cobertura'
   end

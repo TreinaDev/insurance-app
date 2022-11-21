@@ -12,6 +12,8 @@ class PackagesController < ApplicationController
     if current_user.admin? || current_user.insurance_company == @package.insurance_company
       @coverage_pricing = CoveragePricing.new
       @coverage_pricings = @package.coverage_pricings
+      @service_pricing = ServicePricing.new
+      @service_pricings = @package.service_pricings
     else
       redirect_to root_url, alert: t('.error')
     end

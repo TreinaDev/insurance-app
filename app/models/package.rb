@@ -2,6 +2,7 @@ class Package < ApplicationRecord
   belongs_to :insurance_company
   belongs_to :product_category
   has_many :coverage_pricings, dependent: nil
+  has_many :service_pricings, dependent: nil
 
   validates :name, :min_period, :max_period, presence: true
   validates :min_period, numericality: { greater_than: 0 }

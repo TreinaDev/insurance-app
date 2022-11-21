@@ -39,32 +39,37 @@
         </div>
       <% end %>
     </section>
+    <section id="service-list">
+      <% if @service_pricings.any? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= Service.human_attribute_name(:code) %></th>
+              <th><%= Service.human_attribute_name(:name) %></th>
+              <th><%= Service.human_attribute_name(:description) %></th>
+              <th><%= ServicePricing.human_attribute_name(:percentage_price) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @service_pricings.each do |sp| %>
+              <tr id=<%= dom_id(Service.find(sp.service.id)) %>>
+                <td><%= sp.service.code %></td>
+                <td><%= sp.service.name  %></td>
+                <td><%= sp.service.description %></td>
+                <td><%= number_to_percentage(sp.percentage_price, precision: 2) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="alert alert-secondary text-center">
+          <%= t '.no_services' %>
+        </div>
+      <% end %>
+    </section>
   </div>
 </div>
 
-<div class="card my-3">
-  <div class="card-body">
-    <h4 class="mb-4">Incluir Cobertura</h4>
-    <%= form_with(model: [@package, @coverage_pricing]) do |f| %>
-      <div class="row">
-        <div class="mb-3">
-          <%= f.label :package_coverage_id, class: "form-label fw-semibold" %>:
-          <%= f.collection_select :package_coverage_id, PackageCoverage.all, :id, :name, prompt: true, class: "form-control" %>
-        </div>
-        <div class="mb-3 col-auto">
-          <div class="row">
-            <div class="col-auto">
-              <%= f.label :percentage_price, class: "form-label fw-semibold" %> (%):
-            </div>
-            <div class="col-auto">
-              <%= f.number_field :percentage_price, step: 0.01, class: "form-control" %>
-            </div>
-          </div>
-        </div>
-        <div>
-          <%= f.submit 'Adicionar Cobertura', class: "btn btn-dark" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render 'coverage_form' %>
+
+<%= render 'service_form' %>
