@@ -2,6 +2,7 @@ pt-BR:
   pending: 'Pendente'
   active: "Ativa"
   canceled: 'Cancelada'
+  expired: 'Vencida'
   activerecord:
     models:
       policy:
@@ -24,4 +25,9 @@ pt-BR:
         package: 'Pacote'
         expiration_date: 'Data de Término'
         code: 'Código da Apólice'
-        status: 'Situação'
+        status: 'Situação da Apólice'
+      policy/status:
+        pending: 'Pendente'
+        active: "Ativa"
+        canceled: 'Cancelada'
+        expired: 'Vencida'

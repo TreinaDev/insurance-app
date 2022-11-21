@@ -8,6 +8,10 @@ class PoliciesController < ApplicationController
     end
   end
 
+  def show
+    @policy = Policy.find(params[:id])
+  end
+
   private
 
   def find_current_policies

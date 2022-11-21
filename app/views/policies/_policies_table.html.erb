@@ -9,7 +9,7 @@
   <tbody>
     <% @policies.each do |policy| %>
       <tr>
-        <td><%= link_to policy.code, @policy, class: "link-dark" %></td>
+        <td><%= link_to policy.code, policy_path(policy.id), class: "link-dark" %></td>
         <td><%= policy.client_name %></td>
         <td><%= policy.purchase_date.strftime("%d/%m/%Y") %></td>
       </tr>
