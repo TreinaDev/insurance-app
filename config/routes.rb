@@ -25,7 +25,10 @@ Rails.application.routes.draw do
       resources :packages, only: [:index, :show]
       resources :package_coverages, only: [:index]
       resources :services, only: [:index]
-      resources :policies, only: [:index, :show, :create], param: :code
+      resources :policies, only: [:show, :create], param: :code do
+        get 'equipment/:equipment_id', to: 'policies#equipment', on: :collection
+        get 'order/:order_id', to: 'policies#order', on: :collection 
+      end
     end
   end
 end
