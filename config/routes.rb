@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :packages, only: [:index, :new, :create, :show] do
     resources :coverage_pricings, only: [:create]
     resources :service_pricings, only: [:create]
+    post 'activate', on: :member
   end
   resources :pending_packages, only: [:index, :new, :create]
   resources :services, only: [:index, :new, :create]

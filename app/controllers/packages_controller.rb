@@ -34,6 +34,12 @@ class PackagesController < ApplicationController
     end
   end
 
+  def activate
+    @package = Package.find(params[:id])
+    @package.active!
+    redirect_to @package, notice: t('.success')
+  end
+
   private
 
   def package_params
