@@ -90,12 +90,13 @@ describe 'Funcionário vê lista de apólices ativas' do
     expect(page).to have_content 'Pedro Dias'
     expect(page).to have_content 'GHI1234567'
   end
+
   it 'e não há apólices ativas cadastradas' do
     insurance_company1 = InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
                                                   registration_number: '84157841000105')
     insurance_company2 = InsuranceCompany.create!(name: 'Anjo Seguradora', email_domain: 'anjoseguradora.com.br',
                                                   registration_number: '00057841000105')
-    user = User.create!(email: 'maria@anjoguradora.com.br', password: 'password', name: 'Maria')
+    user = User.create!(email: 'maria@anjoseguradora.com.br', password: 'password', name: 'Maria')
     product_category = ProductCategory.create!(name: 'TV')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company_id:
                     insurance_company1.id,

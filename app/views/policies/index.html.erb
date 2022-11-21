@@ -51,7 +51,7 @@
         </div>
       <% end %>
     <% else %>
-      <% if @policies_all_id.any? %>
+      <% if @policies_all_id.present? %>
             <% @policies =  @policies_all_id %>
               <%= render 'policies_table' %>
       <% else %>
@@ -64,6 +64,8 @@
 
   <div class="tab-pane fade" id="pending-tab-pane" role="tabpanel" aria-labelledby="pending-tab" tabindex="0">
     <% if current_user.admin? %>
+    <%# <% @policies_pending = find_policies_by_status(:pending)%>
+    <% @policies_pending = @policies_pending %>
       <% if @policies_pending.any? %>
         <% @policies =  @policies_pending %>
         <%= render 'policies_table' %>
@@ -73,7 +75,7 @@
         </div>
       <% end %>
     <% else %>
-      <% if @policies_pending_id.any? %>
+      <% if @policies_pending_id.present? %>
             <% @policies =  @policies_pending_id %>
               <%= render 'policies_table' %>
       <% else %>
@@ -94,7 +96,7 @@
         </div>
       <% end %> 
     <% else %>
-      <% if @policies_pending_payment_id.any? %>
+      <% if @policies_pending_payment_id.present? %>
             <% @policies =  @policies_pending_payment_id %>
               <%= render 'policies_table' %>
       <% else %>
@@ -115,7 +117,7 @@
         </div>
       <% end %> 
     <% else %>
-      <% if @policies_active_id.any? %>
+      <% if @policies_active_id.present? %>
             <% @policies =  @policies_active_id %>
               <%= render 'policies_table' %>
       <% else %>
@@ -136,7 +138,7 @@
         </div>
       <% end %> 
     <% else %>
-      <% if @policies_canceled_id.any? %>
+      <% if @policies_canceled_id.present? %>
             <% @policies =  @policies_canceled_id %>
               <%= render 'policies_table' %>
       <% else %>
@@ -157,7 +159,7 @@
         </div>
       <% end %> 
     <% else %>
-      <% if @policies_expired_id.any? %>
+      <% if @policies_expired_id.present? %>
             <% @policies =  @policies_expired_id %>
               <%= render 'policies_table' %>
       <% else %>
