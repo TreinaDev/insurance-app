@@ -1,5 +1,4 @@
 class Api::V1::PoliciesController < Api::V1::ApiController
-
   def show
     policy = Policy.find_by(code: params[:code])
     return render status: :ok, json: create_json(policy) if policy.present?
@@ -26,10 +25,10 @@ class Api::V1::PoliciesController < Api::V1::ApiController
 
   def order
     policy = Policy.find_by(order_id: params[:order_id])
-    return render status: :ok, json: policy.as_json(except: %i[created_at updated_at]) if policy.present?
+    return render status: :ok, json: create_json(policy) if policy.present?
 
     raise ActiveRecord::RecordNotFound
-  end 
+  end
 
   private
 

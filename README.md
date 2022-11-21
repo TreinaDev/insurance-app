@@ -259,14 +259,14 @@ Obs: "purchase_date" = data de compra do pacote
 [
   {
     "id": 1,
-    "code": "FWIF7WEBUF",
-    "expiration_date": "2023-11-18",
-    "status": "pending",
+    "code": "NIUGBWSTJ5",
+    "expiration_date": "2023-11-21",
+    "status": "active",
     "client_name": "Maria Alves",
     "client_registration_number": "99950033340",
     "client_email": "mariaalves@email.com",
     "equipment_id": 1,
-    "purchase_date": "2022-11-17",
+    "purchase_date": "2022-11-21",
     "policy_period": 12,
     "package_id": 1,
     "order_id": 1,
@@ -275,25 +275,24 @@ Obs: "purchase_date" = data de compra do pacote
   },
   {
     "id": 2,
-    "code": "L2IXANKGZ8",
-    "expiration_date": "2023-11-17",
-    "status": "pending",
-    "client_name": "Rafael Souza",
-    "client_registration_number": "55511122220",
-    "client_email": "rafaelsouza@email.com",
-    "equipment_id": 2,
-    "purchase_date": "2022-11-17",
+    "code": "SZQ41EDXGK",
+    "expiration_date": "2023-01-21",
+    "status": "canceled",
+    "client_name": "Maria Alves",
+    "client_registration_number": "99950033340",
+    "client_email": "mariaalves@email.com",
+    "equipment_id": 1,
+    "purchase_date": "2022-01-21",
     "policy_period": 12,
-    "package_id": 1,
-    "order_id": 2,
-    "insurance_company_id": 1,
-    "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fee25a97dc109b9069e7edefc3036978ba295eaa/sample-policy-b.pdf"
+    "package_id": 2,
+    "order_id": 210,
+    "insurance_company_id": 1
   }
 ]
 ```
 ### Consulta de apólice através de order_id
 
-**Endpoint: GET /api/v1/policies/code**
+**Endpoint: GET /api/v1/policies/order/order_id**
 
 <p align = "justify">Retornos:</p>
 
@@ -301,20 +300,20 @@ Obs: "purchase_date" = data de compra do pacote
 
 ```json
 {
-  "id": 2,
-  "code": "MNMHYDCUWC",
-  "expiration_date": "2023-11-18",
-  "status": "pending",
-  "client_name": "Rafael Souza",
-  "client_registration_number": "55511122220",
-  "client_email": "rafaelsouza@email.com",
-  "equipment_id": 2,
-  "purchase_date": "2022-11-17",
+  "id": 1,
+  "code": "NIUGBWSTJ5",
+  "expiration_date": "2023-11-21",
+  "status": "active",
+  "client_name": "Maria Alves",
+  "client_registration_number": "99950033340",
+  "client_email": "mariaalves@email.com",
+  "equipment_id": 1,
+  "purchase_date": "2022-11-21",
   "policy_period": 12,
   "package_id": 1,
-  "order_id": 2,
+  "order_id": 1,
   "insurance_company_id": 1,
-  "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fee25a97dc109b9069e7edefc3036978ba295eaa/sample-policy-b.pdf"
+  "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--40f2a98aa80b9f5149f640024de69308fec25efa/sample-policy-a.pdf"
 }
 ```
 
