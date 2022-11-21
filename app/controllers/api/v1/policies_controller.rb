@@ -9,7 +9,7 @@ class Api::V1::PoliciesController < Api::V1::ApiController
   def create
     policy_params = params.require(:policy).permit(:client_name, :client_registration_number,
                                                    :client_email, :insurance_company_id, :order_id,
-                                                   :equipment_id, :purchase_date, :policy_period, :package_id)
+                                                   :equipment_id, :policy_period, :package_id)
     policy = Policy.new(policy_params)
     if policy.save
       render status: :created, json: policy.as_json(except: %i[created_at updated_at])
@@ -27,6 +27,15 @@ class Api::V1::PoliciesController < Api::V1::ApiController
     policy = Policy.find_by(order_id: params[:order_id])
     return render status: :ok, json: create_json(policy) if policy.present?
 
+    raise ActiveRecord::RecordNotFound
+  end
+
+  def active
+    policy = Policy.find_by(code: params[:code])
+    if policy.present?
+      policy.active!
+      return render status: :ok, json: create_json(policy)
+    end
     raise ActiveRecord::RecordNotFound
   end
 
