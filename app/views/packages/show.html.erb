@@ -1,0 +1,70 @@
+<div class="card my-3">  
+  <div class="card-body">
+    <h4><%= Package.model_name.human %> <%= @package.name %></h4>
+    <% if @package.active? %>
+      <h5 class="text-success"><%= Package.human_attribute_name("status.#{@package.status}") %></h5>
+    <% else %>
+      <h5 class="text-muted"><%= Package.human_attribute_name("status.#{ @package.status}")  %></h5>
+    <% end %>
+    <p>
+    <p><strong><%= Package.human_attribute_name(:insurance_company)%>:</strong> <%= @package.insurance_company.name %></p>
+    <p><strong><%= Package.human_attribute_name(:product_category)%>:</strong> <%= @package.product_category.name %></p>
+    <p><strong><%= Package.human_attribute_name(:min_period)%>:</strong> <%= @package.min_period %> meses</p>
+    <p><strong><%= Package.human_attribute_name(:max_period)%>:</strong> <%= @package.max_period %> meses</p>
+    <section id="coverage-list">
+      <% if @coverage_pricings.any? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= PackageCoverage.human_attribute_name(:code) %></th>
+              <th><%= PackageCoverage.human_attribute_name(:name) %></th>
+              <th><%= PackageCoverage.human_attribute_name(:description) %></th>
+              <th><%= CoveragePricing.human_attribute_name(:percentage_price) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @coverage_pricings.each do |cp| %>
+              <tr>
+                <td><%= cp.package_coverage.code %></td>
+                <td><%= cp.package_coverage.name  %></td>
+                <td><%= cp.package_coverage.description %></td>
+                <td><%= number_to_percentage(cp.percentage_price, precision: 2) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="alert alert-secondary text-center">
+          <%= t '.no_coverages' %>
+        </div>
+      <% end %>
+    </section>
+  </div>
+</div>
+
+<div class="card my-3">
+  <div class="card-body">
+    <h4 class="mb-4">Incluir Cobertura</h4>
+    <%= form_with(model: [@package, @coverage_pricing]) do |f| %>
+      <div class="row">
+        <div class="mb-3">
+          <%= f.label :package_coverage_id, class: "form-label fw-semibold" %>:
+          <%= f.collection_select :package_coverage_id, PackageCoverage.all, :id, :name, prompt: true, class: "form-control" %>
+        </div>
+        <div class="mb-3 col-auto">
+          <div class="row">
+            <div class="col-auto">
+              <%= f.label :percentage_price, class: "form-label fw-semibold" %> (%):
+            </div>
+            <div class="col-auto">
+              <%= f.number_field :percentage_price, step: 0.01, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <%= f.submit 'Adicionar Cobertura', class: "btn btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -28,7 +28,7 @@
           <% else %>
             <td><%= link_to package.insurance_company.name, package.insurance_company, class: "link-dark"  %></td>
           <% end %>
-          <td><%= package.name %></td>
+          <td><%= link_to package.name, package, class: "link-dark" %></td>
           <td><%= package.min_period %> meses</td>
           <td><%= package.max_period %> meses</td>
           <% if package.active? %>
