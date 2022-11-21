@@ -12,12 +12,11 @@ class PoliciesController < ApplicationController
   private
 
   def find_policy_by_id
-    @user_id = current_user.insurance_company_id
-    @policies_all_id = Policy.all.where(insurance_company_id: @user_id)
-    @policies_pending_id = Policy.pending.where(insurance_company_id: @user_id)
-    @policies_pending_payment_id = Policy.pending_payment.where(insurance_company_id: @user_id)
-    @policies_active_id = Policy.active.where(insurance_company_id: @user_id)
-    @policies_expired_id = Policy.expired.where(insurance_company_id: @user_id)
-    @policies_canceled_id = Policy.canceled.where(insurance_company_id: @user_id)
+    @policies_all_id = current_user.insurance_company.policies
+    @policies_pending_id = current_user.insurance_company.policies.pending
+    @policies_pending_payment_id = current_user.insurance_company.policies.pending_payment
+    @policies_active_id = current_user.insurance_company.policies.active
+    @policies_expired_id = current_user.insurance_company.policies.expired
+    @policies_canceled_id = current_user.insurance_company.policies.canceled
   end
 end
