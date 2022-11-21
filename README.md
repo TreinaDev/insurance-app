@@ -266,17 +266,34 @@ Obs: "purchase_date" = data de compra do pacote
     "client_registration_number": "99950033340",
     "client_email": "mariaalves@email.com",
     "equipment_id": 1,
-    "purchase_date": "2022-11-18",
+    "purchase_date": "2022-11-17",
     "policy_period": 12,
     "package_id": 1,
     "order_id": 1,
-    "insurance_company_id": 1
+    "insurance_company_id": 1,
+    "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--40f2a98aa80b9f5149f640024de69308fec25efa/sample-policy-a.pdf"
+  },
+  {
+    "id": 2,
+    "code": "L2IXANKGZ8",
+    "expiration_date": "2023-11-17",
+    "status": "pending",
+    "client_name": "Rafael Souza",
+    "client_registration_number": "55511122220",
+    "client_email": "rafaelsouza@email.com",
+    "equipment_id": 2,
+    "purchase_date": "2022-11-17",
+    "policy_period": 12,
+    "package_id": 1,
+    "order_id": 2,
+    "insurance_company_id": 1,
+    "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fee25a97dc109b9069e7edefc3036978ba295eaa/sample-policy-b.pdf"
   }
 ]
 ```
 ### Consulta de apólice através de order_id
 
-**Endpoint: GET /api/v1/policies/order/order_id**
+**Endpoint: GET /api/v1/policies/code**
 
 <p align = "justify">Retornos:</p>
 
@@ -292,11 +309,12 @@ Obs: "purchase_date" = data de compra do pacote
   "client_registration_number": "55511122220",
   "client_email": "rafaelsouza@email.com",
   "equipment_id": 2,
-  "purchase_date": "2022-11-18",
+  "purchase_date": "2022-11-17",
   "policy_period": 12,
   "package_id": 1,
   "order_id": 2,
-  "insurance_company_id": 1
+  "insurance_company_id": 1,
+  "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fee25a97dc109b9069e7edefc3036978ba295eaa/sample-policy-b.pdf"
 }
 ```
 

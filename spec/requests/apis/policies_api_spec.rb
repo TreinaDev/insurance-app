@@ -71,7 +71,7 @@ describe 'Policy API' do
     end
   end
 
-  context 'GET /api/v1/policies/1' do
+  context 'GET /api/v1/policies/code' do
     it 'com sucesso' do
       insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
                                                    registration_number: '84157841000105')
@@ -83,8 +83,10 @@ describe 'Policy API' do
                               insurance_company_id: insurance_company.id, order_id: 1,
                               equipment_id: 1, purchase_date: Time.zone.today,
                               policy_period: 12, package_id: package.id)
+      pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-b.pdf')
+      policy.file.attach(io: pdf_path.open, filename: 'sample-policy-b.pdf')
 
-      get "/api/v1/policies/#{policy.id}"
+      get "/api/v1/policies/#{policy.code}"
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -98,6 +100,7 @@ describe 'Policy API' do
       expect(json_response['purchase_date']).to eq Time.zone.today.strftime
       expect(json_response['policy_period']).to eq 12
       expect(json_response['package_id']).to eq(package.id)
+      expect(json_response.keys).to include 'file_url'
     end
 
     it 'falha se apólice não for encontrada' do
@@ -139,7 +142,10 @@ describe 'Policy API' do
     it 'e não encontra apólice' do
       get '/api/v1/policies/equipment/3000'
 
-      expect(response).to have_http_status 404
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response.length).to eq 0
     end
 
     it 'e ocorre erro interno' do

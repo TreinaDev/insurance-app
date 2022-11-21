@@ -11,6 +11,8 @@ class Policy < ApplicationRecord
   before_validation :set_expiration_date, on: :create
   before_validation :generate_code, on: :create
 
+  has_one_attached :file
+
   private
 
   def generate_code
