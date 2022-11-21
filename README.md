@@ -9,6 +9,24 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 
 ## Documentação da API
 
+  * [Obter lista de produtos](#obter-lista-de-produtos)
+  * [Obter dados de produto específico](#obter-dados-de-produto-específico)
+  * [Obter lista de seguradoras](#obter-lista-de-seguradoras)
+  * [Obter informações sobre seguradora específica](#obter-informações-sobre-seguradora-específica)
+  * [Solicitar emissão de apólice](#solicitar-emissão-de-apólice)
+  * [Obter apólice específica](#obter-lista-de-apólices)
+  * [Consulta de apólices através de equipment_id](#consulta-de-apólices-através-de-equipment_id)
+  * [Consulta de apólice através de order_id](#consulta-de-apólice-através-de-order_id)
+  * [Obter apólice específica](#obter-apólice-específica)
+  * [Obter dados de Coberturas](#obter-dados-de-coberturas)
+  * [Obter dados de Serviços](#obter-dados-de-serviços)
+  * [Obter lista de Pacotes](#obter-lista-de-pacotes)
+  * [Obter dados de pacote específico](#obter-dados-de-pacote-específico)
+  * [Status Codes](#status-codes)
+
+
+
+
 ### Obter lista de Produtos
 
 **Endpoint: GET /api/v1/products**
@@ -202,50 +220,6 @@ Obs: "purchase_date" = data de compra do pacote
 }
 ```
 
-### Obter lista de apólices
-
-**Endpoint: GET /api/v1/policies**
-
-<p align = "justify">Retornos:</p>
-
-<p align = "justify">200 (Sucesso)</p>
-
-```json
-[
-  {
-    "id": 1,
-    "code": "8KAQ99ES2S",
-    "expiration_date": "2023-11-17",
-    "status": "pending",
-    "client_name": "Maria Alves",
-    "client_registration_number": "99950033340",
-    "client_email": "mariaalves@email.com",
-    "equipment_id": 1,
-    "purchase_date": "2022-11-17",
-    "policy_period": 12,
-    "package_id": 1,
-    "order_id": 1,
-    "insurance_company_id": 1,
-    "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--40f2a98aa80b9f5149f640024de69308fec25efa/sample-policy-a.pdf"
-  },
-  {
-    "id": 2,
-    "code": "L2IXANKGZ8",
-    "expiration_date": "2023-11-17",
-    "status": "pending",
-    "client_name": "Rafael Souza",
-    "client_registration_number": "55511122220",
-    "client_email": "rafaelsouza@email.com",
-    "equipment_id": 2,
-    "purchase_date": "2022-11-17",
-    "policy_period": 12,
-    "package_id": 1,
-    "order_id": 2,
-    "insurance_company_id": 1,
-    "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fee25a97dc109b9069e7edefc3036978ba295eaa/sample-policy-b.pdf"
-  }
-]
-```
 ### Obter apólice específica
 
 **Endpoint: GET /api/v1/policies/code**
@@ -273,6 +247,76 @@ Obs: "purchase_date" = data de compra do pacote
 }
 ```
 
+### Consulta de apólices através de equipment_id
+
+**Endpoint: GET /api/v1/policies/equipment/equipment_id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 1,
+    "code": "NIUGBWSTJ5",
+    "expiration_date": "2023-11-21",
+    "status": "active",
+    "client_name": "Maria Alves",
+    "client_registration_number": "99950033340",
+    "client_email": "mariaalves@email.com",
+    "equipment_id": 1,
+    "purchase_date": "2022-11-21",
+    "policy_period": 12,
+    "package_id": 1,
+    "order_id": 1,
+    "insurance_company_id": 1,
+    "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--40f2a98aa80b9f5149f640024de69308fec25efa/sample-policy-a.pdf"
+  },
+  {
+    "id": 2,
+    "code": "SZQ41EDXGK",
+    "expiration_date": "2023-01-21",
+    "status": "canceled",
+    "client_name": "Maria Alves",
+    "client_registration_number": "99950033340",
+    "client_email": "mariaalves@email.com",
+    "equipment_id": 1,
+    "purchase_date": "2022-01-21",
+    "policy_period": 12,
+    "package_id": 2,
+    "order_id": 210,
+    "insurance_company_id": 1
+  }
+]
+```
+### Consulta de apólice através de order_id
+
+**Endpoint: GET /api/v1/policies/order/order_id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 1,
+  "code": "NIUGBWSTJ5",
+  "expiration_date": "2023-11-21",
+  "status": "active",
+  "client_name": "Maria Alves",
+  "client_registration_number": "99950033340",
+  "client_email": "mariaalves@email.com",
+  "equipment_id": 1,
+  "purchase_date": "2022-11-21",
+  "policy_period": 12,
+  "package_id": 1,
+  "order_id": 1,
+  "insurance_company_id": 1,
+  "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--40f2a98aa80b9f5149f640024de69308fec25efa/sample-policy-a.pdf"
+}
+```
+
 ### Obter dados de Coberturas
 
 **Endpoint: GET /api/v1/package_coverages**
@@ -282,23 +326,17 @@ Obs: "purchase_date" = data de compra do pacote
   {
     "id":1,
     "name":"Molhar",
-    "description":"Assistência por danificação devido a molhar o aparelho.",
-    "status":"active",
-    "code":"HWI"
+    "description":"Assistência por danificação devido a molhar o aparelho."
   },
   {
     "id":2,
     "name":"Quebra de tela",
-    "description":"Assistência por danificação da tela do aparelho.",
-    "status":"active",
-    "code":"HWB"
+    "description":"Assistência por danificação da tela do aparelho."
   },
   {
     "id":3,
     "name":"Furto",
-    "description":"Reembolso de valor em caso de roubo do aparelho.",
-    "status":"active",
-    "code":"HWZ"
+    "description":"Reembolso de valor em caso de roubo do aparelho."
   }
 ]
 ```
@@ -312,16 +350,12 @@ Obs: "purchase_date" = data de compra do pacote
   {
     "id":1,
     "name":"Assinatura TV",
-    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.",
-    "status":"active",
-    "code":"HWQ"
+    "description":"Concede 10% de desconto em assinatura com mais canais disponíveis no mercado."
   },
   {
     "id":2,
     "name":"Desconto clubes seguros",
-    "description":"Concede 10% de desconto em aquisição de seguro veicular.",
-    "status":"active",
-    "code":"HWA"
+    "description":"Concede 10% de desconto em aquisição de seguro veicular."
   }
 ]
 

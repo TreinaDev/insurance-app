@@ -85,9 +85,14 @@ policy_a = Policy.create!(client_name: 'Maria Alves', client_registration_number
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: InsuranceCompany.first.id, order_id: 1,
                           equipment_id: 1, purchase_date: Time.zone.today,
-                          policy_period: 12, package_id: Package.first.id)
+                          policy_period: 12, package_id: Package.first.id, status: :active)
 pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-a.pdf')
 policy_a.file.attach(io: pdf_path.open, filename: 'sample-policy-a.pdf')
+Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+               client_email: 'mariaalves@email.com',
+               insurance_company_id: InsuranceCompany.first.id, order_id: 210,
+               equipment_id: 1, purchase_date: 10.months.ago,
+               policy_period: 12, package_id: Package.second.id, status: :canceled)
 policy_b = Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
                           client_email: 'rafaelsouza@email.com',
                           insurance_company_id: InsuranceCompany.first.id, order_id: 2,
