@@ -7,6 +7,16 @@ class PackagesController < ApplicationController
                 end
   end
 
+  def show
+    @package = Package.find(params[:id])
+    if current_user.admin? || current_user.insurance_company == @package.insurance_company
+      @coverage_pricing = CoveragePricing.new
+      @coverage_pricings = @package.coverage_pricings
+    else
+      redirect_to root_url, alert: t('.error')
+    end
+  end
+
   def new
     @package = Package.new
   end
