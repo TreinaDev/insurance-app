@@ -85,4 +85,22 @@ describe 'Usúario edita um produto' do
 
     expect(page).not_to have_link('Editar')
   end
+
+  it 'e vê volta para tela anterior' do
+    user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
+    product_category = ProductCategory.create!(name: 'Celular')
+    product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung',
+                              price: 2000.0, product_category_id: product_category.id)
+    image_path = Rails.root.join('spec/support/images/galaxy-s20-produto.jpg')
+    product.image.attach(io: image_path.open, filename: 'galaxy-s20-produto.jpg')
+
+    login_as(user)
+    visit root_path
+    click_on 'Produtos'
+    click_on 'Samsung Galaxy S20'
+    click_on 'Editar'
+    find(:css, '#back').click
+
+    expect(current_path).to eq product_path(product.id)
+  end
 end
