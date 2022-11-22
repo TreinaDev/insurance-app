@@ -6,7 +6,8 @@ describe 'Administrador vê lista de apólices ativas' do
                                                  registration_number: '84157841000105')
     user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'TV')
-    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
+                              insurance_company_id: insurance_company.id,
                               price: 90.00, product_category_id: product_category.id)
 
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234567')

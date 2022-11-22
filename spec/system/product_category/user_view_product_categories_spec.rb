@@ -18,6 +18,7 @@ describe 'Usuário vê lista de Categorias de Produto' do
     expect(page).to have_content 'Celular'
     expect(page).to have_content 'Desktop'
     expect(page).to have_content 'Tablet'
+    expect(page).to have_link 'Produtos vinculados'
   end
 
   it 'e não vê botão para cadastrar nova Categoria' do
