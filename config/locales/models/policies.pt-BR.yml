@@ -2,6 +2,7 @@ pt-BR:
   pending: 'Pendente'
   active: "Ativa"
   canceled: 'Cancelada'
+  expired: 'Vencida'
   activerecord:
     models:
       policy:
@@ -18,10 +19,15 @@ pt-BR:
         order: 'Pedido'
         equipment_id: 'Dispositivo'
         equipment: 'Dispositivo'
-        purchase_date: 'Data de Compra'
+        purchase_date: 'Data da Contratação'
         policy_period: 'Prazo de Contratação'
         package_id: 'Pacote'
         package: 'Pacote'
         expiration_date: 'Data de Término'
-        code: 'Código'
-        status: 'Situação'
+        code: 'Código da Apólice'
+        status: 'Situação da Apólice'
+      policy/status:
+        pending: 'Pendente'
+        active: "Ativa"
+        canceled: 'Cancelada'
+        expired: 'Vencida'

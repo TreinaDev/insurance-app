@@ -81,13 +81,43 @@ CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package
 
 # class Policy
 
+policy_a = Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                          client_email: 'mariaalves@email.com',
+                          insurance_company_id: InsuranceCompany.first.id, order_id: 1,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: Package.first.id, status: :active)
+pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-a.pdf')
+policy_a.file.attach(io: pdf_path.open, filename: 'sample-policy-a.pdf')
 Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
                client_email: 'mariaalves@email.com',
-               insurance_company_id: InsuranceCompany.first.id, order_id: 1,
-               equipment_id: 1, purchase_date: Time.zone.today,
-               policy_period: 12, package_id: Package.first.id)
-Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
-               client_email: 'rafaelsouza@email.com',
-               insurance_company_id: InsuranceCompany.first.id, order_id: 2,
-               equipment_id: 2, purchase_date: Time.zone.today,
-               policy_period: 12, package_id: Package.first.id)
+               insurance_company_id: InsuranceCompany.first.id, order_id: 210,
+               equipment_id: 1, purchase_date: 10.months.ago,
+               policy_period: 12, package_id: Package.second.id, status: :canceled)
+policy_b = Policy.create!(client_name: 'Rafael Souza', client_registration_number: '55511122220',
+                          client_email: 'rafaelsouza@email.com',
+                          insurance_company_id: InsuranceCompany.first.id, order_id: 2,
+                          equipment_id: 2, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: Package.first.id)
+pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-b.pdf')
+policy_b.file.attach(io: pdf_path.open, filename: 'sample-policy-b.pdf')
+policy_c = Policy.create!(client_name: 'Bruna Lima', client_registration_number: '66650033340',
+                          client_email: 'brunalima@email.com',
+                          insurance_company_id: insurance_c.id, order_id: 3,
+                          equipment_id: 1, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: Package.second.id, status: :pending)
+pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-c.pdf')
+policy_c.file.attach(io: pdf_path.open, filename: 'sample-policy-c.pdf')
+policy_d = Policy.create!(client_name: 'Rafael Souza', client_registration_number: '40511122220',
+                          client_email: 'rafaelsouza@email.com',
+                          insurance_company_id: insurance_c.id, order_id: 4,
+                          equipment_id: 2, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: Package.second.id, status: :active)
+pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-d.pdf')
+policy_d.file.attach(io: pdf_path.open, filename: 'sample-policy-d.pdf')
+policy_e = Policy.create!(client_name: 'Pedro Dias', client_registration_number: '66511122220',
+                          client_email: 'pedrodias@email.com',
+                          insurance_company_id: insurance_c.id, order_id: 5,
+                          equipment_id: 2, purchase_date: Time.zone.today,
+                          policy_period: 12, package_id: Package.second.id, status: :pending)
+pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-e.pdf')
+policy_e.file.attach(io: pdf_path.open, filename: 'sample-policy-e.pdf')
