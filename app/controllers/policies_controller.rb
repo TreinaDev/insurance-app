@@ -52,7 +52,6 @@ class PoliciesController < ApplicationController
 
   def user_verification
     return if current_user.insurance_company == @policy.insurance_company || current_user.admin?
-
     redirect_to root_url, alert: t('.forbidden')
   end
 
@@ -63,11 +62,10 @@ class PoliciesController < ApplicationController
       req.body = "{ 'order': { 'status': '3'} }"
     end
 
-    if response.status == 200
+    if response.status == 201
       message 'Aprovação efetuada com sucesso'
     else
       alert 'Não foi possível efetuar a aprovação'
     end
   end
-
 end
