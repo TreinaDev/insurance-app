@@ -214,7 +214,7 @@ describe 'Policy API' do
                               client_email: 'mariaalves@email.com',
                               insurance_company_id: insurance_company.id, order_id: 1,
                               equipment_id: 1,
-                              policy_period: 12, package_id: package.id)
+                              policy_period: 12, package_id: package.id, status: :pending_payment)
 
       post "/api/v1/policies/#{policy.code}/active"
 
@@ -223,6 +223,37 @@ describe 'Policy API' do
       json_response = JSON.parse(response.body)
       expect(json_response['status']).to eq 'active'
       expect(json_response['expiration_date']).to eq (Time.zone.today + 12.months).strftime
+    end
+
+    it 'e apólice estava cancelada' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 90.00, product_category_id: product_category.id)
+      policy = Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                              client_email: 'mariaalves@email.com',
+                              insurance_company_id: insurance_company.id, order_id: 1,
+                              equipment_id: 1,
+                              policy_period: 12, package_id: package.id, status: :canceled)
+
+      post "/api/v1/policies/#{policy.code}/active"
+
+      expect(response).to have_http_status 406
+    end
+
+    it 'e não encontra apólice' do
+      post '/api/v1/policies/ABCDE12345/active'
+
+      expect(response).to have_http_status 404
+    end
+
+    it 'e encontra erro interno' do
+      allow(Policy).to receive(:find_by).and_raise(ActiveRecord::QueryAborted)
+
+      post '/api/v1/policies/ABCDE12345/active'
+
+      expect(response).to have_http_status 500
     end
   end
 end

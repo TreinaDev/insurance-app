@@ -32,9 +32,11 @@ class Api::V1::PoliciesController < Api::V1::ApiController
 
   def active
     policy = Policy.find_by(code: params[:code])
-    if policy.present?
+    if policy.present? && policy.pending_payment?
       policy.active!
       return render status: :ok, json: create_json(policy)
+    elsif policy.present?
+      return render status: :not_acceptable, json: {}
     end
     raise ActiveRecord::RecordNotFound
   end

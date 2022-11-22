@@ -246,9 +246,9 @@ RSpec.describe Policy, type: :model do
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                                 price: 90.00, product_category_id: product_category.id)
       policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
-                          client_email: 'joseantonio@email.com',
-                          insurance_company_id: insurance_company.id, order_id: 1,
-                          equipment_id: 1, policy_period: 12, package_id: package.id)
+                              client_email: 'joseantonio@email.com',
+                              insurance_company_id: insurance_company.id, order_id: 1,
+                              equipment_id: 1, policy_period: 12, package_id: package.id)
 
       policy.active!
       expiration_date = policy.expiration_date.strftime

@@ -249,6 +249,33 @@ Obs: "purchase_date" = data de compra do pacote
 }
 ```
 
+### Ativa apólice específica
+
+**Endpoint: POST /api/v1/policies/code/active**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "status": "active",
+  "purchase_date": "2022-11-22",
+  "expiration_date": "2023-11-22",
+  "equipment_id": 1,
+  "order_id": 3,
+  "policy_period": 12,
+  "id": 4,
+  "code": "XJRJ00G4KD",
+  "client_name": "Bruna Lima",
+  "client_registration_number": "66650033340",
+  "client_email": "brunalima@email.com",
+  "insurance_company_id": 3,
+  "package_id": 2,
+  "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4c8ecd98ac618a201ee5963266ebd54940293fa4/sample-policy-c.pdf"
+}
+```
+
 ### Consulta de apólices através de equipment_id
 
 **Endpoint: GET /api/v1/policies/equipment/equipment_id**
