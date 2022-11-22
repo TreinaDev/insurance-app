@@ -8,7 +8,7 @@ describe 'Usuário ativa um pacote pendente' do
       user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
       smartphones = ProductCategory.create!(name: 'Smartphones')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                                product_category: smartphones, status: :pending)
+                                product_category: smartphones, status: :pending, price: 0)
       coverage1 = PackageCoverage.create!(name: 'Molhar',
                                           description: 'Assistência por danificação devido a molhar o aparelho.')
       CoveragePricing.create!(percentage_price: 0.30, package:, package_coverage: coverage1)
@@ -57,7 +57,7 @@ describe 'Usuário ativa um pacote pendente' do
       user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
       smartphones = ProductCategory.create!(name: 'Smartphones')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                                product_category: smartphones, status: :pending)
+                                product_category: smartphones, status: :pending, price: 0)
       service1 = Service.create!(name: 'Desconto Petlove',
                                  description: 'Concede 10% de desconto em aquisição de produtos na loja Petlove.',
                                  status: :active)
@@ -78,7 +78,7 @@ describe 'Usuário ativa um pacote pendente' do
     admin = User.create!(email: 'email@empresa.com.br', password: 'password', name: 'Maria', role: :admin)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                              product_category: smartphones, status: :pending)
+                              product_category: smartphones, status: :pending, price: 0)
     coverage1 = PackageCoverage.create!(name: 'Molhar',
                                         description: 'Assistência por danificação devido a molhar o aparelho.')
     CoveragePricing.create!(percentage_price: 0.30, package:, package_coverage: coverage1)

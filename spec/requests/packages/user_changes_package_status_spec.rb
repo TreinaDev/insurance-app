@@ -7,7 +7,7 @@ describe 'Usuário altera o status de um pacote' do
                                          registration_number: '80958759000110')
       smartphones = ProductCategory.create!(name: 'Smartphones')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                                product_category: smartphones, status: :pending)
+                                product_category: smartphones, status: :pending, price: 0)
       coverage1 = PackageCoverage.create!(name: 'Molhar',
                                           description: 'Assistência por danificação devido a molhar o aparelho.')
       CoveragePricing.create!(percentage_price: 0.30, package:, package_coverage: coverage1)
@@ -29,7 +29,7 @@ describe 'Usuário altera o status de um pacote' do
       user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
       smartphones = ProductCategory.create!(name: 'Smartphones')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company2,
-                                product_category: smartphones, status: :pending)
+                                product_category: smartphones, status: :pending, price: 0)
       coverage1 = PackageCoverage.create!(name: 'Molhar',
                                           description: 'Assistência por danificação devido a molhar o aparelho.')
       CoveragePricing.create!(percentage_price: 0.30, package:, package_coverage: coverage1)
@@ -49,7 +49,7 @@ describe 'Usuário altera o status de um pacote' do
       admin = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :admin)
       smartphones = ProductCategory.create!(name: 'Smartphones')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company1,
-                                product_category: smartphones, status: :pending)
+                                product_category: smartphones, status: :pending, price: 0)
       coverage1 = PackageCoverage.create!(name: 'Molhar',
                                           description: 'Assistência por danificação devido a molhar o aparelho.')
       CoveragePricing.create!(percentage_price: 0.30, package:, package_coverage: coverage1)

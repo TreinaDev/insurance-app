@@ -6,7 +6,7 @@ describe 'Usuário adicionar um serviço a um pacote' do
                                        registration_number: '80958759000110')
     category = ProductCategory.create!(name: 'Smartphones')
     package =  Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                               product_category: category, status: :pending)
+                               product_category: category, status: :pending, price: 0)
     service = Service.create!(name: 'Desconto Petlove',
                               description: 'Concede 10% de desconto em aquisição de produtos na loja Petlove.',
                               status: :active)

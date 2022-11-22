@@ -7,7 +7,7 @@ describe 'Usuário adiciona serviços a um pacote pendente' do
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                              product_category: smartphones, status: :pending)
+                              product_category: smartphones, status: :pending, price: 0)
     service1 = Service.create!(name: 'Assinatura TV',
                                description:
                                'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
@@ -60,7 +60,7 @@ describe 'Usuário adiciona serviços a um pacote pendente' do
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                    product_category: smartphones, status: :pending)
+                    product_category: smartphones, status: :pending, price: 0)
     Service.create!(name: 'Assinatura TV',
                     description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
                     status: :active)
@@ -87,7 +87,7 @@ describe 'Usuário adiciona serviços a um pacote pendente' do
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                    product_category: smartphones, status: :pending)
+                    product_category: smartphones, status: :pending, price: 0)
 
     login_as(user)
     visit root_path

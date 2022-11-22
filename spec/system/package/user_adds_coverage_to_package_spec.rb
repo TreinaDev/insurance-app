@@ -7,7 +7,7 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                              product_category: smartphones, status: :pending)
+                              product_category: smartphones, status: :pending, price: 0)
     pc1 = PackageCoverage.create!(name: 'Molhar',
                                   description: 'Assistência por danificação devido a molhar o aparelho.')
     PackageCoverage.create!(name: 'Quebra de tela',
@@ -53,7 +53,7 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                    product_category: smartphones, status: :pending)
+                    product_category: smartphones, status: :pending, price: 0)
     PackageCoverage.create!(name: 'Quebra de tela',
                             description: 'Assistência por danificação da tela do aparelho.')
 
@@ -79,7 +79,7 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                    product_category: smartphones, status: :pending)
+                    product_category: smartphones, status: :pending, price: 0)
     PackageCoverage.create!(name: 'Quebra de tela',
                             description: 'Assistência por danificação da tela do aparelho.')
 

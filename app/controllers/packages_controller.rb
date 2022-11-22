@@ -1,4 +1,6 @@
 class PackagesController < ApplicationController
+  before_action :coverages_and_services, only: [:show]
+
   def index
     @packages = if current_user.admin?
                   Package.all.order(:product_category)
@@ -50,5 +52,10 @@ class PackagesController < ApplicationController
   def package_params
     params.require(:package).permit(:name, :min_period, :max_period, :insurance_company_id,
                                     :product_category_id)
+  end
+
+  def coverages_and_services
+    @coverages = PackageCoverage.all.order(:name)
+    @services = Service.all.order(:name)
   end
 end
