@@ -29,7 +29,7 @@ pt-BR:
         status: 'Situação da Apólice'
       policy/status:
         pending: 'Pendente'
-        pending_payment: 'Pagamento Pendente'
         active: "Ativa"
         canceled: 'Cancelada'
         expired: 'Vencida'
+        pending_payment: 'Pagamento Pendente'
