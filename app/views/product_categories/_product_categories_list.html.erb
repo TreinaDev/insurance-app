@@ -3,8 +3,8 @@
     <tbody> 
 <% @product_categories.each do |p| %>
       <tr class="my-3">
-          <td><%= p.name %></td>
-          <td id=<%= dom_id(ProductCategory.find(p.id)) %>><%= link_to 'Produtos vinculados', p , type:"button", class:"btn btn-dark"%></td>
+          <td class="text-center" ><strong><%= p.name %></strong></td>
+          <td id=<%= dom_id(ProductCategory.find(p.id)) %> ><%= link_to 'Produtos vinculados', p , type:"button", class:"btn btn-outline-dark"%></td>
       </tr>
       <% end %>
     </tbody>
