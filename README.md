@@ -22,6 +22,8 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Obter dados de Serviços](#obter-dados-de-serviços)
   * [Obter lista de Pacotes](#obter-lista-de-pacotes)
   * [Obter dados de pacote específico](#obter-dados-de-pacote-específico)
+  * [Obter lista de categorias de produto](#obter-lista-de-categorias-de-produto)
+  * [Obter produtos em categoria](#obter-produtos-em-categoria)
   * [Status Codes](#status-codes)
 
 
