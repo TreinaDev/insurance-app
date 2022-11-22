@@ -125,8 +125,6 @@ describe 'Usuário de seguradora visita lista de apólices' do
     visit root_path
     click_on 'Apólices'
     click_on 'Todas'
-    # find(:css, '#pending-tab-pane').click_on 'GHI1234567'
-    # click_on 'Aprovar'
 
     expect(page).to have_content 'GHI1234567'
     expect(page).not_to have_content 'ABC1234567'

@@ -17,7 +17,6 @@ class PoliciesController < ApplicationController
     @policy = Policy.find(params[:id])
     @policy.pending_payment!
     redirect_to @policy, notice: t('.success')
-    @order_id = @policy.order_id
   end
 
   def disapproved

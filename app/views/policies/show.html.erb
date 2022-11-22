@@ -3,7 +3,7 @@
   <div class="card" style="width: 25rem;">    
     <div class="card-body">
       <h4><%= t '.title' %>: <%= @policy.code %></h4><br/>
-        <p><strong><%= Policy.human_attribute_name(:status)%>: </strong><%= I18n.translate @policy.status %></p>
+        <p><strong><%= Policy.human_attribute_name(:status)%>: </strong><%=Policy.human_attribute_name("status.#{@policy.status}") %></p>
         <p><strong><%= Policy.human_attribute_name(:client_name)%>: </strong><%= @policy.client_name %></p>
         <p><strong><%= Policy.human_attribute_name(:client_registration_number)%>: </strong><%= @policy.client_registration_number %></p>
         <p><strong><%= Policy.human_attribute_name(:client_email)%>: </strong><%= @policy.client_email %></p>

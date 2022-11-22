@@ -23,7 +23,7 @@ describe 'Administrador vê detalhes de apólice ativa' do
     find(:css, '#all-tab-pane').click_on 'ABC1234567'
 
     expect(page).to have_content 'Apólice: ABC1234567'
-    expect(page).to have_content 'Situação da Apólice: Ativo'
+    expect(page).to have_content 'Situação da Apólice: Ativa'
     expect(page).to have_content 'Nome do Cliente: Maria Alves'
     expect(page).to have_content 'CPF do Cliente: 99950033340'
     expect(page).to have_content 'E-mail do Cliente: mariaalves@email.com'

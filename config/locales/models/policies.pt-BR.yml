@@ -27,3 +27,9 @@ pt-BR:
         expiration_date: 'Data de Término'
         code: 'Código da Apólice'
         status: 'Situação da Apólice'
+      policy/status:
+        pending: 'Pendente'
+        active: "Ativa"
+        canceled: 'Cancelada'
+        expired: 'Vencida'
+        pending_payment: 'Pagamento Pendente'
