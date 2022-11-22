@@ -15,10 +15,8 @@ class PoliciesController < ApplicationController
 
   def approved
     @policy = Policy.find(params[:id])
-    @policy.pending_payment!
-    redirect_to @policy, notice: t('.success')
-    order_id = @policy.order_id
-    approve_order(order_id)
+    @policy.approve_order
+    #redirect_to @policy, notice: t('.success')
   end
 
   def disapproved
@@ -54,19 +52,5 @@ class PoliciesController < ApplicationController
     return if current_user.insurance_company == @policy.insurance_company || current_user.admin?
 
     redirect_to root_url, alert: t('.forbidden')
-  end
-
-  def approve_order(order_id)
-    response = Faraday.post do |req|
-      req.url "http://localhost:4000/orders/#{order_id}/approved"
-      req.headers['Content-Type'] = 'application/json'
-      req.body = "{ 'order': { 'status': '3'} }"
-    end
-
-    if response.status == 201
-      message 'Aprovação efetuada com sucesso'
-    else
-      alert 'Não foi possível efetuar a aprovação'
-    end
   end
 end

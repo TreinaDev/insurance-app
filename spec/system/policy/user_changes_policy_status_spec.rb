@@ -130,3 +130,32 @@ describe 'Usuário de seguradora visita lista de apólices' do
     expect(page).not_to have_content 'ABC1234567'
   end
 end
+
+describe '.approve_order' do
+  it 'POST aprovação da seguradora para o comparador de seguros' do
+    insurance_company = InsuranceCompany.create!(name: 'Liga Seguros', email_domain: 'ligaseguros.com.br',
+                                                 registration_number: '84157841000105')
+    user = User.create!(email: 'maria@ligaseguros.com.br', password: 'password', name: 'Maria')
+    product_category = ProductCategory.create!(name: 'TV')
+    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                              price: 90.00, product_category_id: product_category.id)
+    policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
+                        client_email: 'joseantonio@email.com',
+                        insurance_company_id: insurance_company.id, order_id: 1,
+                        equipment_id: 1, purchase_date: '2022-11-12',
+                        policy_period: 12, package_id: package.id)
+    url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
+    json_data = "{ 'order': { 'status': 'insurance_approved', 'policy_id': #{policy.id}, 'policy_code': #{policy.code} }"
+    fake_response = double("faraday_response", status: 200, body: json_data)
+    
+    allow(Faraday).to receive(:post).with(url).and_return(fake_response)
+    login_as(user)
+    visit root_path
+    click_on 'Apólices'
+    click_on 'Pendentes'
+    find(:css, '#pending-tab-pane').click_on policy.code
+    click_on 'Aprovar'
+
+    expect(policy.status).to eq(:pending_payment)
+  end
+end
