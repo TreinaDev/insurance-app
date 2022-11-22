@@ -1,3 +1,5 @@
 <h2>Editar produto <%= @product.product_model %></h2>
-<a id="back" class="btn btn-outline-dark" style="margin-bottom:16px;" onclick="history.back()">Voltar</a>
+<button id="back" class="btn btn-outline-dark" type="button" style="margin-bottom:16px;" > 
+  <%= link_to 'Voltar', product_path(@product) %>
+</button>
 <%= render 'form' %>

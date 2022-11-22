@@ -75,8 +75,10 @@ describe 'Usúario edita uma seguradora' do
     click_on 'Seguradoras'
     click_on 'Porto Seguro'
     click_on 'Editar'
-    find(:css, '#back').click
+    within('#back') do
+      click_on 'Voltar'
+    end
 
-    expect(current_path).to eq insurance_companies_path(ic.id)
+    expect(current_path).to eq insurance_company_path(ic.id)
   end
 end

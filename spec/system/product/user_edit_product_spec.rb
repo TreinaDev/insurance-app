@@ -99,7 +99,9 @@ describe 'Usúario edita um produto' do
     click_on 'Produtos'
     click_on 'Samsung Galaxy S20'
     click_on 'Editar'
-    find(:css, '#back').click
+    within('#back') do
+      click_on 'Voltar'
+    end
 
     expect(current_path).to eq product_path(product.id)
   end
