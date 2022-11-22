@@ -4,7 +4,7 @@
 <% @product_categories.each do |p| %>
       <tr class="my-3">
           <td><%= p.name %></td>
-          <td><%= link_to 'Produtos vinculados', root_path , type:"button", class:"btn btn-dark"%></td>
+          <td id=<%= dom_id(ProductCategory.find(p.id)) %>><%= link_to 'Produtos vinculados', p , type:"button", class:"btn btn-dark"%></td>
       </tr>
       <% end %>
     </tbody>

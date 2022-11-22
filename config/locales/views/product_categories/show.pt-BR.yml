@@ -1,0 +1,14 @@
+pt-BR:
+  product_categories:
+    show:
+      title: 'Produtos da Categoria'
+      name: 'Categoria'
+      message: 'Não existem produtos vinculados a esta categoria.'
+      product_model: 'Modelo do Produto'
+      launch_year: 'Ano de Lançamento'
+      brand: 'Marca'
+      price: 'Preço'
+      status: 'Status'
+      product_category: 'Categoria'
+      product_category_id: 'Categoria'
+      image: 'Foto'
