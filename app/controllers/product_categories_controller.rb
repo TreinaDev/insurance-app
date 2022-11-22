@@ -3,6 +3,11 @@ class ProductCategoriesController < ApplicationController
     @product_categories = ProductCategory.all
   end
 
+  def show
+    @category = ProductCategory.find(params[:id])
+    @products = @category.products
+  end
+
   def new
     @product_category = ProductCategory.new
     @product_categories = ProductCategory.all

@@ -1,5 +1,5 @@
 <h2>Editar Seguradora <%= @insurance_company.name %></h2>
-<button id="back" class="btn btn-outline-dark" type="button" style="margin-bottom:16px;" > 
-  <%= link_to 'Voltar', insurance_company_path(@insurance_company) %>
+<button id="back"> 
+  <%= link_to 'Voltar', insurance_company_path(@insurance_company) , type:"button", class:"btn btn-outline-dark" %>
 </button>
 <%= render 'form' %>
