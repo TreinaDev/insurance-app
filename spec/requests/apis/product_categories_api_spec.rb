@@ -68,5 +68,13 @@ describe 'ProductCategory API' do
 
       expect(response).to have_http_status 404
     end
+
+    it 'e ocorre erro interno' do
+      allow(ProductCategory).to receive(:find).and_raise(ActiveRecord::QueryAborted)
+
+      get '/api/v1/product_categories/333/products'
+
+      expect(response).to have_http_status 500
+    end
   end
 end
