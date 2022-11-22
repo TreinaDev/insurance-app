@@ -8,6 +8,7 @@ pt-BR:
       title: 'Apólice'
       back: 'Voltar'
       months: 'meses'
+      forbidden: 'Você não tem acesso a essa página'
     approved:
       success: 'Apólice aprovada com sucesso'
     disapproved:
@@ -17,3 +18,4 @@ pt-BR:
     active: "Ativa"
     canceled: 'Cancelada'
     expired: 'Vencida'
+

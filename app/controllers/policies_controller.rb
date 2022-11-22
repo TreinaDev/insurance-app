@@ -10,12 +10,14 @@ class PoliciesController < ApplicationController
 
   def show
     @policy = Policy.find(params[:id])
+    user_verification
   end
 
   def approved
     @policy = Policy.find(params[:id])
     @policy.pending_payment!
     redirect_to @policy, notice: t('.success')
+    @order_id = @policy.order_id
   end
 
   def disapproved
@@ -45,5 +47,11 @@ class PoliciesController < ApplicationController
     @policies_active = Policy.active
     @policies_expired = Policy.expired
     @policies_canceled = Policy.canceled
+  end
+
+  def user_verification
+    return if current_user.insurance_company == @policy.insurance_company || current_user.admin?
+
+    redirect_to root_url, alert: t('.forbidden')
   end
 end
