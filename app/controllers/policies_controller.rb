@@ -52,6 +52,7 @@ class PoliciesController < ApplicationController
 
   def user_verification
     return if current_user.insurance_company == @policy.insurance_company || current_user.admin?
+
     redirect_to root_url, alert: t('.forbidden')
   end
 
