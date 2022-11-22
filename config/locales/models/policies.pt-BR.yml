@@ -1,5 +1,6 @@
 pt-BR:
   pending: 'Pendente'
+  pending_payment: 'Pagamento Pendente'
   active: "Ativa"
   canceled: 'Cancelada'
   expired: 'Vencida'
@@ -31,3 +32,4 @@ pt-BR:
         active: "Ativa"
         canceled: 'Cancelada'
         expired: 'Vencida'
+        pending_payment: 'Pagamento Pendente'
