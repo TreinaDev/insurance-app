@@ -6,7 +6,7 @@ describe 'Usuário visualiza pacotes' do
                                        registration_number: '80958759000110')
     smartphones = ProductCategory.create!(name: 'Smartphones')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                              product_category: smartphones)
+                              product_category: smartphones, price: 0)
 
     get(package_path(package.id))
 
@@ -21,7 +21,7 @@ describe 'Usuário visualiza pacotes' do
                                        registration_number: '12358759000110')
     smartphones = ProductCategory.create!(name: 'Smartphones')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                              product_category: smartphones)
+                              product_category: smartphones, price: 0)
 
     login_as(user)
     get(package_path(package.id))

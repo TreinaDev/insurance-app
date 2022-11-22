@@ -16,12 +16,15 @@ describe 'Usuário vê página de detalhes do pacote' do
     click_on 'Pacotes'
     click_on 'Premium'
 
-    expect(page).to have_content('Pacote Premium')
-    expect(page).to have_content('Seguradora: Seguradora Exemplo')
-    expect(page).to have_content('Categoria: Smartphones')
-    expect(page).to have_content('Período Mínimo: 12 meses')
-    expect(page).to have_content('Período Máximo: 24 meses')
-    expect(page).to have_content('Pendente')
+    within('#package-details') do
+      expect(page).to have_content('Pacote Premium')
+      expect(page).to have_content('Seguradora: Seguradora Exemplo')
+      expect(page).to have_content('Categoria: Smartphones')
+      expect(page).to have_content('Período Mínimo: 12 meses')
+      expect(page).to have_content('Período Máximo: 24 meses')
+      expect(page).to have_content('Pendente')
+      expect(page).not_to have_content('Preço Percentual')
+    end
   end
 
   it 'como administrador com sucesso' do
