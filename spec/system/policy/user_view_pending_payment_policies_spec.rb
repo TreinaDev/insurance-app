@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-describe 'Administrador vê lista de apólices aguardando pagamento' do
+describe 'Administrador vê lista de apólices com pagamento pendente' do
   it 'com sucesso' do
     insurance_company = InsuranceCompany.create!(name: 'Liga Seguradora', email_domain: 'ligaseguradora.com.br',
                                                  registration_number: '84157841000105')
     user = User.create!(email: 'maria@ligaseguradora.com.br', password: 'password', name: 'Maria', role: :admin)
     product_category = ProductCategory.create!(name: 'TV')
-    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+    package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
+                              insurance_company_id: insurance_company.id,
                               price: 90.00, product_category_id: product_category.id)
 
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234567')
@@ -19,7 +20,7 @@ describe 'Administrador vê lista de apólices aguardando pagamento' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Aguardando Pagamento'
+    click_on 'Pagamento Pendente'
 
     expect(page).to have_content 'Código da Apólice'
     expect(page).to have_content 'Nome do Cliente'
@@ -36,13 +37,13 @@ describe 'Administrador vê lista de apólices aguardando pagamento' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Aguardando Pagamento'
+    click_on 'Pagamento Pendente'
 
     expect(page).to have_content 'Não existem apólices com pagamento pendente'
   end
 end
 
-describe 'Funcionário vê lista de apólices aguardando pagamento' do
+describe 'Funcionário vê lista de apólices com pagamento pendente' do
   it 'com sucesso' do
     insurance_company1 = InsuranceCompany.create!(name: 'Anjo Seguradora', email_domain: 'anjoseguradora.com.br',
                                                   registration_number: '84157841000105')
@@ -80,7 +81,7 @@ describe 'Funcionário vê lista de apólices aguardando pagamento' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Aguardando Pagamento'
+    click_on 'Pagamento Pendente'
 
     expect(page).to have_content 'Código da Apólice'
     expect(page).to have_content 'Nome do Cliente'
@@ -107,7 +108,7 @@ describe 'Funcionário vê lista de apólices aguardando pagamento' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Aguardando Pagamento'
+    click_on 'Pagamento Pendente'
 
     expect(page).to have_content 'Não existem apólices cadastradas'
   end
