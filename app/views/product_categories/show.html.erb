@@ -1,0 +1,34 @@
+<h1 class="my-3"><%= t '.title' %> <%= @category.name %></h1>
+
+<% if @products.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Product.human_attribute_name(:product_category) %></th>
+        <th><%= Product.human_attribute_name(:brand) %></th>
+        <th><%= Product.human_attribute_name(:product_model) %></th>
+        <th><%= Product.human_attribute_name(:launch_year) %></th>
+        <th><%= Product.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @category.products.each do |product| %>
+        <tr>
+          <td><%= product.product_category.name %></td> 
+          <td><%= product.brand %></td>
+          <td><%= link_to product.product_model, product_path(product.id), class: "link-dark" %></td>
+          <td><%= product.launch_year %></td>
+          <% if product.active? %>
+            <td class="fw-semibold text-success"><%= Product.human_attribute_name("status.#{product.status}") %></td>
+          <% else %>
+            <td class="fw-semibold text-muted"><%= Product.human_attribute_name("status.#{product.status}") %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t '.message' %>
+  </div>
+<% end %>

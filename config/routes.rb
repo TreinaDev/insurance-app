@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post 'activate', on: :member
   end
   
-  resources :product_categories, only: [:index, :new, :create]
+  resources :product_categories, only: [:index, :new, :create, :show]
   resources :insurance_companies, only: [:index, :show, :new, :create, :edit, :update]   
   resources :packages, only: [:index, :new, :create, :show] do
     resources :coverage_pricings, only: [:create]
