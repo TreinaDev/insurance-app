@@ -99,5 +99,7 @@ describe 'Usuário adiciona serviços a um pacote pendente' do
     end
 
     expect(page).to have_content 'Erro na adição de Serviço'
+    expect(page).to have_content 'Não existem Serviços adicionados para este Pacote'
+    expect(page).to have_content 'Não existem Coberturas adicionadas para este Pacote'
   end
 end

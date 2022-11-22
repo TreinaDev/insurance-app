@@ -1,7 +1,8 @@
 pt-BR:
   packages:
     show:
-      no_coverages: 'Não existem Coberturas Adicionadas para este Pacote'
+      no_coverages: 'Não existem Coberturas adicionadas para este Pacote'
+      no_services: 'Não existem Serviços adicionados para este Pacote'
       error: 'Pacote indisponível'
     activate: 
       success: 'Pacote ativado com sucesso!'

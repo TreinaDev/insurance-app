@@ -1,16 +1,21 @@
 <div class="card my-3">  
   <div class="card-body">
-    <h4><%= Package.model_name.human %> <%= @package.name %></h4>
-    <% if @package.active? %>
-      <h5 class="text-success"><%= Package.human_attribute_name("status.#{@package.status}") %></h5>
-    <% else %>
-      <h5 class="text-muted"><%= Package.human_attribute_name("status.#{ @package.status}")  %></h5>
-    <% end %>
-    <p>
-    <p><strong><%= Package.human_attribute_name(:insurance_company)%>:</strong> <%= @package.insurance_company.name %></p>
-    <p><strong><%= Package.human_attribute_name(:product_category)%>:</strong> <%= @package.product_category.name %></p>
-    <p><strong><%= Package.human_attribute_name(:min_period)%>:</strong> <%= @package.min_period %> meses</p>
-    <p><strong><%= Package.human_attribute_name(:max_period)%>:</strong> <%= @package.max_period %> meses</p>
+    <section id="package-details">
+      <h4><%= Package.model_name.human %> <%= @package.name %></h4>
+      <% if @package.active? %>
+        <h5 class="text-success"><%= Package.human_attribute_name("status.#{@package.status}") %></h5>
+      <% else %>
+        <h5 class="text-muted"><%= Package.human_attribute_name("status.#{ @package.status}")  %></h5>
+      <% end %>
+      <p>
+      <p><strong><%= Package.human_attribute_name(:insurance_company)%>:</strong> <%= @package.insurance_company.name %></p>
+      <p><strong><%= Package.human_attribute_name(:product_category)%>:</strong> <%= @package.product_category.name %></p>
+      <% if @package.active? %>
+        <p><strong><%= Package.human_attribute_name(:price)%>:</strong> <%= number_to_percentage(@package.price, precision: 2) %> a.m.</p>
+      <% end %>
+      <p><strong><%= Package.human_attribute_name(:min_period)%>:</strong> <%= @package.min_period %> meses</p>
+      <p><strong><%= Package.human_attribute_name(:max_period)%>:</strong> <%= @package.max_period %> meses</p>
+    </section>
     <section id="coverage-list">
       <% if @coverage_pricings.any? %>
         <table class="table table-striped">

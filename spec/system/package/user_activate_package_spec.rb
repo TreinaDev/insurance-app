@@ -25,6 +25,7 @@ describe 'Usuário ativa um pacote pendente' do
 
       expect(page).to have_content 'Pacote ativado com sucesso!'
       expect(page).to have_content 'Ativo'
+      expect(page).to have_content 'Preço Percentual: 0,45% a.m.'
       within '#coverage-list' do
         expect(page).to have_content 'Cobertura'
         expect(page).to have_content 'Descrição'

@@ -9,4 +9,11 @@ class Package < ApplicationRecord
   validates :min_period, comparison: { less_than_or_equal_to: :max_period }
 
   enum status: { pending: 0, active: 5, inactive: 9 }
+
+  def set_percentage_price
+    total_price = 0
+    coverage_pricings.each { |cp| total_price += cp.percentage_price }
+    service_pricings.each { |sp| total_price += sp.percentage_price }
+    self.price = total_price
+  end
 end

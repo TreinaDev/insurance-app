@@ -37,6 +37,7 @@ class PackagesController < ApplicationController
   def activate
     @package = Package.find(params[:id])
     if current_user.insurance_company == @package.insurance_company
+      @package.set_percentage_price
       @package.active!
       redirect_to @package, notice: t('.success')
     else
