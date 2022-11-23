@@ -13,7 +13,7 @@ describe 'Administrador vê detalhes de apólice ativa' do
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                   client_email: 'mariaalves@email.com',
                   insurance_company_id: insurance_company.id, order_id: 1,
-                  equipment_id: 1, purchase_date: Time.zone.today,
+                  equipment_id: 1,
                   policy_period: 12, package_id: package.id, status: :active)
 
     login_as(user)
@@ -49,7 +49,7 @@ describe 'Funcionário vê detalhes de apólice pendente de sua seguradora' do
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                   client_email: 'mariaalves@email.com',
                   insurance_company_id: insurance_company.id, order_id: 1,
-                  equipment_id: 1, purchase_date: Time.zone.today,
+                  equipment_id: 1,
                   policy_period: 12, package_id: package.id, status: :pending)
 
     login_as(user)
@@ -65,9 +65,5 @@ describe 'Funcionário vê detalhes de apólice pendente de sua seguradora' do
     expect(page).to have_content 'E-mail do Cliente: mariaalves@email.com'
     expect(page).to have_content 'Seguradora: Liga Seguradora'
     expect(page).to have_content 'Pacote: Premium'
-    expect(page).to have_content 'Data da Contratação:'
-    expect(page).to have_content Time.zone.today.strftime('%d/%m/%Y')
-    expect(page).to have_content 'Prazo de Contratação: 12 meses'
-    expect(page).to have_content (Time.zone.today + 12.months).strftime('%d/%m/%Y')
   end
 end
