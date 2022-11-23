@@ -22,6 +22,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Obter dados de Serviços](#obter-dados-de-serviços)
   * [Obter lista de Pacotes](#obter-lista-de-pacotes)
   * [Obter dados de pacote específico](#obter-dados-de-pacote-específico)
+  * [Obter lista de pacotes para um produto](#obter-lista-de-pacotes-para-um-produto)
   * [Obter lista de categorias de produto](#obter-lista-de-categorias-de-produto)
   * [Obter produtos em categoria](#obter-produtos-em-categoria)
   * [Status Codes](#status-codes)
@@ -440,7 +441,71 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "status": "active"
 }
 ```
+### Obter lista de pacotes para um produto
 
+**Endpoint: GET /api/v1/products/id/packages**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id": 3,
+    "name": "Super Premium",
+    "max_period": 24,
+    "min_period": 12,
+    "insurance_company_id": 4,
+    "price": "1.5",
+    "product_category_id": 2,
+    "coverages": [],
+    "services": [],
+    "price_per_month": "75.0",
+    "insurance_company_name": "Anjo Seguradora"
+  },
+  {
+    "id": 4,
+    "name": "Super Econômico",
+    "max_period": 24,
+    "min_period": 6,
+    "insurance_company_id": 4,
+    "price": "8.5",
+    "product_category_id": 2,
+    "coverages": [
+      {
+        "code": "H9N",
+        "name": "Molhar",
+        "description": "Assistência por danificação devido a molhar o aparelho."
+      },
+      {
+        "code": "I6E",
+        "name": "Quebra de tela",
+        "description": "Assistência por danificação da tela do aparelho."
+      },
+      {
+        "code": "HFP",
+        "name": "Furto",
+        "description": "Reembolso de valor em caso de roubo do aparelho."
+      }
+    ],
+    "services": [
+      {
+        "code": "IYT",
+        "name": "Assinatura TV",
+        "description": "Concede 10% de desconto em assinatura com mais canais disponíveis no mercado."
+      },
+      {
+        "code": "YTS",
+        "name": "Desconto clubes seguros",
+        "description": "Concede 10% de desconto em aquisição de seguro veicular."
+      }
+    ],
+    "price_per_month": "425.0",
+    "insurance_company_name": "Anjo Seguradora"
+  }
+]
+```
 ### Obter lista de categorias de produto
 
 **Endpoint: GET /api/v1/product_categories**
@@ -488,8 +553,6 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   }
 ]
 ```
-
-
 
 ### Status Codes
 
