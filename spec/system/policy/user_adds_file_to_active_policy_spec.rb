@@ -20,7 +20,7 @@ describe 'Funcionário faz upload de arquivo de apólice' do
     click_on 'Apólices'
     click_on 'Ativas'
     find(:css, '#active-tab-pane').click_on policy.code
-    attach_file 'Arquivo', Rails.root.join('spec/support/policy_files/sample-policy-a.pdf')
+    attach_file 'Contrato de seguro', Rails.root.join('spec/support/policy_files/sample-policy-a.pdf')
     click_on 'Enviar'
 
     expect(page).to have_content('Upload feito com sucesso')

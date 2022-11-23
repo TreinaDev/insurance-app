@@ -16,6 +16,22 @@
         <% end %>
 
     <% if current_user.insurance_company == @policy.insurance_company %>
+      <div class="mb-3 row">
+        <% if @policy.active? && !@policy.file.attached? %>
+          <%= form_with(model: @policy) do |f| %>
+            <%= f.label :file, "Contrato de seguro", class: "fw-semibold" %>
+            <div class="col-12 my-2">
+              <%= f.file_field :file, accept: 'application/pdf', class: "form-control" %>
+            </div>
+              <%= f.submit "Enviar", class: "col-12 my-2 btn btn-dark" %>
+          <% end %>
+        <% elsif @policy.active? %>
+            <p><strong>Apólice:</strong>
+            <%= link_to url_for(@policy.file), class: 'card-link' do %>
+              <i class="bi bi-file-pdf"></i> Download
+            <% end %></p>
+        <% end %>
+      </div>
       <div class="row">
           <% if @policy.pending? %>
             <div class="d-grid gap-2 col-4 my-3">
@@ -30,23 +46,6 @@
             </div>
           <% end %>
       </div>
-
-      <div class="mb-3 row">
-        <% if @policy.active? && !@policy.file.attached? %>
-          <%= form_with(model: @policy) do |f| %>
-            <%= f.label :file, "Arquivo", class: "col-12 col-form-label my-2 fw-semibold" %>
-            <div class="col-12 my-2">
-              <%= f.file_field :file, accept: 'application/pdf', class: "form-control" %>
-            </div>
-              <%= f.submit "Enviar", class: "col-12 my-2 btn btn-dark" %>
-            <% end %>
-        <% elsif @policy.active? %>
-            <p><strong>Apólice:</strong>
-            <%= link_to url_for(@policy.file), class: 'card-link' do %>
-              <i class="bi bi-file-pdf"></i> Download
-            <% end %></p>
-        <% end %>
-        </div>
     <% end %>
      </div>
     </div>
