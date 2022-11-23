@@ -16,6 +16,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Solicitar emissão de apólice](#solicitar-emissão-de-apólice)
   * [Obter apólice específica](#obter-apólice-específica)
   * [Ativa apólice específica](#ativa-apólice-específica)
+  * [Cancela apólice específica](#cancela-apólice-específica)
   * [Consulta de apólices através de equipment_id](#consulta-de-apólices-através-de-equipment_id)
   * [Consulta de apólice através de order_id](#consulta-de-apólice-através-de-order_id)
   * [Obter dados de Coberturas](#obter-dados-de-coberturas)
@@ -272,6 +273,33 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "insurance_company_id": 3,
   "package_id": 2,
   "file_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4c8ecd98ac618a201ee5963266ebd54940293fa4/sample-policy-c.pdf"
+}
+```
+
+### Cancela apólice específica
+
+**Endpoint: POST /api/v1/policies/code/canceled**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "status": "canceled",
+  "equipment_id": 2,
+  "order_id": 4,
+  "policy_period": 12,
+  "id": 5,
+  "code": "PHVDUOGYTH",
+  "expiration_date": "2023-11-21",
+  "client_name": "Rafael Souza",
+  "client_registration_number": "40511122220",
+  "client_email": "rafaelsouza@email.com",
+  "purchase_date": "2022-11-21",
+  "insurance_company_id": 3,
+  "package_id": 2,
+  "file_url": "http://127.0.0.1:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10772e36d926bdbdea5ead021384cec0cb736369/sample-policy-d.pdf"
 }
 ```
 

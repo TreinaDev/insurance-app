@@ -27,6 +27,12 @@ class PoliciesController < ApplicationController
     redirect_to @policy, notice: t('.success')
   end
 
+  def canceled
+    @policy = Policy.find(params[:id])
+    @policy.canceled!
+    redirect_to @policy, notice: t('.success')
+  end
+
   private
 
   def find_current_policies

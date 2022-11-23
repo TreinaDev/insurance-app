@@ -41,14 +41,14 @@ image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
 
 # class Package
-Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_c,
-                price: 3.00, product_category: product_category_a)
-Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
-                price: 7.00, product_category: product_category_a, status: :active)
+package2 = Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_c,
+                           price: 3.00, product_category: product_category_a, status: :active)
+Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: insurance_c,
+                price: 7.00, product_category: product_category_a)
 Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
-                price: 1.50, product_category: product_category_b, status: :active)
+                price: 1.50, product_category: product_category_b)
 package1 = Package.create!(name: 'Super Econômico', min_period: 6, max_period: 24,
-                           insurance_company: InsuranceCompany.last, status: :active,
+                           insurance_company: insurance_c, status: :active,
                            price: 8.50, product_category: product_category_b)
 
 # class Service
@@ -62,6 +62,8 @@ service2 = Service.create!(name: 'Desconto clubes seguros',
 # class ServicePricing
 ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service1)
 ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service2)
+ServicePricing.create!(status: :active, percentage_price: 0.2, package: package2, service: service1)
+ServicePricing.create!(status: :active, percentage_price: 0.2, package: package2, service: service2)
 
 # class PackageCoverage
 coverage1 = PackageCoverage.create!(name: 'Molhar',
@@ -78,6 +80,7 @@ coverage3 = PackageCoverage.create!(name: 'Furto',
 CoveragePricing.create!(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
 CoveragePricing.create!(status: :active, percentage_price: 1.2, package: package1, package_coverage: coverage2)
 CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package1, package_coverage: coverage3)
+CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package2, package_coverage: coverage3)
 
 # class Policy
 

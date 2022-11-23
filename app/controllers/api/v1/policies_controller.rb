@@ -41,6 +41,17 @@ class Api::V1::PoliciesController < Api::V1::ApiController
     raise ActiveRecord::RecordNotFound
   end
 
+  def canceled
+    policy = Policy.find_by(code: params[:code])
+    if policy.present? && policy.active?
+      policy.canceled!
+      return render status: :ok, json: create_json(policy)
+    elsif policy.present?
+      return render status: :not_acceptable, json: {}
+    end
+    raise ActiveRecord::RecordNotFound
+  end
+
   private
 
   def create_json(policy)
