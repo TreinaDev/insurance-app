@@ -13,6 +13,8 @@ pt-BR:
       success: 'Apólice aprovada com sucesso'
     disapproved:
       success: 'Apólice reprovada'
+    canceled:
+      success: 'Apólice cancelada'
   status:
     pending: 'Pendente'
     pending_payment: 'Pagamento Pendente'

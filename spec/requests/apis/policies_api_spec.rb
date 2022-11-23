@@ -256,4 +256,40 @@ describe 'Policy API' do
       expect(response).to have_http_status 500
     end
   end
+
+  context 'POST api/v1/policies/code/canceled' do
+    it 'com sucesso' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 9.00, product_category_id: product_category.id)
+      policy = Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                              client_email: 'mariaalves@email.com',
+                              insurance_company_id: insurance_company.id, order_id: 1,
+                              equipment_id: 1,
+                              policy_period: 12, package_id: package.id, status: :active)
+
+      post "/api/v1/policies/#{policy.code}/canceled"
+
+      expect(response).to have_http_status 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['status']).to eq 'canceled'
+    end
+
+    it 'e não encontra apólice' do
+      post '/api/v1/policies/ABCDE12345/canceled'
+
+      expect(response).to have_http_status 404
+    end
+
+    it 'e encontra erro interno' do
+      allow(Policy).to receive(:find_by).and_raise(ActiveRecord::QueryAborted)
+
+      post '/api/v1/policies/ABCDE12345/canceled'
+
+      expect(response).to have_http_status 500
+    end
+  end
 end

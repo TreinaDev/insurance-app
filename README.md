@@ -274,6 +274,33 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 }
 ```
 
+### Cancela apólice específica
+
+**Endpoint: POST /api/v1/policies/code/canceled**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "status": "canceled",
+  "equipment_id": 2,
+  "order_id": 4,
+  "policy_period": 12,
+  "id": 5,
+  "code": "PHVDUOGYTH",
+  "expiration_date": "2023-11-21",
+  "client_name": "Rafael Souza",
+  "client_registration_number": "40511122220",
+  "client_email": "rafaelsouza@email.com",
+  "purchase_date": "2022-11-21",
+  "insurance_company_id": 3,
+  "package_id": 2,
+  "file_url": "http://127.0.0.1:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10772e36d926bdbdea5ead021384cec0cb736369/sample-policy-d.pdf"
+}
+```
+
 ### Consulta de apólices através de equipment_id
 
 **Endpoint: GET /api/v1/policies/equipment/equipment_id**

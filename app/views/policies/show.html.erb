@@ -16,7 +16,7 @@
         <% end %>
         
 
-    <% if current_user.insurance_company == @policy.insurance_company %>    
+    <% if current_user.insurance_company == @policy.insurance_company %>
       <div class="row">
           <% if @policy.pending? %>
             <div class="d-grid gap-2 col-4 my-3">
@@ -24,6 +24,10 @@
             </div>
             <div class="d-grid gap-2 col-4 my-3">
               <%= button_to 'Reprovar', disapproved_policy_path(@policy.id), class: "btn btn-danger"  %>
+            </div>
+          <% elsif @policy.active? %>
+            <div class="d-grid gap-2 col-4 my-3">
+              <%= button_to 'Cancelar', canceled_policy_path(@policy.id), class: "btn btn-danger"  %>
             </div>
           <% end %>
       </div>
