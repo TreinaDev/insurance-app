@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :policies, only: [:index, :show, :update] do
     post 'disapproved', on: :member
     post 'approved', on: :member
+    post 'canceled', on: :member
   end
 
   namespace :api do
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
         get 'equipment/:equipment_id', to: 'policies#equipment', on: :collection
         get 'order/:order_id', to: 'policies#order', on: :collection 
         post 'active', on: :member
+        post 'canceled', on: :member
       end
     end
   end

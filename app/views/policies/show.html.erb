@@ -14,37 +14,41 @@
           <p><strong><%= Policy.human_attribute_name(:purchase_date)%>: </strong><%= @policy.purchase_date.strftime('%d/%m/%Y') %></p>
           <p><strong><%= Policy.human_attribute_name(:expiration_date)%>: </strong><%= @policy.expiration_date.strftime('%d/%m/%Y') %></p>
         <% end %>
-        
 
-      <% if current_user.insurance_company == @policy.insurance_company %>    
-        <div class="row">
-            <% if @policy.pending? %>
-              <div class="d-grid gap-2 col-4 my-3">
-                <%= button_to 'Aprovar', approved_policy_path(@policy.id), class: "btn btn-success"  %>
-              </div>
-              <div class="d-grid gap-2 col-4 my-3">
-                <%= button_to 'Reprovar', disapproved_policy_path(@policy.id), class: "btn btn-danger"  %>
-              </div>
-            <% end %>
-        </div>
+    <% if current_user.insurance_company == @policy.insurance_company %>
+      <div class="row">
+          <% if @policy.pending? %>
+            <div class="d-grid gap-2 col-4 my-3">
+              <%= button_to 'Aprovar', approved_policy_path(@policy.id), class: "btn btn-success"  %>
+            </div>
+            <div class="d-grid gap-2 col-4 my-3">
+              <%= button_to 'Reprovar', disapproved_policy_path(@policy.id), class: "btn btn-danger"  %>
+            </div>
+          <% elsif @policy.active? %>
+            <div class="d-grid gap-2 col-4 my-3">
+              <%= button_to 'Cancelar', canceled_policy_path(@policy.id), class: "btn btn-danger"  %>
+            </div>
+          <% end %>
+      </div>
 
-        <div class="mb-3 row">
-            <% if @policy.active? && !@policy.file.attached? %>
-              <%= form_with(model: @policy) do |f| %>
-                <%= f.label :file, "Arquivo", class: "col-12 col-form-label my-2 fw-semibold" %>
-                <div class="col-12 my-2">
-                  <%= f.file_field :file, accept: 'application/pdf', class: "form-control" %>
-                </div>
-                <%= f.submit "Enviar", class: "col-12 my-2 btn btn-dark" %>
-              <% end %>
-            <% elsif @policy.active? %>
-              <p><strong>Apólice:</strong>
-              <%= link_to url_for(@policy.file), class: 'card-link' do %>
-                <i class="bi bi-file-pdf"></i> Download
-              <% end %></p>
+      <div class="mb-3 row">
+        <% if @policy.active? && !@policy.file.attached? %>
+          <%= form_with(model: @policy) do |f| %>
+            <%= f.label :file, "Arquivo", class: "col-12 col-form-label my-2 fw-semibold" %>
+            <div class="col-12 my-2">
+              <%= f.file_field :file, accept: 'application/pdf', class: "form-control" %>
+            </div>
+              <%= f.submit "Enviar", class: "col-12 my-2 btn btn-dark" %>
             <% end %>
+        <% elsif @policy.active? %>
+            <p><strong>Apólice:</strong>
+            <%= link_to url_for(@policy.file), class: 'card-link' do %>
+              <i class="bi bi-file-pdf"></i> Download
+            <% end %></p>
+        <% end %>
         </div>
-      <% end %>
+    <% end %>
+     </div>
     </div>
   </div>
 </div>

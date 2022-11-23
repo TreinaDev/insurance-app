@@ -1,0 +1,28 @@
+<section id="package-coverages-list">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= PackageCoverage.human_attribute_name(:code) %></th>
+        <th><%= PackageCoverage.human_attribute_name(:name) %></th>
+        <th><%= PackageCoverage.human_attribute_name(:description) %></th>
+        <th><%= PackageCoverage.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @package_coverages.present? %>
+        <% @package_coverages.each do |coverage| %>
+          <tr>
+            <td><%= coverage.code %></td>
+            <td><%= coverage.name  %></td>
+            <td><%= coverage.description %></td>
+            <td><%= t(coverage.status) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+      <% else %>
+        <div class="alert alert-secondary text-center">
+          <p><%= t '.message' %></p>
+        </div>
+      <% end %>
+</section>
