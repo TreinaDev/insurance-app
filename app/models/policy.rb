@@ -14,18 +14,6 @@ class Policy < ApplicationRecord
 
   has_one_attached :file
 
-  def approve_order
-    #@policy = Policy.find(params[:id])   
-    response = Faraday.post do |req|
-      req.url "http://localhost:4000/orders/#{@policy.order_id}/insurance_approved"
-      req.headers['Content-Type'] = 'application/json'
-      req.body = "{ 'order': { 'status': 'insurance_approved', 'policy_id': #{@policy.id}, 'policy_code': #{@policy.code} }"
-    end
-    if response.status == 200
-      @policy.pending_payment!
-    end
-  end
-
   private
 
   def generate_code
@@ -34,7 +22,6 @@ class Policy < ApplicationRecord
 
   def set_expiration_date
     return unless purchase_date.present? && policy_period.present?
-
     self.expiration_date = purchase_date + policy_period.months
   end
 end

@@ -15,8 +15,16 @@ class PoliciesController < ApplicationController
 
   def approved
     @policy = Policy.find(params[:id])
-    @policy.approve_order
-    #redirect_to @policy, notice: t('.success')
+    approve_order()
+  end
+
+  def approve_order
+    json_data = {order: { "status": ":insurance_approved", "policy_id": "#{@policy.id}", "policy_code": "#{@policy.code}" } }
+    response = Faraday.post("http://localhost:4000/api/v1/orders/#{@policy.order_id}/insurance_approved", body: json_data)
+
+    if response.status == 200
+      @policy.pending_payment!
+    end
   end
 
   def disapproved
@@ -50,7 +58,6 @@ class PoliciesController < ApplicationController
 
   def user_verification
     return if current_user.insurance_company == @policy.insurance_company || current_user.admin?
-
     redirect_to root_url, alert: t('.forbidden')
   end
 end
