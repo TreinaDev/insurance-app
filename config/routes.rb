@@ -31,7 +31,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :products, only: [:index, :show]
+      resources :products, only: [:index, :show] do
+        get 'packages', on: :member
+      end
       resources :insurance_companies, only: [:index, :show]
       resources :packages, only: [:index, :show]
       resources :package_coverages, only: [:index]
