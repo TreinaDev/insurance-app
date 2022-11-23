@@ -10,10 +10,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+  validate :check_company_if_employee
 
   private
 
   def add_insurance_company
     self.insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last) if employee?
+  end
+
+  def check_company_if_employee
+    errors.add(:insurance_company_id, message: 'não encontrada') if employee? && insurance_company.nil?
   end
 end
