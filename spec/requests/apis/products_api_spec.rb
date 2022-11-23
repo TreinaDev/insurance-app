@@ -38,6 +38,28 @@ describe 'Product API' do
 
       expect(response).to have_http_status 500
     end
+
+    it 'lista todos os produtos conforme query enviada' do
+      product_category = ProductCategory.create!(name: 'TV')
+      producta = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 'SAMSUNG',
+                                 price: 5000, product_category_id: product_category.id)
+      Product.create!(product_model: 'TV 50', launch_year: '2021', brand: 'SAMSUNG',
+                      price: 8000, product_category_id: product_category.id)
+      Product.create!(product_model: 'iPhone i12', launch_year: '2021', brand: 'Aple',
+                      price: 8000, product_category_id: product_category.id)
+      image_path = Rails.root.join('spec/support/images/tv32.jpeg')
+      producta.image.attach(io: image_path.open, filename: 'tv32.jpeg')
+
+      get '/api/v1/products/query?id=amsun'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response.length).to eq 2
+      expect(json_response[0]['product_model']).to eq 'TV 32'
+      expect(json_response[1]['product_model']).to eq 'TV 50'
+      expect(json_response[0].keys).to include('image_url')
+    end
   end
 
   context 'GET /api/v1/products/1' do

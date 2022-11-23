@@ -39,6 +39,16 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
+# Produto I
+product_i = Product.create!(product_model: 'iPhone 14 Pro', launch_year: '2022', brand: 'Apple', price: 10_000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone_14.png')
+product_i.image.attach(io: image_path.open, filename: 'iphone_14.png')
+# Produto J
+product_j = Product.create!(product_model: 'iPhone 12', launch_year: '2020', brand: 'Apple', price: 5000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone_12.png')
+product_j.image.attach(io: image_path.open, filename: 'iphone_12.png')
 
 # class Package
 package2 = Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_c,
