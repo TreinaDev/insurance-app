@@ -3,7 +3,6 @@ pt-BR:
     authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
     new:
       title: 'Cadastrar Nova Cobertura'
-      message: 'Não existem coberturas cadastradas!'
       register: 'Adicionar Cobertura'
     create: 
       success: Cobertura cadastrada com sucesso

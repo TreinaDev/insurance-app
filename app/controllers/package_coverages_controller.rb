@@ -7,6 +7,7 @@ class PackageCoveragesController < ApplicationController
 
   def new
     @package_coverage = PackageCoverage.new
+    @package_coverages = PackageCoverage.all
   end
 
   def create

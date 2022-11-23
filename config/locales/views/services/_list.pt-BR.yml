@@ -1,0 +1,4 @@
+pt-BR:
+  services:
+    list:
+      message: 'Não existem serviços cadastrados!'
