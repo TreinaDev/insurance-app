@@ -17,7 +17,7 @@ class Policy < ApplicationRecord
   def approve_order(policy_id)
     policy = Policy.find_by(id: policy_id)
     json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
-    url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
+    url = "#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}/insurance_approved"
     response = Faraday.post(url, body: json_data)
 
     return unless response.status == 200
@@ -28,7 +28,7 @@ class Policy < ApplicationRecord
   def disapprove_order(policy_id)
     policy = Policy.find_by(id: policy_id)
     json_data = { order: { status: ':canceled', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
-    url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
+    url = "#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}/insurance_disapproved"
     response = Faraday.post(url, body: json_data)
 
     return unless response.status == 200
