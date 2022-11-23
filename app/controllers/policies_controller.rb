@@ -13,6 +13,13 @@ class PoliciesController < ApplicationController
     user_verification
   end
 
+  def update
+    @policy = Policy.find(params[:id])
+    file_params = params.require(:policy).permit(:file)
+    @policy.update!(file_params)
+    redirect_to @policy, notice: t('.success')
+  end
+
   def approved
     @policy = Policy.find(params[:id])
     policy_id = @policy.id
