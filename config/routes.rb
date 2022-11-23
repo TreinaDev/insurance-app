@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :policies, only: [:show, :create], param: :code do
         get 'equipment/:equipment_id', to: 'policies#equipment', on: :collection
         get 'order/:order_id', to: 'policies#order', on: :collection 
+        post 'active', on: :member
       end
     end
   end
