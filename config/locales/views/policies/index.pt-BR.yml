@@ -4,7 +4,7 @@ pt-BR:
       title: 'Lista de Apólices'
       policies_all: 'Todas'
       policies_pending: 'Pendentes'
-      policies_pending_payment: 'Pagamento Pendente'
+      policies_pending_payment: 'Pagamentos Pendentes'
       policies_active: 'Ativas'
       policies_expired: 'Vencidas'
       policies_canceled: 'Canceladas'

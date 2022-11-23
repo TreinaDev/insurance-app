@@ -15,6 +15,28 @@ class Policy < ApplicationRecord
 
   has_one_attached :file
 
+  def approve_order(policy_id)
+    policy = Policy.find_by(id: policy_id)
+    json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
+    url = "#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}/insurance_approved"
+    response = Faraday.post(url, body: json_data)
+
+    return unless response.status == 200
+
+    policy.pending_payment!
+  end
+
+  def disapprove_order(policy_id)
+    policy = Policy.find_by(id: policy_id)
+    json_data = { order: { status: ':canceled', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
+    url = "#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}/insurance_disapproved"
+    response = Faraday.post(url, body: json_data)
+
+    return unless response.status == 200
+
+    policy.canceled!
+  end
+
   private
 
   def generate_code

@@ -9,3 +9,14 @@ test:
 production:
   comparator_api: http://localhost:4000/api/v1
   payment_api: http://localhost:5000/api/v1
+development:
+  comparator_api: http://localhost:4000/api/v1
+  payment_api: http://localhost:5000/api/v1
+
+test:
+  comparator_api: http://localhost:4000/api/v1
+  payment_api: http://localhost:5000/api/v1
+
+production:
+  comparator_api: http://localhost:4000/api/v1
+  payment_api: http://localhost:5000/api/v1
