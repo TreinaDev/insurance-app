@@ -64,9 +64,15 @@ RSpec.describe User, type: :model do
     end
 
     it 'administrador não atribui uma seguradora' do
-      user = User.create!(name: 'Pessoa', email: 'pessoa@seguradoraa.com.br', password: 'password')
+      user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
 
       expect(user.insurance_company_id).to eq nil
+    end
+
+    it 'funcionário é obrigatório o cadastro de sua Seguradora' do
+      user = User.new(name: 'Pessoa', email: 'pessoa@pessoa.com.br', password: 'password', role: :employee)
+
+      expect(user.valid?).to eq false
     end
   end
 end
