@@ -20,14 +20,14 @@
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link link-dark" id="delivered_on_time-tab" data-bs-toggle="tab" data-bs-target="#delivered_on_time-tab-pane" 
-      type="button" role="tab" aria-controls="delivered_on_time-tab-pane" aria-selected="false">
+    <button class="nav-link link-dark" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-tab-pane" 
+      type="button" role="tab" aria-controls="active-tab-pane" aria-selected="false">
       <%= t '.policies_active' %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link link-dark" id="delivered_late-tab" data-bs-toggle="tab" data-bs-target="#delivered_late-tab-pane" 
-      type="button" role="tab" aria-controls="delivered_late-tab-pane" aria-selected="false">
+    <button class="nav-link link-dark" id="canceled-tab" data-bs-toggle="tab" data-bs-target="#canceled-tab-pane" 
+      type="button" role="tab" aria-controls="canceled-tab-pane" aria-selected="false">
       <%= t '.policies_canceled' %>
     </button>
   </li>
@@ -105,7 +105,7 @@
       <% end %>
     <% end %> 
   </div>
-  <div class="tab-pane fade" id="delivered_on_time-tab-pane" role="tabpanel" aria-labelledby="delivered_on_time-tab" tabindex="0">
+  <div class="tab-pane fade" id="active-tab-pane" role="tabpanel" aria-labelledby="active-tab" tabindex="0">
     <% if current_user.admin? %>
       <% if @policies_active.any? %>
         <% @policies =  @policies_active %>
@@ -126,7 +126,7 @@
       <% end %>
     <% end %> 
   </div>
-  <div class="tab-pane fade" id="delivered_late-tab-pane" role="tabpanel" aria-labelledby="delivered_late-tab" tabindex="0">
+  <div class="tab-pane fade" id="canceled-tab-pane" role="tabpanel" aria-labelledby="canceled-tab" tabindex="0">
     <% if current_user.admin? %>
       <% if @policies_canceled.any? %>
         <% @policies = @policies_canceled %>

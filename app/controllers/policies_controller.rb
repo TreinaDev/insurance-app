@@ -22,7 +22,8 @@ class PoliciesController < ApplicationController
 
   def disapproved
     @policy = Policy.find(params[:id])
-    @policy.canceled!
+    policy_id = @policy.id
+    @policy.disapprove_order(policy_id)
     redirect_to @policy, notice: t('.success')
   end
 
@@ -51,6 +52,7 @@ class PoliciesController < ApplicationController
 
   def user_verification
     return if current_user.insurance_company == @policy.insurance_company || current_user.admin?
+
     redirect_to root_url, alert: t('.forbidden')
   end
 end

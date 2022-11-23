@@ -16,12 +16,24 @@ class Policy < ApplicationRecord
 
   def approve_order(policy_id)
     policy = Policy.find_by(id: policy_id)
-    json_data = {order: { "status": ":insurance_approved", "policy_id": "#{policy.id}", "policy_code": "#{policy.code}" } }
-    response = Faraday.post("http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved", body: json_data)
+    json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
+    url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
+    response = Faraday.post(url, body: json_data)
 
-    if response.status == 200
-      policy.pending_payment!
-    end
+    return unless response.status == 200
+
+    policy.pending_payment!
+  end
+
+  def disapprove_order(policy_id)
+    policy = Policy.find_by(id: policy_id)
+    json_data = { order: { status: ':canceled', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
+    url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
+    response = Faraday.post(url, body: json_data)
+
+    return unless response.status == 200
+
+    policy.canceled!
   end
 
   private
@@ -32,6 +44,7 @@ class Policy < ApplicationRecord
 
   def set_expiration_date
     return unless purchase_date.present? && policy_period.present?
+
     self.expiration_date = purchase_date + policy_period.months
   end
 end
