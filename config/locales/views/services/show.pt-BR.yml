@@ -1,0 +1,12 @@
+pt-BR:
+  services:
+    authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+    show:
+      title: 'Detalhes de Serviço'
+      register: 'Adicionar Serviço'
+      service_code: 'Serviço - Código'
+      name: 'Nome do Serviço'
+      description: 'Descrição'
+      status: 'Status'
+      deactivate: 'Desativar'
+      activate: 'Ativar'

@@ -1,0 +1,7 @@
+pt-BR:
+  package_coverages:
+    activate:
+      success: Cobertura ativada com sucesso!
+    deactivate:
+      success: Cobertura desativada com sucesso!
+      

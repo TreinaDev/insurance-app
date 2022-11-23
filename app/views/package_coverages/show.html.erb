@@ -1,0 +1,16 @@
+<h1><%= t '.title' %></h1>
+<div>
+  <p><h4><%= t '.package_coverage_code' %>: <%= @package_coverage.code %></h4></p>
+  <p><strong><%= t '.name' %>:</strong> <%= @package_coverage.name %>
+  <p><strong><%= t '.description' %>:</strong> <%= @package_coverage.description %>
+  <p><strong><%= t '.status' %>:</strong> <%= t (@package_coverage.status) %>
+</div>
+<div>
+  <% if current_user.admin? %>
+    <% if @package_coverage.active? %>
+      <%= button_to (t '.deactivate'), deactivate_package_coverage_path(@package_coverage.id), class: "btn btn-danger"  %>
+    <% else %>
+      <%= button_to (t '.activate'), activate_package_coverage_path(@package_coverage.id), class: "btn btn-success"  %>
+    <% end %>
+  <% end%>
+</div>

@@ -1,0 +1,13 @@
+pt-BR:
+  package_coverages:
+    authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+    show:
+      title: 'Detalhes de Cobertura'
+      register: 'Adicionar Cobertura'
+      package_coverage_code: 'Cobertura - Código'
+      name: 'Nome da Cobertura'
+      description: 'Descrição'
+      status: 'Status'
+      deactivate: 'Desativar'
+      activate: 'Ativar'
+    
