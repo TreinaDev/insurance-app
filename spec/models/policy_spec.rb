@@ -79,28 +79,7 @@ RSpec.describe Policy, type: :model do
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
-<<<<<<< HEAD
-                          equipment_id: '',
-=======
                           equipment_id: '', purchase_date: Time.zone.today,
-                          policy_period: 12, package_id: package.id)
-
-      result = policy.valid?
-
-      expect(result).to be false
-    end
-
-    it 'falso se não houver data de compra do pedido' do
-      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
-                                                   registration_number: '84157841000105')
-      product_category = ProductCategory.create!(name: 'TV')
-      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 9, product_category_id: product_category.id)
-      policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
-                          client_email: 'mariaalves@email.com',
-                          insurance_company_id: insurance_company.id, order_id: 1,
-                          equipment_id: 1, purchase_date: '',
->>>>>>> main
                           policy_period: 12, package_id: package.id)
 
       result = policy.valid?
@@ -269,7 +248,7 @@ RSpec.describe Policy, type: :model do
       policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
                           client_email: 'joseantonio@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
-                          equipment_id: 1, 
+                          equipment_id: 1,
                           policy_period: 12, package_id: package.id)
 
       policy.active!
