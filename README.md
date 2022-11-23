@@ -26,6 +26,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Obter lista de pacotes para um produto](#obter-lista-de-pacotes-para-um-produto)
   * [Obter lista de categorias de produto](#obter-lista-de-categorias-de-produto)
   * [Obter produtos em categoria](#obter-produtos-em-categoria)
+  * [Consulta de produtos através de busca](#consulta-de-produtos-através-de-busca)
   * [Status Codes](#status-codes)
 
 
@@ -579,6 +580,39 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     "product_category_id": 1,
     "image_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--677e89aa27092ea9bbb3e13b6a048138d50182fa/galaxy-s20-produto.jpg"
   }
+]
+```
+
+### Consulta de produtos através de busca
+
+**Endpoint: GET /api/v1/products/query**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+    {
+        "id": 3,
+        "product_model": "iPhone 14 Pro",
+        "launch_year": "2022",
+        "brand": "Apple",
+        "price": "10000.0",
+        "status": "active",
+        "product_category_id": 1,
+        "image_url": "http://127.0.0.1:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--da930e6da29d45bcb71d7a9ed6e4709e9052ef69/iphone_14.png"
+    },
+    {
+        "id": 4,
+        "product_model": "iPhone 12",
+        "launch_year": "2020",
+        "brand": "Apple",
+        "price": "5000.0",
+        "status": "active",
+        "product_category_id": 1,
+        "image_url": "http://127.0.0.1:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1194ba57938d088ab53d9e3762b6f60b0a89754f/iphone_12.png"
+    }
 ]
 ```
 
