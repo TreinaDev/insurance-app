@@ -7,7 +7,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: '', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -24,7 +24,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -41,7 +41,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: '',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -58,7 +58,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: '',
@@ -75,7 +75,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -92,7 +92,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -109,7 +109,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -126,7 +126,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                      price: 90.00, product_category_id: product_category.id)
+                      price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -143,7 +143,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 'd',
@@ -160,7 +160,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -177,7 +177,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -194,7 +194,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
                      client_email: 'mariaalves@email.com',
                      insurance_company_id: insurance_company.id, order_id: 1,
@@ -218,7 +218,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -237,7 +237,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       first_policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
                                 client_email: 'joseantonio@email.com',
                                 insurance_company_id: insurance_company.id, order_id: 1,
@@ -261,7 +261,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
                           client_email: 'joseantonio@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
@@ -281,7 +281,7 @@ RSpec.describe Policy, type: :model do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
                           client_email: 'joseantonio@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,

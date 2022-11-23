@@ -8,9 +8,12 @@ describe 'Usuário vê lista de pacotes' do
                                         '01000000123410')
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: insurance,
-                    product_category: smartphones)
-    Package.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: insurance,
-                    product_category: smartphones)
+                    product_category: smartphones, status: :pending)
+    coverage1 = PackageCoverage.create!(name: 'Molhar',
+                                        description: 'Assistência por danificação devido a molhar o aparelho.')
+    package = Package.create!(name: 'Econômico', min_period: 6, max_period: 18, insurance_company: insurance,
+                              product_category: smartphones, status: :active, price: 0.30)
+    CoveragePricing.create!(percentage_price: 0.30, package:, package_coverage: coverage1)
 
     login_as(user)
     visit root_path
@@ -23,7 +26,7 @@ describe 'Usuário vê lista de pacotes' do
     expect(page).to have_content('Nome')
     expect(page).to have_content('Período Mínimo')
     expect(page).to have_content('Período Máximo')
-    expect(page).to have_content('Preço Mensal')
+    expect(page).to have_content('Preço Percentual')
     expect(page).to have_content('Status')
 
     expect(page).to have_content('Smartphones')
@@ -32,11 +35,13 @@ describe 'Usuário vê lista de pacotes' do
     expect(page).to have_content('12 meses')
     expect(page).to have_content('24 meses')
     expect(page).to have_content('Pendente')
+    expect(page).to have_content('-')
 
     expect(page).to have_content('Econômico')
     expect(page).to have_content('6 meses')
     expect(page).to have_content('18 meses')
-    expect(page).to have_content('Pendente')
+    expect(page).to have_content('Ativo')
+    expect(page).to have_content('0,30% a.m.')
   end
 
   it 'e não tem nenhum pacote cadastrado' do

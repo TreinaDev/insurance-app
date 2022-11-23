@@ -1,3 +1,5 @@
 <h2>Editar produto <%= @product.product_model %></h2>
-
+<div id="back"> 
+  <%= link_to 'Voltar', product_path(@product) , type:"button", class:"btn btn-outline-dark" %>
+</div>
 <%= render 'form' %>

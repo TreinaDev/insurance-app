@@ -6,7 +6,7 @@ describe 'Usuário adicionar uma cobertura a um pacote' do
                                        registration_number: '80958759000110')
     category = ProductCategory.create!(name: 'Smartphones')
     package =  Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
-                               product_category: category, status: :pending)
+                               product_category: category, status: :pending, price: 0)
     coverage = PackageCoverage.create!(name: 'Molhar',
                                        description: 'Assistência por danificação devido a molhar o aparelho.')
 

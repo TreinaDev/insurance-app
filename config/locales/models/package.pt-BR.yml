@@ -11,7 +11,7 @@ pt-BR:
         min_period: 'Período Mínimo'
         insurance_company: 'Seguradora'
         insurance_company_id: 'Seguradora'
-        price: 'Preço'
+        price: 'Preço Percentual'
         product_category: 'Categoria'
         product_category_id: 'Categoria'
         status: 'Status'

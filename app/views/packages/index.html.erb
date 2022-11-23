@@ -15,7 +15,7 @@
         <th><%= Package.human_attribute_name(:name) %></th>
         <th><%= Package.human_attribute_name(:min_period) %></th>
         <th><%= Package.human_attribute_name(:max_period) %></th>
-        <th><%= Package.human_attribute_name(:price) %> Mensal</th>
+        <th><%= Package.human_attribute_name(:price) %></th>
         <th><%= Package.human_attribute_name(:status) %></th>
       </tr>
     </thead>
@@ -32,7 +32,7 @@
           <td><%= package.min_period %> meses</td>
           <td><%= package.max_period %> meses</td>
           <% if package.active? %>
-            <td><%= package.price %>%</td>
+            <td><%= number_to_percentage(package.price, precision: 2) %> a.m.</td>
           <% else %>
             <td> - </td>
           <% end %>
