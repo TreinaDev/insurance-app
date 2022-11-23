@@ -1,0 +1,5 @@
+pt-BR:
+  package_coverages:
+    authorization_failure: 'Apenas usuários administradores tem acesso a essa função'
+    list:
+      message: 'Não existem coberturas cadastradas!'
