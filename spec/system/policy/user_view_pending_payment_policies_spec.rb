@@ -20,7 +20,7 @@ describe 'Administrador vê lista de apólices com pagamento pendente' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Pagamento Pendente'
+    click_on 'Pagamentos Pendentes'
 
     expect(page).to have_content 'Código da Apólice'
     expect(page).to have_content 'Nome do Cliente'
@@ -36,7 +36,7 @@ describe 'Administrador vê lista de apólices com pagamento pendente' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Pagamento Pendente'
+    click_on 'Pagamentos Pendentes'
 
     expect(page).to have_content 'Não existem apólices com pagamento pendente'
   end
@@ -80,7 +80,7 @@ describe 'Funcionário vê lista de apólices com pagamento pendente' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Pagamento Pendente'
+    click_on 'Pagamentos Pendentes'
 
     expect(page).to have_content 'Código da Apólice'
     expect(page).to have_content 'Nome do Cliente'
@@ -107,7 +107,7 @@ describe 'Funcionário vê lista de apólices com pagamento pendente' do
     login_as(user)
     visit root_path
     click_on 'Apólices'
-    click_on 'Pagamento Pendente'
+    click_on 'Pagamentos Pendentes'
 
     expect(page).to have_content 'Não existem apólices cadastradas'
   end

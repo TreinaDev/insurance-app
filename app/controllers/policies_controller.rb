@@ -15,13 +15,15 @@ class PoliciesController < ApplicationController
 
   def approved
     @policy = Policy.find(params[:id])
-    @policy.pending_payment!
+    policy_id = @policy.id
+    @policy.approve_order(policy_id)
     redirect_to @policy, notice: t('.success')
   end
 
   def disapproved
     @policy = Policy.find(params[:id])
-    @policy.canceled!
+    policy_id = @policy.id
+    @policy.disapprove_order(policy_id)
     redirect_to @policy, notice: t('.success')
   end
 
