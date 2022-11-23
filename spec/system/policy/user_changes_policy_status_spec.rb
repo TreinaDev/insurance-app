@@ -10,7 +10,7 @@ describe 'Usuário altera status da apólice' do
 
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                 insurance_company_id: insurance_company.id,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
 
       allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('GHI1234567')
       Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
@@ -38,7 +38,7 @@ describe 'Usuário altera status da apólice' do
 
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                 insurance_company_id: insurance_company.id,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('GHI1234567')
       Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                     client_email: 'mariaalves@email.com',
@@ -67,7 +67,7 @@ describe 'Usuário altera status da apólice' do
 
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                 insurance_company_id: insurance_company.id,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
 
       allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('GHI1234567')
       Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
@@ -101,7 +101,7 @@ describe 'Usuário de seguradora visita lista de apólices' do
 
     package1 = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                insurance_company_id: insurance_company1.id,
-                               price: 90.00, product_category_id: product_category.id)
+                               price: 9, product_category_id: product_category.id)
 
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('GHI1234567')
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
@@ -112,7 +112,7 @@ describe 'Usuário de seguradora visita lista de apólices' do
 
     package2 = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                insurance_company_id: insurance_company2.id,
-                               price: 90.00, product_category_id: product_category.id)
+                               price: 9, product_category_id: product_category.id)
 
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234567')
     Policy.create(client_name: 'Bianca Lima', client_registration_number: '55550033340',

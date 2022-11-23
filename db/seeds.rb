@@ -41,7 +41,7 @@ image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
 
 # class Package
-Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.first,
+Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_c,
                 price: 3.00, product_category: product_category_a)
 Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: InsuranceCompany.first,
                 price: 7.00, product_category: product_category_a, status: :active)

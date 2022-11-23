@@ -8,7 +8,7 @@ describe 'Administrador vê lista de apólices com pagamento pendente' do
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                               insurance_company_id: insurance_company.id,
-                              price: 90.00, product_category_id: product_category.id)
+                              price: 9, product_category_id: product_category.id)
 
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234567')
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
@@ -53,10 +53,10 @@ describe 'Funcionário vê lista de apólices com pagamento pendente' do
 
     package1 = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                insurance_company_id: insurance_company1.id,
-                               price: 90.00, product_category_id: product_category.id)
+                               price: 9, product_category_id: product_category.id)
     package2 = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                                insurance_company_id: insurance_company2.id,
-                               price: 90.00, product_category_id: product_category.id)
+                               price: 9, product_category_id: product_category.id)
 
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234567')
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
@@ -99,10 +99,10 @@ describe 'Funcionário vê lista de apólices com pagamento pendente' do
     product_category = ProductCategory.create!(name: 'TV')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company_id:
                     insurance_company1.id,
-                    price: 90.00, product_category_id: product_category.id)
+                    price: 9, product_category_id: product_category.id)
     Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                     insurance_company_id: insurance_company2.id,
-                    price: 90.00, product_category_id: product_category.id)
+                    price: 9, product_category_id: product_category.id)
 
     login_as(user)
     visit root_path

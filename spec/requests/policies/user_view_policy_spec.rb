@@ -6,7 +6,7 @@ RSpec.describe 'Usuário visualiza detalhe de apólice', type: :request do
                                                  registration_number: '84157841000105')
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
-                              insurance_company:, price: 90.00, product_category_id: product_category.id)
+                              insurance_company:, price: 9, product_category_id: product_category.id)
     policy = Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                            client_email: 'mariaalves@email.com',
                            insurance_company_id: insurance_company.id, order_id: 1,
@@ -25,7 +25,7 @@ RSpec.describe 'Usuário visualiza lista de apólices', type: :request do
                                                  registration_number: '84157841000105')
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
-                              insurance_company:, price: 90.00, product_category_id: product_category.id)
+                              insurance_company:, price: 9, product_category_id: product_category.id)
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                   client_email: 'mariaalves@email.com',
                   insurance_company_id: insurance_company.id, order_id: 1,
@@ -49,7 +49,7 @@ RSpec.describe 'Usuário de seguradora tenta acessar detalhes da apólice', type
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
                               insurance_company_id: insurance_company1.id,
-                              price: 90.00, product_category_id: product_category.id)
+                              price: 9, product_category_id: product_category.id)
     policy = Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                            client_email: 'mariaalves@email.com',
                            insurance_company_id: insurance_company1.id, order_id: 1,

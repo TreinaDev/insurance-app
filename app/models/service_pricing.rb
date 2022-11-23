@@ -5,4 +5,5 @@ class ServicePricing < ApplicationRecord
   validates :status, presence: true
   validates :percentage_price, numericality: { in: 0..30 }
   validates_with ServiceValidator, fields: [:service]
+  validates :service_id, uniqueness: { scope: :package_id }
 end

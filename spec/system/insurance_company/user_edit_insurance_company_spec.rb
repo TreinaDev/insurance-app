@@ -62,4 +62,23 @@ describe 'Usúario edita uma seguradora' do
     expect(page).to have_content('Nome da Seguradora não pode ficar em branco')
     expect(page).to have_content('CNPJ não pode ficar em branco')
   end
+
+  it 'e há botão voltar' do
+    user = User.create!(name: 'Aline', email: 'Aline@empresa.com.br', password: 'password', role: :admin)
+
+    allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('ACCDEFGHIJ0123456789')
+    ic = InsuranceCompany.create!(name: 'Porto Seguro', email_domain: 'portoseguro.com.br',
+                                  registration_number: '99157841000105')
+
+    login_as(user)
+    visit root_path
+    click_on 'Seguradoras'
+    click_on 'Porto Seguro'
+    click_on 'Editar'
+    within('#back') do
+      click_on 'Voltar'
+    end
+
+    expect(current_path).to eq insurance_company_path(ic.id)
+  end
 end

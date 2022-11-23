@@ -7,7 +7,7 @@ describe 'Policy API' do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy_params = { policy: { client_name: 'Maria Alves', client_registration_number: '99950033340',
                                   client_email: 'mariaalves@email.com',
                                   insurance_company_id: insurance_company.id, order_id: 1,
@@ -34,7 +34,7 @@ describe 'Policy API' do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy_params = { policy: { client_name: 'Maria Alves', client_registration_number: '99950033340',
                                   client_email: '',
                                   insurance_company_id: insurance_company.id, order_id: '',
@@ -56,7 +56,7 @@ describe 'Policy API' do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy_params = { policy: { client_name: 'Maria Alves', client_registration_number: '99950033340',
                                   client_email: 'mariaalves@email.com',
                                   insurance_company_id: insurance_company.id, order_id: 1,
@@ -75,7 +75,7 @@ describe 'Policy API' do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
                               client_email: 'mariaalves@email.com',
                               insurance_company_id: insurance_company.id, order_id: 1,
@@ -114,7 +114,7 @@ describe 'Policy API' do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
                      client_email: 'mariaalves@email.com',
                      insurance_company_id: insurance_company.id, order_id: 1,
@@ -161,7 +161,7 @@ describe 'Policy API' do
                                                    registration_number: '84157841000105')
       product_category = ProductCategory.create!(name: 'TV')
       package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
-                                price: 90.00, product_category_id: product_category.id)
+                                price: 9, product_category_id: product_category.id)
       policy = Policy.create!(client_name: 'Maria Alves', client_registration_number: '99950033340',
                               client_email: 'mariaalves@email.com',
                               insurance_company_id: insurance_company.id, order_id: 1,

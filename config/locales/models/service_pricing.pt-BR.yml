@@ -1,4 +1,6 @@
 pt-BR:
+  add_service_error: 'Erro na adição de Serviço'
+  add_service_success: 'Serviço adicionado com sucesso!'
   active: 'Ativo'
   inactive: 'Desativado'
   activerecord:
@@ -9,8 +11,8 @@ pt-BR:
       service_pricing:
         active: 'Ativo'
         inactive: 'Desativado'
-        package_service: 'Serviço'
-        package_service_id: 'Serviço'
+        service: 'Serviço'
+        service_id: 'Serviço'
         package: 'Pacote'
         package_id: 'Pacote'
-        percentage_price: 'Preço percentual'
+        percentage_price: 'Preço Percentual'
