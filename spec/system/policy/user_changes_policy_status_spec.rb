@@ -127,7 +127,12 @@ describe '.approve_order' do
     click_on 'Pendentes'
     find(:css, '#pending-tab-pane').click_on policy.code
     click_on 'Aprovar'
+    click_on 'Apólices'
+    click_on 'Pagamento Pendente'
+    find(:css, '#pending-payment-tab-pane').click_on policy.code
 
-    expect(policy.status).to eq(:pending_payment)
+    expect(page).to have_content 'E-mail do Cliente: joseantonio@email.com'
+    expect(page).to have_content "#{policy.code}"
+    expect(page).to have_content 'Situação da Apólice: Pagamento Pendente'
   end
 end

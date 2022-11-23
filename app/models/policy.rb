@@ -14,6 +14,16 @@ class Policy < ApplicationRecord
 
   has_one_attached :file
 
+  def approve_order(policy_id)
+    policy = Policy.find_by(id: policy_id)
+    json_data = {order: { "status": ":insurance_approved", "policy_id": "#{policy.id}", "policy_code": "#{policy.code}" } }
+    response = Faraday.post("http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved", body: json_data)
+
+    if response.status == 200
+      policy.pending_payment!
+    end
+  end
+
   private
 
   def generate_code

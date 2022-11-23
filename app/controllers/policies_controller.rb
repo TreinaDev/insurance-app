@@ -15,16 +15,9 @@ class PoliciesController < ApplicationController
 
   def approved
     @policy = Policy.find(params[:id])
-    approve_order()
-  end
-
-  def approve_order
-    json_data = {order: { "status": ":insurance_approved", "policy_id": "#{@policy.id}", "policy_code": "#{@policy.code}" } }
-    response = Faraday.post("http://localhost:4000/api/v1/orders/#{@policy.order_id}/insurance_approved", body: json_data)
-
-    if response.status == 200
-      @policy.pending_payment!
-    end
+    policy_id = @policy.id
+    @policy.approve_order(policy_id)
+    redirect_to @policy, notice: t('.success')
   end
 
   def disapproved
