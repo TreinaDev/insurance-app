@@ -25,17 +25,10 @@ class Api::V1::ProductsController < Api::V1::ApiController
 
   def create_package_json(package, product)
     p = package.as_json(except: %i[created_at updated_at status])
-    coverages = []
-    package.coverage_pricings.each do |cp|
-      coverages << cp.package_coverage.id
-    end
-    p[:coverages] = coverages
-    services = []
-    package.service_pricings.each do |sp|
-      services << sp.service.id
-    end
-    p[:services] = services
+    p[:coverages] = package.package_coverages
+    p[:services] = package.package_services
     p[:price_per_month] = (package.price * product.price) / 100
+    p[:insurance_company_name] = package.insurance_company.name
     p
   end
 end

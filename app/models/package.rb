@@ -23,4 +23,22 @@ class Package < ApplicationRecord
     service_pricings.each { |sp| total_price += sp.percentage_price }
     self.price = total_price
   end
+
+  def package_coverages
+    coverages = []
+    coverage_pricings.each do |cp|
+      coverages << { code: cp.package_coverage.code, name: cp.package_coverage.name,
+                     description: cp.package_coverage.description }
+    end
+    coverages
+  end
+
+  def package_services
+    services = []
+    service_pricings.each do |sp|
+      services << { code: sp.service.code, name: sp.service.name,
+                    description: sp.service.description }
+    end
+    services
+  end
 end
