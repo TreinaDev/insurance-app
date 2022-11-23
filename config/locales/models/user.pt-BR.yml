@@ -1,7 +1,10 @@
 pt-BR:
   activerecord:
+    models:
+      user:
+        one: "Usuário"
     attributes:
       user:
         name: "Nome"
         insurance_company: "Seguradora"
-        insurance_compnay_id: "Seguradora"
+        insurance_company_id: "Seguradora"

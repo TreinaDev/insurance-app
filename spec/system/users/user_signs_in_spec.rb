@@ -42,14 +42,16 @@ describe 'Usuário faz login' do
   end
   context 'como funcionário' do
     it 'com sucesso' do
-      User.create!(name: 'Edna', email: 'edna@empresa.com.br', password: 'password', role: :employee)
+      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                               registration_number: '73328094000104')
+      User.create!(name: 'Edna', email: 'edna@seguradoraa.com.br', password: 'password', role: :employee)
 
       visit root_path
       within 'nav' do
         click_on 'Entrar'
       end
       within 'form' do
-        fill_in 'E-mail', with: 'edna@empresa.com.br'
+        fill_in 'E-mail', with: 'edna@seguradoraa.com.br'
         fill_in 'Senha', with: 'password'
         click_on 'Entrar'
       end
