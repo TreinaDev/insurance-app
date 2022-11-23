@@ -58,4 +58,37 @@ describe 'Usuário administrador registra cobertura' do
 
     expect(page).not_to have_link('Adicionar Cobertura')
   end
+
+  it 'e vê coberturas já existentes' do
+    user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
+    allow(SecureRandom).to receive(:alphanumeric).with(3).and_return('AAA')
+    PackageCoverage.create!(name: 'Molhar',
+                            description: 'Assistência por danificação devido a molhar o aparelho.')
+    allow(SecureRandom).to receive(:alphanumeric).with(3).and_return('AAB')
+    PackageCoverage.create!(name: 'Quebra de tela',
+                            description: 'Assistência por danificação da tela do aparelho.')
+
+    login_as(user)
+    visit root_path
+    click_on 'Coberturas'
+    click_on 'Adicionar Cobertura'
+
+    expect(page).to have_content 'Cadastrar Nova Cobertura'
+    expect(page).to have_field('Cobertura')
+    expect(page).to have_field('Descrição')
+    expect(page).to have_button('Criar Cobertura')
+    within('table') do
+      expect(page).to have_content 'Cobertura'
+      expect(page).to have_content 'Quebra de tela'
+      expect(page).to have_content 'Molhar'
+      expect(page).to have_content 'Descrição'
+      expect(page).to have_content 'Assistência por danificação devido a molhar o aparelho'
+      expect(page).to have_content 'Assistência por danificação da tela do aparelho'
+      expect(page).to have_content('Status')
+      expect(page).to have_content('Ativo')
+      expect(page).to have_content('Código')
+      expect(page).to have_content('AAB')
+      expect(page).to have_content('AAA')
+    end
+  end
 end

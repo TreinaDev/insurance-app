@@ -7,6 +7,7 @@ class ServicesController < ApplicationController
 
   def new
     @service = Service.new
+    @services = Service.all
   end
 
   def create
