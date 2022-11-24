@@ -27,6 +27,8 @@ User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', pass
 # class ProductCategory
 product_category_a = ProductCategory.create!(name: 'Celular')
 product_category_b = ProductCategory.create!(name: 'Televisão')
+product_category_c = ProductCategory.create!(name: 'Computador')
+product_category_d = ProductCategory.create!(name: 'Tablet')
 
 # class Product
 # Produto A
@@ -39,17 +41,62 @@ product_b = Product.create!(product_model: 'TV 32', launch_year: '2022', brand: 
                             product_category: product_category_b)
 image_path = Rails.root.join('spec/support/images/tv32.jpeg')
 product_b.image.attach(io: image_path.open, filename: 'tv32.jpeg')
+# Produto C
+product_c = Product.create!(product_model: 'Dell Inspirion', launch_year: '2022', brand: 'Dell', price: 3800,
+                            product_category: product_category_c)
+image_path = Rails.root.join('spec/support/images/dell-inspirion.jpeg')
+product_c.image.attach(io: image_path.open, filename: 'dell-inspirion.jpeg')
+# Produto D
+product_d = Product.create!(product_model: 'iPad Pro', launch_year: '2022', brand: 'Apple', price: 7500,
+                            product_category: product_category_d)
+image_path = Rails.root.join('spec/support/images/ipad.jpeg')
+product_d.image.attach(io: image_path.open, filename: 'ipad.jpeg')
+# Produto E
+product_e = Product.create!(product_model: 'iPhone 14 Pro Max', launch_year: '2022', brand: 'Apple', price: 12_000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone.jpeg')
+product_e.image.attach(io: image_path.open, filename: 'iphone.jpeg')
+# Produto F
+product_f = Product.create!(product_model: 'Smart Frame', launch_year: '2022', brand: 'Samsung', price: 5200,
+                            product_category: product_category_b)
+image_path = Rails.root.join('spec/support/images/frame.jpg')
+product_f.image.attach(io: image_path.open, filename: 'frame.jpg')
+# Produto G
+product_g = Product.create!(product_model: 'MacBook Air', launch_year: '2022', brand: 'Apple', price: 7800,
+                            product_category: product_category_c)
+image_path = Rails.root.join('spec/support/images/macbook.jpeg')
+product_g.image.attach(io: image_path.open, filename: 'macbook.jpeg')
+# Produto H
+product_h = Product.create!(product_model: 'Tab S8', launch_year: '2021', brand: 'Samsung', price: 5200,
+                            product_category: product_category_d)
+image_path = Rails.root.join('spec/support/images/tab.jpeg')
+product_h.image.attach(io: image_path.open, filename: 'tab.jpeg')
+# Produto I
+product_i = Product.create!(product_model: 'iPhone 14 Pro', launch_year: '2022', brand: 'Apple', price: 10_000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone_14.png')
+product_i.image.attach(io: image_path.open, filename: 'iphone_14.png')
+# Produto J
+product_j = Product.create!(product_model: 'iPhone 12', launch_year: '2020', brand: 'Apple', price: 5000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone_12.png')
+product_j.image.attach(io: image_path.open, filename: 'iphone_12.png')
 
 # class Package
-package2 = Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_c,
-                           price: 3.00, product_category: product_category_a, status: :active)
-Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: insurance_c,
-                price: 7.00, product_category: product_category_a)
-Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: InsuranceCompany.last,
-                price: 1.50, product_category: product_category_b)
+# Seguradora c
 package1 = Package.create!(name: 'Super Econômico', min_period: 6, max_period: 24,
                            insurance_company: insurance_c, status: :active,
-                           price: 8.50, product_category: product_category_b)
+                           price: 1.60, product_category: product_category_b)
+package2 = Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_c,
+                           price: 1.70, product_category: product_category_a, status: :active)
+Package.create!(name: 'Super Econômico', min_period: 6, max_period: 18, insurance_company: insurance_c,
+                product_category: product_category_a)
+# Seguradora A
+package4 = Package.create!(name: 'Super Premium', min_period: 12, max_period: 24, insurance_company: insurance_a,
+                           price: 0.65, product_category: product_category_b, status: :active)
+package5 = Package.create!(name: 'Econômico', min_period: 6, max_period: 24,
+                           insurance_company: insurance_a, status: :active,
+                           price: 3.05, product_category: product_category_b)
 
 # class Service
 service1 = Service.create!(name: 'Assinatura TV',
@@ -61,9 +108,9 @@ service2 = Service.create!(name: 'Desconto clubes seguros',
 
 # class ServicePricing
 ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service1)
-ServicePricing.create!(status: :active, percentage_price: 0.2, package: package1, service: service2)
-ServicePricing.create!(status: :active, percentage_price: 0.2, package: package2, service: service1)
 ServicePricing.create!(status: :active, percentage_price: 0.2, package: package2, service: service2)
+ServicePricing.create!(status: :active, percentage_price: 0.2, package: package5, service: service1)
+ServicePricing.create!(status: :active, percentage_price: 0.2, package: package4, service: service2)
 
 # class PackageCoverage
 coverage1 = PackageCoverage.create!(name: 'Molhar',
@@ -79,8 +126,10 @@ coverage3 = PackageCoverage.create!(name: 'Furto',
 # class CoveragePricing
 CoveragePricing.create!(status: :active, percentage_price: 0.2, package: package1, package_coverage: coverage1)
 CoveragePricing.create!(status: :active, percentage_price: 1.2, package: package1, package_coverage: coverage2)
-CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package1, package_coverage: coverage3)
-CoveragePricing.create!(status: :active, percentage_price: 5.5, package: package2, package_coverage: coverage3)
+CoveragePricing.create!(status: :active, percentage_price: 1.5, package: package2, package_coverage: coverage2)
+CoveragePricing.create!(status: :active, percentage_price: 2.5, package: package5, package_coverage: coverage3)
+CoveragePricing.create!(status: :active, percentage_price: 0.45, package: package4, package_coverage: coverage3)
+CoveragePricing.create!(status: :active, percentage_price: 0.35, package: package5, package_coverage: coverage2)
 
 # class Policy
 

@@ -8,6 +8,8 @@ RSpec.describe 'Usuário acessa tela de registro de seguradoras', type: :request
   end
 
   it 'e é funcionário logado' do
+    InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                             registration_number: '73328094000104')
     user = User.create!(name: 'Funcionário', email: 'funcionario@seguradoraa.com.br', password: 'password')
 
     login_as(user)

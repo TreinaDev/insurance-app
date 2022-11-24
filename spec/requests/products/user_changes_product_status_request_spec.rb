@@ -39,6 +39,8 @@ describe 'Usuário altera o status de um produto' do
     end
 
     it 'como funcionário' do
+      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',
+                               registration_number: '73328094000104')
       user = User.create!(name: 'Aline', email: 'Aline@seguradoraa.com.br', password: 'password', role: :employee)
       product_category = ProductCategory.create!(name: 'Celular')
       product = Product.create!(product_model: 'Samsung Galaxy S20', launch_year: '2018', brand: 'Samsung',
