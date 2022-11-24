@@ -12,13 +12,17 @@ describe 'Find Package for Product API' do
                                   product_category: smartphones, status: :active, price: 0.20)
       package_b = Package.create!(name: 'Premium', min_period: 6, max_period: 18, insurance_company:,
                                   product_category: smartphones, status: :active, price: 0.46)
-      coverage = PackageCoverage.create!(name: 'Molhar',
-                                         description: 'Assistência por danificação devido a molhar o aparelho.')
-      CoveragePricing.create!(percentage_price: 0.20, package: package_a, package_coverage: coverage)
-      CoveragePricing.create!(percentage_price: 0.30, package: package_b, package_coverage: coverage)
+      coverage1 = PackageCoverage.create!(name: 'Quebra de tela',
+                                          description: 'Assistência por danificação da tela do aparelho.')
+      coverage2 = PackageCoverage.create!(name: 'Molhar',
+                                          description: 'Assistência por danificação devido a molhar o aparelho.')
+      CoveragePricing.create!(percentage_price: 0.20, package: package_a, package_coverage: coverage1)
+      CoveragePricing.create!(percentage_price: 0.30, package: package_b, package_coverage: coverage2)
       s1 = Service.create!(name: 'Assinatura TV',
                            description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.')
-      ServicePricing.create!(percentage_price: 0.05, package: package_a, service: s1)
+      s2 = Service.create!(name: 'Desconto Petlove',
+                           description: 'Concede 10% de desconto em aquisição de produtos na loja Petlove.')
+      ServicePricing.create!(percentage_price: 0.05, package: package_a, service: s2)
       ServicePricing.create!(percentage_price: 0.16, package: package_b, service: s1)
 
       get "/api/v1/products/#{product.id}/packages/#{package_b.id}"
@@ -33,6 +37,14 @@ describe 'Find Package for Product API' do
       expect(json_response['insurance_company_name']).to eq 'Seguradora A'
       expect(json_response['product_category_id']).to eq smartphones.id
       expect(json_response['price_per_month']).to eq '23.0'
+      expect(json_response['coverages'].length).to eq 1
+      expect(json_response['coverages'][0]['code']).to eq coverage2.code
+      expect(json_response['coverages'][0]['name']).to eq 'Molhar'
+      expect(json_response['coverages'][0]['description']).to eq coverage2.description
+      expect(json_response['services'].length).to eq 1
+      expect(json_response['services'][0]['code']).to eq s1.code
+      expect(json_response['services'][0]['name']).to eq 'Assinatura TV'
+      expect(json_response['services'][0]['description']).to eq s1.description
       expect(json_response.keys).not_to include('created_at')
       expect(json_response.keys).not_to include('updated_at')
       expect(json_response.keys).not_to include('status')
