@@ -15,6 +15,13 @@ class Api::V1::ProductsController < Api::V1::ApiController
     render status: :ok, json: packages.map { |p| create_package_json(p, product) }
   end
 
+  def query
+    term = params[:id]
+    products = Product.where('product_model LIKE ?', "%#{term}%")
+    products = Product.where('brand LIKE ?', "%#{term}%") unless products.any?
+    render status: :ok, json: products.map { |p| create_json(p) }
+  end
+
   private
 
   def create_json(product)

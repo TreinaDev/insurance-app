@@ -71,6 +71,16 @@ product_h = Product.create!(product_model: 'Tab S8', launch_year: '2021', brand:
                             product_category: product_category_d)
 image_path = Rails.root.join('spec/support/images/tab.jpeg')
 product_h.image.attach(io: image_path.open, filename: 'tab.jpeg')
+# Produto I
+product_i = Product.create!(product_model: 'iPhone 14 Pro', launch_year: '2022', brand: 'Apple', price: 10_000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone_14.png')
+product_i.image.attach(io: image_path.open, filename: 'iphone_14.png')
+# Produto J
+product_j = Product.create!(product_model: 'iPhone 12', launch_year: '2020', brand: 'Apple', price: 5000.0,
+                            product_category: product_category_a)
+image_path = Rails.root.join('spec/support/images/iphone_12.png')
+product_j.image.attach(io: image_path.open, filename: 'iphone_12.png')
 
 # class Package
 # Seguradora c
