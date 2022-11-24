@@ -16,8 +16,9 @@ class PoliciesController < ApplicationController
   def update
     @policy = Policy.find(params[:id])
     file_params = params.require(:policy).permit(:file)
-    @policy.update!(file_params)
-    redirect_to @policy, notice: t('.success')
+    if @policy.update(file_params)
+      redirect_to @policy, notice: t('.success')
+    end
   end
 
   def approved
