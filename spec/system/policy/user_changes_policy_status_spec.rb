@@ -45,7 +45,7 @@ describe 'Usuário altera status da apólice' do
       Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                     client_email: 'mariaalves@email.com',
                     insurance_company_id: insurance_company.id, order_id: 1,
-                    equipment_id: 1, purchase_date: Time.zone.today,
+                    equipment_id: 1,
                     policy_period: 12, package_id: package.id, status: :pending)
 
       login_as(user)
@@ -79,7 +79,7 @@ describe 'Usuário de seguradora visita lista de apólices' do
     Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
                   client_email: 'mariaalves@email.com',
                   insurance_company_id: insurance_company1.id, order_id: 1,
-                  equipment_id: 1, purchase_date: Time.zone.today,
+                  equipment_id: 1,
                   policy_period: 12, package_id: package1.id, status: :pending)
 
     package2 = Package.create!(name: 'Premium', min_period: 12, max_period: 24,
@@ -90,7 +90,7 @@ describe 'Usuário de seguradora visita lista de apólices' do
     Policy.create(client_name: 'Bianca Lima', client_registration_number: '55550033340',
                   client_email: 'biancalima@email.com',
                   insurance_company_id: insurance_company2.id, order_id: 2,
-                  equipment_id: 1, purchase_date: Time.zone.today,
+                  equipment_id: 1,
                   policy_period: 12, package_id: package2.id, status: :pending)
 
     login_as(user)
@@ -114,7 +114,7 @@ describe '.approve_order' do
     policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
                             client_email: 'joseantonio@email.com',
                             insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1, purchase_date: '2022-11-12',
+                            equipment_id: 1,
                             policy_period: 12, package_id: package.id)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
     json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s,
@@ -149,7 +149,7 @@ describe '.disapprove_order' do
     policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
                             client_email: 'joseantonio@email.com',
                             insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1, purchase_date: '2022-11-12',
+                            equipment_id: 1,
                             policy_period: 12, package_id: package.id)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
     json_data = { order: { status: ':canceled', policy_id: policy.id.to_s,
@@ -184,7 +184,7 @@ describe '.approve_order' do
     policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
                             client_email: 'joseantonio@email.com',
                             insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1, purchase_date: '2022-11-12',
+                            equipment_id: 1,
                             policy_period: 12, package_id: package.id)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
     json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s,
@@ -219,7 +219,7 @@ describe '.disapprove_order' do
     policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
                             client_email: 'joseantonio@email.com',
                             insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1, purchase_date: '2022-11-12',
+                            equipment_id: 1,
                             policy_period: 12, package_id: package.id)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
     json_data = { order: { status: ':canceled', policy_id: policy.id.to_s,

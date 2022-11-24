@@ -86,10 +86,14 @@ describe 'Funcionário vê lista de apólices ativas' do
     expect(page).to have_content 'Código da Apólice'
     expect(page).to have_content 'Nome do Cliente'
     expect(page).to have_content 'Data da Contratação'
-    expect(page).to have_content 'Renato Alves'
-    expect(page).to have_content 'DEF1234567'
-    expect(page).to have_content 'Pedro Dias'
-    expect(page).to have_content 'GHI1234567'
+    within('div#active-tab-pane table tbody tr:nth-child(1)') do
+      expect(page).to have_content 'Pedro Dias'
+      expect(page).to have_content 'GHI1234567'
+    end
+    within('div#active-tab-pane table tbody tr:nth-child(2)') do
+      expect(page).to have_content 'Renato Alves'
+      expect(page).to have_content 'DEF1234567'
+    end
   end
 
   it 'e não há apólices ativas cadastradas' do
