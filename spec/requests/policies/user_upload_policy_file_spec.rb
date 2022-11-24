@@ -19,9 +19,8 @@ describe 'Usuário tenta fazer upload de arquivo de apólice' do
                            policy_period: 12, package_id: package.id, status: :active)
 
     login_as(user)
-    pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-e.pdf')
-    file = { policy: { file: Rack::Test::UploadedFile.new(pdf_path, 'application/pdf') } }
-    patch "/policies/#{policy.id}", params: file
+
+    patch "/policies/#{policy.id}", params: { policy: { file: nil } }
 
     expect(response).to redirect_to(root_path)
   end
