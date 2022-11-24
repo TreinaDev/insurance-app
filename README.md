@@ -24,6 +24,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Obter lista de Pacotes](#obter-lista-de-pacotes)
   * [Obter dados de pacote específico](#obter-dados-de-pacote-específico)
   * [Obter lista de pacotes para um produto](#obter-lista-de-pacotes-para-um-produto)
+  * [Obter dados de pacote específico para um produto](#obter-dados-de-pacote-específico-para-um-produto)
   * [Obter lista de categorias de produto](#obter-lista-de-categorias-de-produto)
   * [Obter produtos em categoria](#obter-produtos-em-categoria)
   * [Consulta de produtos através de busca](#consulta-de-produtos-através-de-busca)
@@ -532,6 +533,43 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
     ],
     "price_per_month": "425.0",
     "insurance_company_name": "Anjo Seguradora"
+  }
+]
+```
+### Obter dados de pacote específico para um produto
+
+**Endpoint: GET /api/v1/products/id/packages/id**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+[
+  {
+    "id":2,
+    "name":"Super Premium",
+    "max_period":24,
+    "min_period":12,
+    "insurance_company_id":3,
+    "price":"1.7",
+    "product_category_id":1,
+    "coverages":[
+      {
+        "code":"76R",
+        "name":"Quebra de tela",
+        "description":"Assistência por danificação da tela do aparelho."
+      }
+    ],
+    "services":[
+      {
+        "code":"TKY",
+        "name":"Desconto clubes seguros",
+        "description":"Concede 10% de desconto em aquisição de seguro veicular."
+      }
+    ],
+    "price_per_month":"34.0",
+    "insurance_company_name":"Seguradora A"
   }
 ]
 ```
