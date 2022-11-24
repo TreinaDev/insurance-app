@@ -46,7 +46,7 @@ class PoliciesController < ApplicationController
     @policies_all_id = current_user.insurance_company.policies
     @policies_pending_id = current_user.insurance_company.policies.pending
     @policies_pending_payment_id = current_user.insurance_company.policies.pending_payment
-    @policies_active_id = current_user.insurance_company.policies.active
+    @policies_active_id = current_user.insurance_company.policies.active.order(updated_at: :desc)
   end
 
   def find_non_current_policies
