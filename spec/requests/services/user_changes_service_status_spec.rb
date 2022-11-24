@@ -7,7 +7,7 @@ describe 'Usuário altera o status de um serviço' do
                                 description: 'Concede 10% de desconto em assinatura.',
                                 status: :active, code: 'ZK7')
 
-      post(deactivate_service_path(service.id))
+      post "/services/#{service.id}/deactivate/"
 
       expect(response).to redirect_to(new_user_session_url)
     end
@@ -21,7 +21,7 @@ describe 'Usuário altera o status de um serviço' do
                                 status: :active, code: 'ZK7')
 
       login_as user
-      post(deactivate_service_path(service.id))
+      post "/services/#{service.id}/deactivate/"
 
       expect(response.status).not_to be 200
     end

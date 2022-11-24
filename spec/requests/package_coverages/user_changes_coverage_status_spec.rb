@@ -7,7 +7,7 @@ describe 'Usuário altera o status de uma cobertura' do
                                                  description: 'Assistência por danificação devido a molhar o aparelho.',
                                                  status: :active)
 
-      post(deactivate_package_coverage_path(package_coverage.id))
+      post "/package_coverages/#{package_coverage.id}/deactivate/"
 
       expect(response).to redirect_to(new_user_session_url)
     end
@@ -21,7 +21,7 @@ describe 'Usuário altera o status de uma cobertura' do
                                                  status: :active)
 
       login_as user
-      post(deactivate_package_coverage_path(package_coverage.id))
+      post "/package_coverages/#{package_coverage.id}/deactivate/"
 
       expect(response.status).not_to be 200
     end
