@@ -1,5 +1,5 @@
 class PackageCoveragesController < ApplicationController
-  before_action :check_admin, only: %i[new create]
+  before_action :check_admin, only: %i[new create activate deactivate]
 
   def index
     @package_coverages = PackageCoverage.all

@@ -15,7 +15,11 @@
             <td><%= link_to coverage.code, coverage, class: "link-dark" %></td>
             <td><%= coverage.name  %></td>
             <td><%= coverage.description %></td>
-            <td><%= t(coverage.status) %></td>
+            <% if coverage.active? %>
+              <td class="fw-semibold text-success"><%= Service.human_attribute_name("status.#{coverage.status}") %></td>
+          <% else %>
+              <td class="fw-semibold text-muted"><%= Service.human_attribute_name("status.#{coverage.status}") %></td>
+          <% end %>
           </tr>
         <% end %>
       </tbody>

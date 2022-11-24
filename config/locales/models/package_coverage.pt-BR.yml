@@ -12,3 +12,6 @@ pt-BR:
         description: 'Descrição'
         name: 'Cobertura'
         code: 'Código'
+      package_coverage/status:
+        active: "Ativo"
+        inactive: "Inativo"
