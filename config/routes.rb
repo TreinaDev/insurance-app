@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show] do
         get 'packages', on: :member
+        resources :packages, only: [:show]
         get 'query', on: :collection
       end
       resources :insurance_companies, only: [:index, :show]
