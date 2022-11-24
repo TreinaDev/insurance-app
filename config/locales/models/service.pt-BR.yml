@@ -8,3 +8,6 @@ pt-BR:
         name: 'Serviço'
         description: 'Descrição'
         code: 'Código'
+      service/status:
+        active: "Ativo"
+        inactive: "Inativo"

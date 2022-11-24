@@ -1,5 +1,6 @@
 class InsuranceCompaniesController < ApplicationController
-  before_action :check_admin, only: %i[index show new create edit update activate deactivate]
+  before_action :check_admin, only: %i[index show new create edit update activate
+                                       deactivate activate_token deactivate_token]
 
   def index
     @insurance_companies = InsuranceCompany.all
@@ -48,6 +49,18 @@ class InsuranceCompaniesController < ApplicationController
   def deactivate
     @insurance_company = InsuranceCompany.find(params[:id])
     @insurance_company.inactive!
+    redirect_to @insurance_company, notice: t('.success')
+  end
+
+  def activate_token
+    @insurance_company = InsuranceCompany.find(params[:id])
+    @insurance_company.token_active!
+    redirect_to @insurance_company, notice: t('.success')
+  end
+
+  def deactivate_token
+    @insurance_company = InsuranceCompany.find(params[:id])
+    @insurance_company.token_inactive!
     redirect_to @insurance_company, notice: t('.success')
   end
 
