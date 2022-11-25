@@ -1,8 +1,12 @@
 class PackageCoveragesController < ApplicationController
-  before_action :check_admin, only: %i[new create]
+  before_action :check_admin, only: %i[new create activate deactivate]
 
   def index
     @package_coverages = PackageCoverage.all
+  end
+
+  def show
+    @package_coverage = PackageCoverage.find(params[:id])
   end
 
   def new
@@ -19,6 +23,18 @@ class PackageCoveragesController < ApplicationController
       flash.now[:alert] = t('.failure')
       render 'new'
     end
+  end
+
+  def activate
+    @package_coverage = PackageCoverage.find(params[:id])
+    @package_coverage.active!
+    redirect_to @package_coverage, notice: t('.success')
+  end
+
+  def deactivate
+    @package_coverage = PackageCoverage.find(params[:id])
+    @package_coverage.inactive!
+    redirect_to @package_coverage, notice: t('.success')
   end
 
   private

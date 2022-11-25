@@ -11,10 +11,14 @@
     <tbody>
       <% @services.each do |service| %>
         <tr>
-          <td><%= service.code %></td>
+          <td><%= link_to service.code, service, class: "link-dark" %></td>
           <td><%= service.name %></td>
           <td><%= service.description %></td>
-          <td><%= t(service.status) %></td>
+          <% if service.active? %>
+              <td class="fw-semibold text-success"><%= Service.human_attribute_name("status.#{service.status}") %></td>
+          <% else %>
+              <td class="fw-semibold text-muted"><%= Service.human_attribute_name("status.#{service.status}") %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Search Package for Product API' do
+describe 'Search Packages for Product API' do
   context 'GET api/v1/products/1/packages' do
     it 'com sucesso' do
       insurance_company_a = InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradoraa.com.br',

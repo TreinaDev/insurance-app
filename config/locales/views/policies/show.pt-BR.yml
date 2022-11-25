@@ -13,6 +13,8 @@ pt-BR:
       success: 'Apólice aprovada com sucesso'
     disapproved:
       success: 'Apólice reprovada'
+    update:
+      success: 'Upload feito com sucesso'
     canceled:
       success: 'Apólice cancelada'
   status:

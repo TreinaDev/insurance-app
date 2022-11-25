@@ -173,3 +173,13 @@ policy_e = Policy.create!(client_name: 'Pedro Dias', client_registration_number:
                           policy_period: 12, package_id: Package.second.id, status: :pending)
 pdf_path = Rails.root.join('spec/support/policy_files/sample-policy-e.pdf')
 policy_e.file.attach(io: pdf_path.open, filename: 'sample-policy-e.pdf')
+Policy.create!(client_name: 'Jurandir Rodrigues', client_registration_number: '33300033311',
+               client_email: 'genir@email.com',
+               insurance_company_id: insurance_c.id, order_id: 1022,
+               equipment_id: 2,
+               policy_period: 12, package_id: Package.second.id, status: :active)
+Policy.create!(client_name: 'Frederico Ornelas', client_registration_number: '22200033311',
+               client_email: 'fred@email.com',
+               insurance_company_id: 3, order_id: 1033,
+               equipment_id: 40,
+               policy_period: 12, package_id: Package.second.id, status: :active)

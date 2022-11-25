@@ -1,4 +1,6 @@
 pt-BR:
+  active: 'Ativa'
+  inactive: 'Inativa'
   activerecord:
     models:
       package_coverage:
@@ -10,3 +12,6 @@ pt-BR:
         description: 'Descrição'
         name: 'Cobertura'
         code: 'Código'
+      package_coverage/status:
+        active: "Ativo"
+        inactive: "Inativo"

@@ -44,6 +44,8 @@ class Policy < ApplicationRecord
   end
 
   def set_expiration_date
+    return unless changed.include?('status')
+
     self.purchase_date = Time.zone.today
     self.expiration_date = purchase_date + policy_period.months
   end
