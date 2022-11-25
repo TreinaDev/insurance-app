@@ -13,6 +13,7 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   * [Obter dados de produto específico](#obter-dados-de-produto-específico)
   * [Obter lista de seguradoras](#obter-lista-de-seguradoras)
   * [Obter informações sobre seguradora específica](#obter-informações-sobre-seguradora-específica)
+  * [Consulta de seguradora por e-mail do usuário](#consulta-de-seguradora-por-e-mail-do-usuário)
   * [Solicitar emissão de apólice](#solicitar-emissão-de-apólice)
   * [Obter apólice específica](#obter-apólice-específica)
   * [Ativa apólice específica](#ativa-apólice-específica)
@@ -158,6 +159,27 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
   "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e6342b93abe5afefdc5369e4c715907c7dac161e/liga_seguros.PNG"
 }
 ```
+### Consulta de seguradora por e-mail do usuário
+
+**Endpoint: GET /api/v1/insurance_companies/query?id=E-MAILPESQUISADO**
+
+<p align = "justify">Retornos:</p>
+
+<p align = "justify">200 (Sucesso)</p>
+
+```json
+{
+  "id": 3,
+  "name": "Seguradora A",
+  "email_domain": "seguradoraa.com.br",
+  "company_status": "active",
+  "token_status": "token_active",
+  "registration_number": "80929380000456",
+  "token": "ATURTSWUD9MPEBGHQKPK",
+  "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--785bff35ac48196c7b01b5d4e723a1947dbcb268/seguradora_a.PNG"
+}
+```
+
 ### Solicitar emissão de Apólice
 
 **Endpoint: POST /api/v1/policies**
