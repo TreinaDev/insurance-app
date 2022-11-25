@@ -1,8 +1,12 @@
 class ServicesController < ApplicationController
-  before_action :check_admin, only: %i[new create]
+  before_action :check_admin, only: %i[new create activate deactivate]
 
   def index
     @services = Service.all
+  end
+
+  def show
+    @service = Service.find(params[:id])
   end
 
   def new
@@ -19,6 +23,18 @@ class ServicesController < ApplicationController
       flash.now[:alert] = t('.failure')
       render 'new'
     end
+  end
+
+  def activate
+    @service = Service.find(params[:id])
+    @service.active!
+    redirect_to @service, notice: t('.success')
+  end
+
+  def deactivate
+    @service = Service.find(params[:id])
+    @service.inactive!
+    redirect_to @service, notice: t('.success')
   end
 
   private

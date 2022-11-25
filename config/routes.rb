@@ -20,8 +20,14 @@ Rails.application.routes.draw do
     post 'activate', on: :member
   end
   resources :pending_packages, only: [:index, :new, :create]
-  resources :services, only: [:index, :new, :create]
-  resources :package_coverages, only: [:index, :new, :create]
+  resources :services, only: [:index, :new, :create, :show] do
+    post 'deactivate', on: :member
+    post 'activate', on: :member
+  end
+  resources :package_coverages, only: [:index, :new, :create, :show] do
+    post 'deactivate', on: :member
+    post 'activate', on: :member
+  end
   
   resources :policies, only: [:index, :show, :update] do
     post 'disapproved', on: :member
