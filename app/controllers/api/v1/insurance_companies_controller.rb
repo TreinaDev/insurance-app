@@ -11,8 +11,8 @@ class Api::V1::InsuranceCompaniesController < Api::V1::ApiController
 
   def query
     email = params[:id]
-    insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last)
-    if insurance_company.nil?
+    insurance_company = InsuranceCompany.active.find_by(email_domain: email.partition('@').last)
+    if insurance_company.nil? || insurance_company.token_inactive?
       return404
     else
       render status: :ok, json: create_json(insurance_company)
