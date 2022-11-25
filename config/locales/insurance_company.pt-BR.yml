@@ -35,5 +35,9 @@ pt-BR:
       success: 'Seguradora ativada com sucesso'
     deactivate:
       success: 'Seguradora desativado com sucesso'
+    activate_token:
+      success: 'Token de Integração ativado com sucesso'
+    deactivate_token:
+      success: 'Token de Integração desativado com sucesso'
 
 
