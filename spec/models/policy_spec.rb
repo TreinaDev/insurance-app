@@ -79,7 +79,7 @@ RSpec.describe Policy, type: :model do
       policy = Policy.new(client_name: 'Maria Alves', client_registration_number: '99950033340',
                           client_email: 'mariaalves@email.com',
                           insurance_company_id: insurance_company.id, order_id: 1,
-                          equipment_id: '', purchase_date: Time.zone.today,
+                          equipment_id: '',
                           policy_period: 12, package_id: package.id)
 
       result = policy.valid?
@@ -257,6 +257,29 @@ RSpec.describe Policy, type: :model do
 
       expect(purchase_date).to eq(Time.zone.today.strftime)
       expect(expiration_date).to eq((Time.zone.today + policy.policy_period.months).strftime)
+    end
+
+    it 'que não muda ao mudar outros atributos' do
+      insurance_company = InsuranceCompany.create!(name: 'Allianz Seguros', email_domain: 'allianzaeguros.com.br',
+                                                   registration_number: '84157841000105')
+      product_category = ProductCategory.create!(name: 'TV')
+      package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
+                                price: 9, product_category_id: product_category.id)
+      policy = Policy.new(client_name: 'José Antonio', client_registration_number: '77750033340',
+                          client_email: 'joseantonio@email.com',
+                          insurance_company_id: insurance_company.id, order_id: 1,
+                          equipment_id: 1,
+                          policy_period: 12, package_id: package.id)
+
+      allow(Time.zone).to receive(:today).and_return(10.days.ago + 20.days)
+      policy.active!
+      expiration_date = policy.expiration_date
+      purchase_date = policy.purchase_date
+      allow(Time.zone).to receive(:today).and_return(10.days.ago + 30.days)
+      policy.update!(client_email: 'jose@email.com')
+
+      expect(policy.purchase_date).to eq(purchase_date)
+      expect(policy.expiration_date).to eq(expiration_date)
     end
   end
 
