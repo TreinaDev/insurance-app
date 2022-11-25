@@ -52,6 +52,16 @@ RSpec.describe InsuranceCompany, type: :model do
 
       expect(insurance.valid?).to eq false
     end
+
+    it 'o domínio de e-mail deve ser único' do
+      InsuranceCompany.create!(name: 'Seguradora A', email_domain: 'seguradora.com.br',
+                               registration_number: '02585232145203')
+      insurance = InsuranceCompany.new(email_domain: 'seguradora.com.br')
+
+      insurance.valid?
+
+      expect(insurance.errors.include?(:email_domain)).to eq true
+    end
   end
 
   describe 'gera um código aleatório para o token' do

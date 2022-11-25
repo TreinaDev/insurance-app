@@ -9,6 +9,16 @@ class Api::V1::InsuranceCompaniesController < Api::V1::ApiController
     render status: :ok, json: create_json(insurance_company)
   end
 
+  def query
+    email = params[:id]
+    insurance_company = InsuranceCompany.find_by(email_domain: email.partition('@').last)
+    if insurance_company.nil?
+      return404
+    else
+      render status: :ok, json: create_json(insurance_company)
+    end
+  end
+
   private
 
   def create_json(insurance_company)

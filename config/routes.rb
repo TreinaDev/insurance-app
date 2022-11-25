@@ -42,7 +42,9 @@ Rails.application.routes.draw do
         resources :packages, only: [:show]
         get 'query', on: :collection
       end
-      resources :insurance_companies, only: [:index, :show]
+      resources :insurance_companies, only: [:index, :show] do
+        get 'query', on: :collection
+      end
       resources :packages, only: [:index, :show]
       resources :package_coverages, only: [:index]
       resources :services, only: [:index]
