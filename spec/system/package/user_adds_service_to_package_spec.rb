@@ -88,18 +88,72 @@ describe 'Usuário adiciona serviços a um pacote pendente' do
     smartphones = ProductCategory.create!(name: 'Smartphones')
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
                     product_category: smartphones, status: :pending, price: 0)
+    Service.create!(name: 'Assinatura TV',
+                    description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
+                    status: :active)
 
     login_as(user)
     visit root_path
     click_on 'Pacotes'
     click_on 'Premium'
-    within '#service-form' do
+    within '#service-form-field' do
       fill_in 'Preço Percentual', with: ''
+    end
+    within '#service-form-button' do
       click_on 'Adicionar Serviço'
     end
 
     expect(page).to have_content 'Erro na adição de Serviço'
     expect(page).to have_content 'Não existem Serviços adicionados para este Pacote'
     expect(page).to have_content 'Não existem Coberturas adicionadas para este Pacote'
+  end
+end
+
+describe 'Usuário visita pagina para criar pacote' do
+  it 'e não há serviços disponíveis' do
+    company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
+                                       registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
+                    product_category: smartphones, status: :pending, price: 0)
+
+    login_as(user)
+    visit root_path
+    click_on 'Pacotes'
+    click_on 'Premium'
+
+    expect(page).not_to have_content 'Adionar Serviço'
+    expect(page).to have_content 'Serviço:'
+    expect(page).to have_content 'Não há serviços ativos'
+    expect(page).to have_content 'Preço Percentual (%):'
+    expect(page).to have_content 'É preciso adicionar serviço'
+  end
+
+  it 'e só tem acesso a serviços ativos' do
+    company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
+                                       registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
+                    product_category: smartphones, status: :pending, price: 0)
+    Service.create!(name: 'Desconto no Clube',
+                    description: 'Concede 10% de desconto em clubes de esporte',
+                    status: :active)
+    Service.create!(name: 'Assinatura TV',
+                    description: 'Concede 10% de desconto em assinatura com mais canais disponíveis no mercado.',
+                    status: :inactive)
+
+    login_as(user)
+    visit root_path
+    click_on 'Pacotes'
+    click_on 'Premium'
+
+    within '#service-select' do
+      expect(page).to have_content 'Desconto no Clube'
+    end
+    within '#service-select' do
+      expect(page).not_to have_content 'Assinatura TV'
+    end
   end
 end

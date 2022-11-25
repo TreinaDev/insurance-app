@@ -81,17 +81,70 @@ describe 'Usuário adiciona coberturas a um pacote pendente' do
     Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company: company,
                     product_category: smartphones, status: :pending, price: 0)
     PackageCoverage.create!(name: 'Quebra de tela',
-                            description: 'Assistência por danificação da tela do aparelho.')
+                            description: 'Assistência por danificação da tela do aparelho.', status: :active)
 
     login_as(user)
     visit root_path
     click_on 'Pacotes'
     click_on 'Premium'
-    within '#coverage-form' do
+    within '#coverage-form-field' do
       fill_in 'Preço Percentual', with: ''
+    end
+    within '#coverage-form-button' do
       click_on 'Adicionar Cobertura'
     end
 
     expect(page).to have_content 'Erro na adição de Cobertura'
+  end
+end
+
+describe 'Usuário visita pagina para criar pacote' do
+  it 'e não há coberturas disponíveis' do
+    company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
+                                       registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    Package.create!(name: 'Premium', min_period: 12, max_period: 24,
+                    insurance_company: company,
+                    product_category: smartphones, status: :pending, price: 0)
+    PackageCoverage.create!(name: 'Quebra de tela',
+                            description: 'Assistência por danificação da tela do aparelho.', status: :inactive)
+
+    login_as(user)
+    visit root_path
+    click_on 'Pacotes'
+    click_on 'Premium'
+
+    expect(page).not_to have_content 'Adionar Cobertura'
+    expect(page).to have_content 'Cobertura:'
+    expect(page).to have_content 'Não há coberturas ativos'
+    expect(page).to have_content 'Preço Percentual (%):'
+    expect(page).to have_content 'É preciso adicionar cobertura'
+  end
+
+  it 'e só tem acesso a coberturas ativas' do
+    company = InsuranceCompany.create!(name: 'Seguradora Exemplo', email_domain: 'seguradora.com.br',
+                                       registration_number: '80958759000110')
+    user = User.create!(email: 'email@seguradora.com.br', password: 'password', name: 'Maria', role: :employee)
+    smartphones = ProductCategory.create!(name: 'Smartphones')
+    Package.create!(name: 'Premium', min_period: 12, max_period: 24,
+                    insurance_company: company,
+                    product_category: smartphones, status: :pending, price: 0)
+    PackageCoverage.create!(name: 'Quebra de tela',
+                            description: 'Assistência por danificação da tela do aparelho.', status: :inactive)
+    PackageCoverage.create!(name: 'Molhar',
+                            description: 'Assistência por danificação por humidade', status: :active)
+
+    login_as(user)
+    visit root_path
+    click_on 'Pacotes'
+    click_on 'Premium'
+
+    within '#coverage-select' do
+      expect(page).not_to have_content 'Quebra de tela'
+    end
+    within '#coverage-select' do
+      expect(page).to have_content 'Molhar'
+    end
   end
 end
