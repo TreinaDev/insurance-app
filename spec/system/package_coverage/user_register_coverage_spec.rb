@@ -92,3 +92,16 @@ describe 'Usuário administrador registra cobertura' do
     end
   end
 end
+
+describe 'Usuário funcionário acessa lista de coberturas' do
+  it 'e não pode cadastrar nova cobertura' do
+    user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
+
+    login_as(user)
+    visit root_path
+    click_on 'Coberturas'
+
+    expect(page).to have_content('Lista de Coberturas')
+    expect(page).not_to have_field('Adicionar Cobertura')
+  end
+end
