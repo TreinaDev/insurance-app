@@ -1,0 +1,5 @@
+pt-BR:
+  packages:
+    coverage_form:
+       empty_message: 'Não há coberturas ativos'
+       percentage_empty_message: 'É preciso adicionar cobertura'

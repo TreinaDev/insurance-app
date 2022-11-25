@@ -1,0 +1,5 @@
+pt-BR:
+  packages:
+    service_form:
+       empty_message: 'Não há serviços ativos'
+       percentage_empty_message: 'É preciso adicionar serviço'

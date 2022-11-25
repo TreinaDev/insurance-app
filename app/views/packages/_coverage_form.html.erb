@@ -3,23 +3,37 @@
     <h4 class="mb-4">Incluir Cobertura</h4>
     <%= form_with(model: [@package, @coverage_pricing]) do |f| %>
       <div class="row">
-        <div class="mb-3">
-          <%= f.label :package_coverage_id, class: "form-label fw-semibold" %>:
-          <%= f.collection_select :package_coverage_id, @coverages, :id, :name, prompt: true, class: "form-control" %>
+        <div class="mb-3" id="coverage-select">
+          <% if @coverages.empty? %>
+            <%= f.label :package_coverage_id, class: "form-label fw-semibold" %>:
+            <p><%= t '.empty_message' %></p>
+          <% else %>
+            <%= f.label :package_coverage_id, class: "form-label fw-semibold" %>:
+            <%= f.collection_select :package_coverage_id, @coverages, :id, :name, prompt: true, class: "form-control" %>
+          <% end %>
         </div>
         <div class="mb-3 col-auto">
           <div class="row">
-            <div class="col-auto">
-              <%= f.label :percentage_price, class: "form-label fw-semibold" %> (%):
-            </div>
-            <div class="col-auto">
-              <%= f.number_field :percentage_price, step: 0.01, class: "form-control" %>
-            </div>
+            <% if @coverages.empty? %>
+               <div class="col-auto">
+                <%= f.label :percentage_price, class: "form-label fw-semibold" %> (%):
+              </div>
+               <p><%= t '.percentage_empty_message' %></p>
+            <% else %>
+              <div class="col-auto">
+                <%= f.label :percentage_price, class: "form-label fw-semibold" %> (%):
+              </div>
+              <div class="col-auto"  id="coverage-form-field">
+                <%= f.number_field :percentage_price, step: 0.01, class: "form-control" %>
+              </div>
+            <% end %>
           </div>
         </div>
-        <div>
+        <% unless @coverages.empty? %>
+        <div id="coverage-form-button" >
           <%= f.submit 'Adicionar Cobertura', class: "btn btn-dark" %>
         </div>
+        <% end %>
       </div>
     <% end %>
   </div>

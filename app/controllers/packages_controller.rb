@@ -55,7 +55,7 @@ class PackagesController < ApplicationController
   end
 
   def coverages_and_services
-    @coverages = PackageCoverage.all.order(:name)
-    @services = Service.all.order(:name)
+    @coverages = PackageCoverage.active.order(:name)
+    @services = Service.active.order(:name)
   end
 end
