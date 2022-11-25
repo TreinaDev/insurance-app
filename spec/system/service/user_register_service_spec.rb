@@ -69,3 +69,16 @@ describe 'Usuário administrador registra Serviço' do
     end
   end
 end
+
+describe 'Usuário funcionário acessa lista de serviços' do
+  it 'e não pode cadastrar novo serviço' do
+    user = User.create!(name: 'Pessoa', email: 'pessoa@empresa.com.br', password: 'password', role: :admin)
+
+    login_as(user)
+    visit root_path
+    click_on 'Serviços'
+
+    expect(page).to have_content('Lista de Serviços')
+    expect(page).not_to have_field('Adicionar Serviço')
+  end
+end
