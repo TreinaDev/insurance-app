@@ -142,8 +142,6 @@ describe 'Usuário visita pagina para criar pacote' do
 
     within '#coverage-select' do
       expect(page).not_to have_content 'Quebra de tela'
-    end
-    within '#coverage-select' do
       expect(page).to have_content 'Molhar'
     end
   end

@@ -151,8 +151,6 @@ describe 'Usuário visita pagina para criar pacote' do
 
     within '#service-select' do
       expect(page).to have_content 'Desconto no Clube'
-    end
-    within '#service-select' do
       expect(page).not_to have_content 'Assinatura TV'
     end
   end
