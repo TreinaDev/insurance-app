@@ -19,6 +19,25 @@ describe 'Find Company for Employee API' do
       expect(json_response.keys).not_to include('updated_at')
     end
 
+    it 'e a Seguradora não está ativa' do
+      InsuranceCompany.create!(name: 'Liga de Seguros', email_domain: 'ligadeseguros.com.br',
+                               registration_number: '01333288000189', company_status: :inactive)
+
+      get '/api/v1/insurance_companies/query?id=pessoa@ligadeseguros.com.br'
+
+      expect(response.status).to eq 404
+    end
+
+    it 'e o token da Seguradora não está ativo' do
+      InsuranceCompany.create!(name: 'Liga de Seguros', email_domain: 'ligadeseguros.com.br',
+                               registration_number: '01333288000189', company_status: :active,
+                               token_status: :token_inactive)
+
+      get '/api/v1/insurance_companies/query?id=pessoa@ligadeseguros.com.br'
+
+      expect(response.status).to eq 404
+    end
+
     it 'e não encontra uma Seguradora' do
       InsuranceCompany.create!(name: 'Liga de Seguros', email_domain: 'ligadeseguros.com.br',
                                registration_number: '01333288000189', company_status: :active)
