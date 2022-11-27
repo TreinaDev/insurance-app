@@ -504,17 +504,29 @@ Projeto de app e api para pacotes de seguros: Campus Code - TreinaDev Delas!
 ```json
 [
   {
-    "id": 3,
-    "name": "Super Premium",
-    "max_period": 24,
-    "min_period": 12,
-    "insurance_company_id": 4,
-    "price": "1.5",
-    "product_category_id": 2,
-    "coverages": [],
-    "services": [],
-    "price_per_month": "75.0",
-    "insurance_company_name": "Anjo Seguradora"
+    "id":2,
+    "name":"Super Premium",
+    "max_period":24,
+    "min_period":12,
+    "insurance_company_id":3,
+    "price":"1.7",
+    "product_category_id":1,
+    "coverages":[
+      {
+        "code":"76R",
+        "name":"Quebra de tela",
+        "description":"Assistência por danificação da tela do aparelho."
+      }
+    ],
+    "services":[
+      {
+        "code":"TKY",
+        "name":"Desconto clubes seguros",
+        "description":"Concede 10% de desconto em aquisição de seguro veicular."
+      }
+    ],
+    "price_per_month":"34.0",
+    "insurance_company_name":"Seguradora A"
   },
   {
     "id": 4,
