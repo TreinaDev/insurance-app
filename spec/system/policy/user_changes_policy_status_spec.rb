@@ -152,7 +152,7 @@ describe '.disapprove_order' do
                             equipment_id: 1,
                             policy_period: 12, package_id: package.id)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
-    json_data = { order: { status: ':canceled', policy_id: policy.id.to_s,
+    json_data = { order: { status: ':insurance_disapproved', policy_id: policy.id.to_s,
                            policy_code: policy.code.to_s } }
     fake_response = double('faraday_response', status: 200)
 
@@ -222,7 +222,7 @@ describe '.disapprove_order' do
                             equipment_id: 1,
                             policy_period: 12, package_id: package.id)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
-    json_data = { order: { status: ':canceled', policy_id: policy.id.to_s,
+    json_data = { order: { status: ':insurance_disapproved', policy_id: policy.id.to_s,
                            policy_code: policy.code.to_s } }
     fake_response = double('faraday_response', status: 200)
 

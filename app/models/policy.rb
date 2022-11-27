@@ -28,7 +28,8 @@ class Policy < ApplicationRecord
 
   def disapprove_order(policy_id)
     policy = Policy.find_by(id: policy_id)
-    json_data = { order: { status: ':canceled', policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
+    json_data = { order: { status: ':insurance_disapproved',
+                           policy_id: policy.id.to_s, policy_code: policy.code.to_s } }
     url = "#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}/insurance_disapproved"
     response = Faraday.post(url, body: json_data)
 
