@@ -17,7 +17,9 @@ describe 'Administrador vê detalhes de apólice ativa' do
                            policy_period: 12, package_id: package.id, status: :active)
     json = Rails.root.join('spec/support/jsons/order.json').read
     fake_response = double('faraday_response', status: 200, body: json, success?: true)
-    allow(Faraday).to receive(:get).with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}").and_return(fake_response)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+      .and_return(fake_response)
 
     login_as(user)
     visit root_path
