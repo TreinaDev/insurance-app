@@ -8,11 +8,17 @@ describe 'Funcionário faz upload de arquivo de apólice' do
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                               price: 9, product_category_id: product_category.id)
-    policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
-                            client_email: 'joseantonio@email.com',
-                            insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1,
-                            policy_period: 12, package_id: package.id)
+    policy = Policy.create(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                           client_email: 'mari@gmail.com',
+                           insurance_company_id: insurance_company.id, order_id: 1,
+                           equipment_id: 1,
+                           policy_period: 18, package_id: package.id, status: :active)
+    json = Rails.root.join('spec/support/jsons/order.json').read
+    fake_response = double('faraday_response', status: 200, body: json, success?: true)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+      .and_return(fake_response)
+
     policy.active!
 
     login_as(user)

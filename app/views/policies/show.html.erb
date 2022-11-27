@@ -1,8 +1,8 @@
 <a class="btn btn-outline-dark" style="margin-bottom:16px;" href="<%= policies_path %>" role="button"><%= t '.back' %></a>
 <div class = "container-card" > 
-  <div class="card" style="width: 25rem;">    
+  <div class="card" style="width: 50rem;">    
     <div class="card-body">
-      <h4><%= t '.title' %>: <%= @policy.code %></h4><br/>
+      <h4 class="card-header"><%= t '.title' %>: <%= @policy.code %></h4><br/>
         <p><strong><%= Policy.human_attribute_name(:status)%>: </strong><%=Policy.human_attribute_name("status.#{@policy.status}") %></p>
         <p><strong><%= Policy.human_attribute_name(:client_name)%>: </strong><%= @policy.client_name %></p>
         <p><strong><%= Policy.human_attribute_name(:client_registration_number)%>: </strong><%= @policy.client_registration_number %></p>
@@ -13,6 +13,26 @@
         <% if @policy.active? %>
           <p><strong><%= Policy.human_attribute_name(:purchase_date)%>: </strong><%= @policy.purchase_date.strftime('%d/%m/%Y') %></p>
           <p><strong><%= Policy.human_attribute_name(:expiration_date)%>: </strong><%= @policy.expiration_date.strftime('%d/%m/%Y') %></p>
+        <% end %>
+        <% if @order.present? %>
+          <h6 class="lead card-header my-3"><strong>Dados da compra</strong></h6>
+          <p><strong>Preço final: </strong><%= number_to_currency(@order.final_price, delimiter: '') %></p>
+          <p><strong>Preço por mês: </strong><%= number_to_currency(@order.price, delimiter: '') %></p>
+          <% if @order.voucher.present? %>
+            <h6 class="lead card-header my-3"><strong>Dados do cupom</strong></h6>
+            <p><strong>Código de promoção: </strong><%= @order.voucher %></p>
+            <p><strong>Desconto de promoção: </strong><%= number_to_currency(@order.voucher_price, delimiter: '') %></p>
+          <% end %>
+          <h6 class="lead card-header my-3"><strong>Dados do equipamento</strong></h6>
+          <p><strong>Aparelho: </strong><%= @order.equipment['name'] %></p>
+          <p><strong>Data de compra do aparelho: </strong><%= localize(@order.equipment['purchase_date'].to_date) %></p>
+          
+          <% @order.equipment['pictures'].each do |img| %>
+            <figure class="figure">
+              <%= image_tag img, class: 'figure-img img-fluid my-3' %>
+
+            </figure>
+          <% end %>
         <% end %>
 
     <% if current_user.insurance_company == @policy.insurance_company %>

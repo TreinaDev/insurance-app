@@ -1,0 +1,43 @@
+{
+  "id": 1,
+  "status": "insurance_approved",
+  "payment_method": null,
+  "contract_period": 18,
+  "price": "170.0",
+  "insurance_description": "{\"coberturas\":[{\"code\":\"UTO\",\"name\":\"Quebra de tela\",\"description\":\"Assistência por danificação da tela do aparelho.\"}],\"services\":[{\"code\":\"DNA\",\"name\":\"Desconto clubes seguros\",\"description\":\"Concede 10% de desconto em aquisição de seguro veicular.\"}]}",
+  "insurance_company_id": 3,
+  "insurance_name": "Liga Seguradora",
+  "package_name": "Premium",
+  "product_model": "Xiaomi RedNote 10",
+  "final_price": "3060.0",
+  "voucher_price": "306.0",
+  "code": "RMCTHVDKER5Q5L0",
+  "max_period": 24,
+  "min_period": 12,
+  "product_category": null,
+  "product_category_id": 1,
+  "voucher_code": "JGTAPNVU",
+  "package_id": 2,
+  "policy_id": 9,
+  "policy_code": "NMSKTDSMCR",
+  "product_model_id": 9,
+  "equipment": {
+    "name": "Xiaomi RedNote 10",
+    "brand": "Xiaomi",
+    "purchase_date": "2020-12-15",
+    "equipment_price": "900.0",
+    "pictures": [
+      "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--18f654aac514a74f38556c4051e2c9b351c7293f/xiaomi-redmi-note-9-4.jpg",
+      "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--dcbd4fe2b5ae489e16f77f3f261373eba8679104/xiaomi-redmi-note11-pro-1.jpg"
+    ]
+  },
+  "client": {
+    "email": "mari@gmail.com",
+    "name": "Mariana Souza",
+    "cpf": "03324431940",
+    "address": "Rua do Buraco 20",
+    "city": "Nova Esperança",
+    "birth_date": "1997-12-15",
+    "state": "PR"
+  }
+}
