@@ -11,7 +11,9 @@ class PoliciesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @order = Order.find(@policy.order_id)
+  end
 
   def update
     file_params = params.require(:policy).permit(:file)

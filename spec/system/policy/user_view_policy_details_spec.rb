@@ -10,11 +10,14 @@ describe 'Administrador vê detalhes de apólice ativa' do
                               insurance_company_id: insurance_company.id, price: 9,
                               product_category_id: product_category.id)
     allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234567')
-    Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
-                  client_email: 'mariaalves@email.com',
-                  insurance_company_id: insurance_company.id, order_id: 1,
-                  equipment_id: 1,
-                  policy_period: 12, package_id: package.id, status: :active)
+    policy = Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
+                           client_email: 'mariaalves@email.com',
+                           insurance_company_id: insurance_company.id, order_id: 1,
+                           equipment_id: 1,
+                           policy_period: 12, package_id: package.id, status: :active)
+    json = Rails.root.join('spec/support/jsons/order.json').read
+    fake_response = double('faraday_response', status: 200, body: json, success?: true)
+    allow(Faraday).to receive(:get).with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}").and_return(fake_response)
 
     login_as(user)
     visit root_path
@@ -33,6 +36,11 @@ describe 'Administrador vê detalhes de apólice ativa' do
     expect(page).to have_content Time.zone.today.strftime('%d/%m/%Y')
     expect(page).to have_content 'Prazo de Contratação: 12 meses'
     expect(page).to have_content (Time.zone.today + 12.months).strftime('%d/%m/%Y')
+    expect(page).to have_content 'Preço final: R$ 3060,00'
+    expect(page).to have_content 'Preço por mês: R$ 170,00'
+    expect(page).to have_content 'Aparelho: Xiaomi RedNote 10'
+    expect(page).to have_content 'Desconto de promoção: R$ 306,00'
+    expect(page).to have_content 'Data de compra do aparelho: 15/12/2020'
   end
 end
 
