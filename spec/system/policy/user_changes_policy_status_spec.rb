@@ -12,11 +12,17 @@ describe 'Usuário altera status da apólice' do
                                 insurance_company_id: insurance_company.id,
                                 price: 9, product_category_id: product_category.id)
       allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('GHI1234567')
-      Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
-                    client_email: 'mariaalves@email.com',
-                    insurance_company_id: insurance_company.id, order_id: 1,
-                    equipment_id: 1, purchase_date: Time.zone.today,
-                    policy_period: 12, package_id: package.id, status: :active)
+      policy = Policy.create!(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                              client_email: 'mari@gmail.com',
+                              insurance_company_id: insurance_company.id, order_id: 1,
+                              equipment_id: 1,
+                              policy_period: 18, package_id: package.id, status: :active)
+
+      json = Rails.root.join('spec/support/jsons/order.json').read
+      fake_response = double('faraday_response', status: 200, body: json, success?: true)
+      allow(Faraday).to receive(:get)
+        .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+        .and_return(fake_response)
 
       login_as(user)
       visit root_path
@@ -42,11 +48,17 @@ describe 'Usuário altera status da apólice' do
                                 price: 50, product_category_id: product_category.id)
 
       allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('GHI1234567')
-      Policy.create(client_name: 'Maria Alves', client_registration_number: '99950033340',
-                    client_email: 'mariaalves@email.com',
-                    insurance_company_id: insurance_company.id, order_id: 1,
-                    equipment_id: 1,
-                    policy_period: 12, package_id: package.id, status: :pending)
+      policy = Policy.create(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                             client_email: 'mari@gmail.com',
+                             insurance_company_id: insurance_company.id, order_id: 1,
+                             equipment_id: 1,
+                             policy_period: 18, package_id: package.id, status: :pending)
+
+      json = Rails.root.join('spec/support/jsons/order.json').read
+      fake_response = double('faraday_response', status: 200, body: json, success?: true)
+      allow(Faraday).to receive(:get)
+        .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+        .and_return(fake_response)
 
       login_as(user)
       visit root_path
@@ -111,11 +123,18 @@ describe '.approve_order' do
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                               price: 50, product_category_id: product_category.id)
-    policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
-                            client_email: 'joseantonio@email.com',
-                            insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1,
-                            policy_period: 12, package_id: package.id)
+    policy = Policy.create(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                           client_email: 'mari@gmail.com',
+                           insurance_company_id: insurance_company.id, order_id: 1,
+                           equipment_id: 1,
+                           policy_period: 18, package_id: package.id, status: :pending)
+
+    json = Rails.root.join('spec/support/jsons/order.json').read
+    fake_response = double('faraday_response', status: 200, body: json, success?: true)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+      .and_return(fake_response)
+
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
     json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s,
                            policy_code: policy.code.to_s } }
@@ -132,7 +151,7 @@ describe '.approve_order' do
     click_on 'Pagamentos Pendentes'
     find(:css, '#pending-payment-tab-pane').click_on policy.code
 
-    expect(page).to have_content 'E-mail do Cliente: joseantonio@email.com'
+    expect(page).to have_content 'E-mail do Cliente: mari@gmail.com'
     expect(page).to have_content policy.code.to_s
     expect(page).to have_content 'Situação da Apólice: Pagamento Pendente'
   end
@@ -146,11 +165,17 @@ describe '.disapprove_order' do
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                               price: 50, product_category_id: product_category.id)
-    policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
-                            client_email: 'joseantonio@email.com',
-                            insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1,
-                            policy_period: 12, package_id: package.id)
+    policy = Policy.create(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                           client_email: 'mari@gmail.com',
+                           insurance_company_id: insurance_company.id, order_id: 1,
+                           equipment_id: 1,
+                           policy_period: 18, package_id: package.id, status: :pending)
+
+    json = Rails.root.join('spec/support/jsons/order.json').read
+    fake_response = double('faraday_response', status: 200, body: json, success?: true)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+      .and_return(fake_response)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
     json_data = { order: { status: ':insurance_disapproved', policy_id: policy.id.to_s,
                            policy_code: policy.code.to_s } }
@@ -167,7 +192,7 @@ describe '.disapprove_order' do
     click_on 'Canceladas'
     find(:css, '#canceled-tab-pane').click_on policy.code
 
-    expect(page).to have_content 'E-mail do Cliente: joseantonio@email.com'
+    expect(page).to have_content 'E-mail do Cliente: mari@gmail.com'
     expect(page).to have_content policy.code.to_s
     expect(page).to have_content 'Situação da Apólice: Cancelada'
   end
@@ -181,11 +206,18 @@ describe '.approve_order' do
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                               price: 50, product_category_id: product_category.id)
-    policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
-                            client_email: 'joseantonio@email.com',
-                            insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1,
-                            policy_period: 12, package_id: package.id)
+    policy = Policy.create(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                           client_email: 'mari@gmail.com',
+                           insurance_company_id: insurance_company.id, order_id: 1,
+                           equipment_id: 1,
+                           policy_period: 18, package_id: package.id, status: :pending)
+
+    json = Rails.root.join('spec/support/jsons/order.json').read
+    fake_response = double('faraday_response', status: 200, body: json, success?: true)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+      .and_return(fake_response)
+
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_approved"
     json_data = { order: { status: ':insurance_approved', policy_id: policy.id.to_s,
                            policy_code: policy.code.to_s } }
@@ -202,7 +234,7 @@ describe '.approve_order' do
     click_on 'Pagamentos Pendentes'
     find(:css, '#pending-payment-tab-pane').click_on policy.code
 
-    expect(page).to have_content 'E-mail do Cliente: joseantonio@email.com'
+    expect(page).to have_content 'E-mail do Cliente: mari@gmail.com'
     expect(page).to have_content policy.code.to_s
     expect(page).to have_content 'Situação da Apólice: Pagamento Pendente'
   end
@@ -216,11 +248,17 @@ describe '.disapprove_order' do
     product_category = ProductCategory.create!(name: 'TV')
     package = Package.create!(name: 'Premium', min_period: 12, max_period: 24, insurance_company:,
                               price: 50, product_category_id: product_category.id)
-    policy = Policy.create!(client_name: 'José Antonio', client_registration_number: '77750033340',
-                            client_email: 'joseantonio@email.com',
-                            insurance_company_id: insurance_company.id, order_id: 1,
-                            equipment_id: 1,
-                            policy_period: 12, package_id: package.id)
+    policy = Policy.create(client_name: 'Mariana Souza', client_registration_number: '03324431940',
+                           client_email: 'mari@gmail.com',
+                           insurance_company_id: insurance_company.id, order_id: 1,
+                           equipment_id: 1,
+                           policy_period: 18, package_id: package.id, status: :pending)
+
+    json = Rails.root.join('spec/support/jsons/order.json').read
+    fake_response = double('faraday_response', status: 200, body: json, success?: true)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['comparator_api']}/orders/#{policy.order_id}")
+      .and_return(fake_response)
     url = "http://localhost:4000/api/v1/orders/#{policy.order_id}/insurance_disapproved"
     json_data = { order: { status: ':insurance_disapproved', policy_id: policy.id.to_s,
                            policy_code: policy.code.to_s } }
@@ -237,7 +275,7 @@ describe '.disapprove_order' do
     click_on 'Canceladas'
     find(:css, '#canceled-tab-pane').click_on policy.code
 
-    expect(page).to have_content 'E-mail do Cliente: joseantonio@email.com'
+    expect(page).to have_content 'E-mail do Cliente: mari@gmail.com'
     expect(page).to have_content policy.code.to_s
     expect(page).to have_content 'Situação da Apólice: Cancelada'
   end
